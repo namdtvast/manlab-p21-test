@@ -268,6 +268,8 @@
   .picker-toolbar{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.6rem;padding:.5rem .6rem;
     background:var(--paper);border:1px solid var(--line);border-radius:6px}
   .picker-toolbar label{display:flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:600;cursor:pointer}
+  .picker-toolbar label.selall-label{flex:0 1 auto;max-width:220px}
+  .picker-toolbar label.selall-label .selall-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .picker-toolbar .sel-count{font-size:.78rem;color:var(--teal);font-weight:700}
   .picker-toolbar .spacer{flex:1}
   .pitem .pchk{flex:0 0 auto;display:flex;align-items:center;margin-right:.2rem}
@@ -701,7 +703,7 @@
       '<div class="prow" style="margin-bottom:.3rem"><span class="ml-status" id="mlStatus">Nguồn: '+esc(srcLbl)+'</span></div>'+
       '<div class="prow"><input type="text" id="pickerq" placeholder="Tìm theo tên / lĩnh vực..." value="'+esc(state.pickerQ)+'"></div>'+
       '<div class="picker-toolbar">'+
-        '<label><input type="checkbox" data-action="selall" '+(allChecked?"checked":"")+'> Chọn tất cả ('+pass.length+' đủ điều kiện)</label>'+
+        '<label class="selall-label" title="Chọn tất cả ('+pass.length+' đủ điều kiện)"><input type="checkbox" data-action="selall" '+(allChecked?"checked":"")+'> <span class="selall-text">Chọn tất cả ('+pass.length+' đủ điều kiện)</span></label>'+
         '<span class="spacer"></span>'+
         '<span class="sel-count">Đã chọn: '+selCount+'</span>'+
         '<button class="btn sm" data-action="addselected" '+(selCount?"":"disabled")+'>Thêm '+selCount+' đối tượng đã chọn</button>'+

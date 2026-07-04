@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html{-webkit-text-size-adjust:100%}</style>
+<title>Module Công bố / Thông báo năng lực ĐL–QTMT (ETV.MP 21 · P21)</title>
+<style>
+  :root{
+    --ground:#F5F7F8;--paper:#FFFFFF;--ink:#16242E;--ink-soft:#43525C;--muted:#74838C;
+    --line:#DBE2E5;--line-strong:#C2CDD2;--teal:#0E5A6B;--teal-soft:#E3EEF0;--navy:#163E5C;
+    --good:#1E7A52;--good-bg:#E5F2EB;--warn:#B0760E;--warn-bg:#FBF1DC;--bad:#B23A48;--bad-bg:#F8E6E8;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    --serif:Georgia,"Times New Roman","Be Vietnam Pro",Cambria,"Noto Serif",serif;
+  }
+  *{box-sizing:border-box}
+  .wrap{font-family:var(--sans);color:var(--ink);background:var(--ground);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{margin:0;text-wrap:balance}
+  p{margin:0}
+  .tnum{font-variant-numeric:tabular-nums}
+  button{font-family:var(--sans)}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em}
+  /* Top bar */
+  .topbar{background:var(--paper);border-bottom:3px solid var(--teal);padding:.7rem clamp(1rem,3vw,1.6rem);
+    display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+  .brand{display:flex;flex-direction:column}
+  .brand .ey{font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700}
+  .brand h1{font-family:var(--serif);font-size:1.12rem;font-weight:600}
+  .brand .sub{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+  .topbar .spacer{flex:1}
+  .rolebox{display:flex;align-items:center;gap:.5rem;font-size:.82rem}
+  .rolebox select{padding:.4rem .5rem;border:1px solid var(--line-strong);border-radius:4px;background:var(--ground);font-size:.82rem}
+  .adminnote{font-size:.68rem;color:var(--warn);max-width:180px}
+  /* Layout */
+  .shell{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 66px)}
+  .side{background:var(--paper);border-right:1px solid var(--line);padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+  .side h2{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;margin:.3rem 0}
+  .newbtns{display:flex;gap:.4rem}
+  .btn{appearance:none;border:1px solid var(--teal);background:var(--teal);color:#fff;border-radius:5px;
+    padding:.5rem .7rem;font-size:.82rem;font-weight:600;cursor:pointer}
+  .btn.ghost{background:var(--paper);color:var(--teal)}
+  .btn.sm{padding:.35rem .55rem;font-size:.76rem}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .btn.danger{border-color:var(--bad);background:var(--bad)}
+  .btn.warnb{border-color:var(--warn);background:var(--warn)}
+  .searchbox{display:flex;flex-direction:column;gap:.35rem}
+  .searchbox input,.searchbox select{padding:.4rem .5rem;border:1px solid var(--line-strong);border-radius:4px;font-size:.8rem;background:var(--ground)}
+  .reclist{display:flex;flex-direction:column;gap:.35rem;overflow:auto}
+  .recwrap{position:relative;border:1px solid var(--line);background:var(--ground);border-radius:5px}
+  .recwrap:hover{border-color:var(--teal)}
+  .recwrap.active{border-color:var(--teal);background:var(--teal-soft)}
+  .recitem{text-align:left;border:0;background:transparent;border-radius:5px;width:100%;
+    padding:.5rem 1.8rem .5rem .6rem;cursor:pointer;display:flex;flex-direction:column;gap:.15rem;color:inherit}
+  .recdel{position:absolute;top:.35rem;right:.35rem;width:1.3rem;height:1.3rem;border:0;border-radius:4px;
+    background:transparent;color:var(--muted);font-size:.9rem;cursor:pointer;line-height:1}
+  .recdel:hover{background:var(--bad-bg);color:var(--bad)}
+  .recitem .r1{display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+  .recitem .mã{font-weight:700;font-size:.82rem}
+  .recitem .sub{font-size:.72rem;color:var(--muted)}
+  .badge{font-size:.64rem;font-weight:700;padding:.1rem .4rem;border-radius:999px;white-space:nowrap}
+  .tag-loai{background:var(--navy);color:#fff}
+  .tag-link{background:var(--teal);color:#fff;font-size:.62rem;padding:.05rem .35rem;border-radius:4px;margin-left:.3rem}
+  .empty-side{color:var(--muted);font-size:.78rem}
+  /* Main */
+  .main{padding:clamp(1rem,2.5vw,1.6rem);overflow:auto}
+  .empty{color:var(--muted);text-align:center;margin-top:4rem;font-size:.9rem}
+  .vtabs{display:flex;gap:.25rem;border-bottom:1px solid var(--line);margin-bottom:1.1rem;flex-wrap:wrap}
+  .vtab{appearance:none;border:0;background:transparent;padding:.5rem .8rem;font-size:.86rem;color:var(--ink-soft);
+    cursor:pointer;border-bottom:2px solid transparent;font-weight:500}
+  .vtab[aria-selected="true"]{color:var(--teal);border-bottom-color:var(--teal);font-weight:700}
+  /* Status strip */
+  .sstrip{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+  .pill{font-size:.74rem;font-weight:700;padding:.3rem .7rem;border-radius:999px;border:1px solid}
+  .pill.s-conghieu{background:var(--good-bg);color:var(--good);border-color:var(--good)}
+  .pill.s-mid{background:var(--teal-soft);color:var(--teal);border-color:var(--teal)}
+  .pill.s-alert{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+  .pill.s-bad{background:var(--bad-bg);color:var(--bad);border-color:var(--bad)}
+  .pill.s-draft{background:var(--ground);color:var(--ink-soft);border-color:var(--line-strong)}
+  .locklbl{font-size:.74rem;color:var(--bad);font-weight:700}
+  .unlocklbl{font-size:.74rem;color:var(--good);font-weight:700}
+  /* Forms */
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem;margin-bottom:1rem}
+  .fld{display:flex;flex-direction:column;gap:.25rem}
+  .fld label{font-size:.74rem;font-weight:600;color:var(--ink-soft)}
+  .fld .hint{font-size:.66rem;color:var(--muted);font-weight:400}
+  .reqmark{color:var(--bad);font-weight:700}
+  .fld input,.fld select,.fld textarea{padding:.45rem .55rem;border:1px solid var(--line-strong);border-radius:4px;
+    background:var(--paper);font-size:.84rem;font-family:var(--sans);color:var(--ink)}
+  .fld input:disabled,.fld select:disabled,.fld textarea:disabled{background:#eef1f3;color:var(--ink-soft)}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1rem 1.1rem;margin-bottom:1rem}
+  .card > h3{font-size:.92rem;color:var(--navy);margin-bottom:.7rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+  .card > h3 .btnrow{display:flex;gap:.4rem;flex-wrap:wrap}
+  .nm{display:flex;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--ink-soft)}
+  .nm b{color:var(--ink)}
+  .subnote{font-size:.76rem;color:var(--muted);margin-top:.3rem}
+  /* Child table */
+  .ctab-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+  table.ct{width:100%;border-collapse:collapse;font-size:.8rem;min-width:1520px;table-layout:fixed}
+  table.ct th{background:var(--navy);color:#fff;font-weight:600;font-size:.68rem;padding:.5rem .45rem;text-align:left;position:sticky;top:0;
+    white-space:normal;line-height:1.2;vertical-align:middle}
+  table.ct td{border-bottom:1px solid var(--line);padding:.35rem .4rem;vertical-align:top;overflow:visible}
+  table.ct input,table.ct select{width:100%;max-width:100%;box-sizing:border-box;border:1px solid transparent;background:transparent;font-size:.8rem;
+    padding:.3rem;border-radius:3px;font-family:var(--sans);color:var(--ink)}
+  table.ct select{-webkit-appearance:menulist;appearance:menulist}
+  table.ct input:focus,table.ct select:focus{border-color:var(--teal);background:var(--paper);outline:none}
+  table.ct input:disabled,table.ct select:disabled{color:var(--ink-soft)}
+  /* Evidence cell */
+  .evcell{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap}
+  .evcell .evnote{flex:1;min-width:80px}
+  .evattach{border:1px dashed var(--teal);background:var(--teal-soft);color:var(--teal);border-radius:4px;
+    font-size:.66rem;padding:.2rem .4rem;cursor:pointer;white-space:nowrap;font-weight:600}
+  .evthumb{width:34px;height:34px;object-fit:cover;border-radius:4px;border:1px solid var(--line-strong);cursor:pointer;flex:0 0 auto}
+  .evdoc{font-size:1.1rem}
+  .evname{font-size:.68rem;color:var(--ink-soft);word-break:break-all}
+  .evdel{border:0;background:transparent;color:var(--bad);cursor:pointer;font-size:.85rem;font-weight:700;flex:0 0 auto}
+  .kq-dapung{background:var(--good-bg)} .kq-khong{background:var(--bad-bg)} .kq-dieuchinh{background:var(--warn-bg)}
+  .rowdel{border:0;background:transparent;color:var(--bad);cursor:pointer;font-size:1rem;font-weight:700}
+  .ct-foot{padding:.5rem;background:var(--paper)}
+  .linkbadge{display:inline-block;font-size:.6rem;font-weight:700;color:var(--teal);background:var(--teal-soft);
+    border-radius:3px;padding:0 .3rem;margin-top:.2rem;white-space:nowrap}
+  .microlbl{font-size:.6rem;color:var(--muted);display:block;margin-bottom:.1rem}
+  /* Gaps / validation */
+  .gaps{border:1px solid var(--bad);background:var(--bad-bg);border-radius:6px;padding:.7rem .9rem;font-size:.8rem;margin-bottom:1rem}
+  .gaps.ok{border-color:var(--good);background:var(--good-bg)}
+  .gaps ul{margin:.4rem 0 0 1.1rem;padding:0}
+  .gaps li{margin-bottom:.15rem}
+  /* Catalog picker */
+  .picker{border:1px dashed var(--teal);border-radius:6px;padding:.8rem .9rem;margin:.7rem 0;background:var(--teal-soft)}
+  .picker .prow{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem;align-items:center}
+  .picker input[type=text]{flex:1;min-width:180px;padding:.4rem .55rem;border:1px solid var(--line-strong);border-radius:4px}
+  .plist{display:flex;flex-direction:column;gap:.35rem;max-height:320px;overflow:auto}
+  .pitem{background:var(--paper);border:1px solid var(--line);border-radius:5px;padding:.5rem .6rem;display:flex;justify-content:space-between;gap:.6rem;align-items:center;flex-wrap:wrap}
+  .pitem .pinfo{font-size:.78rem}
+  .pitem .pinfo b{font-size:.82rem}
+  .pitem .ptags{font-size:.66rem;color:var(--muted)}
+  .pitem.fail{opacity:.72;background:var(--ground)}
+  .pitem .greason{font-size:.68rem;color:var(--bad);margin-top:.2rem}
+  .picktoggle{background:none;border:0;color:var(--teal);font-size:.76rem;font-weight:600;cursor:pointer;text-decoration:underline}
+  /* Rules panel */
+  .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem}
+  .rule{border:1px solid var(--line);border-radius:6px;padding:.7rem .8rem;background:var(--paper);display:flex;gap:.6rem;align-items:flex-start}
+  .rule .ic{flex:0 0 auto;width:1.3rem;height:1.3rem;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:.78rem;font-weight:700}
+  .rule.ok .ic{background:var(--good)} .rule.warn .ic{background:var(--warn)} .rule.bad .ic{background:var(--bad)} .rule.info .ic{background:var(--navy)}
+  .rule h4{font-size:.8rem;margin-bottom:.1rem}
+  .rule p{font-size:.76rem;color:var(--ink-soft)}
+  .rule .cite{font-size:.68rem;color:var(--muted)}
+  /* Actions */
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
+  /* Version table */
+  table.vt{width:100%;border-collapse:collapse;font-size:.82rem}
+  table.vt th{background:var(--ground);color:var(--ink-soft);text-align:left;padding:.5rem;font-size:.72rem;border-bottom:2px solid var(--line)}
+  table.vt td{padding:.5rem;border-bottom:1px solid var(--line)}
+  table.vt tr:last-child td{font-weight:700;color:var(--teal)}
+  /* Document preview */
+  .docpaper{background:#fff;border:1px solid var(--line);border-radius:4px;max-width:820px;margin:0 auto;
+    padding:2.4rem 2.6rem;font-family:"Times New Roman",Times,serif;color:#000;font-size:13.5pt;line-height:1.4}
+  .docpaper .htop{display:flex;justify-content:space-between;gap:1rem;text-align:center;font-size:11.5pt}
+  .docpaper .htop .l,.docpaper .htop .r{flex:1}
+  .docpaper .htop b{font-weight:700}
+  .docpaper hr{border:0;border-top:1px solid #000;width:40%;margin:.2rem auto}
+  .docpaper .mau{text-align:right;font-style:italic;font-size:11pt;margin-bottom:.4rem}
+  .docpaper h2.tt{text-align:center;font-size:14pt;font-weight:700;margin:1rem 0 .3rem;text-transform:uppercase}
+  .docpaper h3.sub{text-align:center;font-size:12pt;font-weight:700;margin:.2rem 0 1rem}
+  .docpaper p.line{margin:.25rem 0}
+  .docpaper table.f{width:100%;border-collapse:collapse;font-size:11pt;margin:.4rem 0 .8rem}
+  .docpaper table.f th,.docpaper table.f td{border:1px solid #000;padding:.25rem .35rem;vertical-align:top}
+  .docpaper table.f th{text-align:center;font-weight:700;background:#f0f0f0}
+  .docpaper .sign{display:flex;justify-content:space-between;margin-top:1.4rem;text-align:center;font-size:11.5pt}
+  .docpaper .sign .col{flex:1}
+  .docpaper .sec{font-weight:700;margin-top:.8rem}
+  .docpaper .foot{margin-top:1.2rem;font-size:9.5pt;color:#444;border-top:1px dashed #999;padding-top:.4rem;font-family:var(--sans)}
+  .chk{font-family:var(--sans)}
+  /* Public page — Cổng tra cứu năng lực */
+  .pub{max-width:800px;margin:0 auto;border-radius:12px;overflow:hidden;border:1px solid var(--line);
+    box-shadow:0 4px 18px rgba(22,36,46,.06);background:var(--paper)}
+  .pub-head{background:linear-gradient(135deg,#163E5C 0%,#0E5A6B 100%);color:#fff;padding:1.4rem 1.6rem;
+    display:flex;align-items:center;gap:1.1rem}
+  .pub-crest{flex:0 0 auto;width:3.2rem;height:3.2rem;border-radius:10px;background:rgba(255,255,255,.14);
+    display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:1.4rem;border:1px solid rgba(255,255,255,.25)}
+  .pub-head .ey{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+  .pub-head h2{font-family:var(--serif);font-size:1.32rem;margin-top:.2rem;line-height:1.25}
+  .pub-head .org{font-size:.78rem;opacity:.9;margin-top:.3rem}
+  .pub-valid{margin-left:auto;flex:0 0 auto;background:var(--good);color:#fff;font-size:.72rem;font-weight:700;
+    padding:.35rem .75rem;border-radius:999px;display:flex;align-items:center;gap:.35rem;white-space:nowrap}
+  .pub-valid .dot{width:.55rem;height:.55rem;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
+  .pub-body{padding:1.4rem 1.6rem}
+  .pub-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.9rem;margin-bottom:1.3rem}
+  .pub-meta .mi{border:1px solid var(--line);border-radius:8px;padding:.6rem .75rem;background:var(--ground)}
+  .pub-meta .k{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.2rem}
+  .pub-meta .v{font-weight:700;font-size:.95rem}
+  .qrbox{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;border:1px solid var(--teal);background:var(--teal-soft);
+    border-radius:10px;padding:1.1rem 1.2rem;margin:0 0 1.3rem}
+  .qr{width:118px;height:118px;flex:0 0 auto;image-rendering:pixelated;border:4px solid #fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .qrbox .qinfo{flex:1;min-width:200px}
+  .qrbox .qinfo .qt{font-weight:700;color:var(--teal);margin-bottom:.25rem;display:flex;align-items:center;gap:.4rem}
+  .qrbox .qinfo .qd{font-size:.8rem;color:var(--ink-soft)}
+  .qrbox code{background:#fff;border:1px solid var(--line);border-radius:4px;padding:.05rem .3rem;word-break:break-all}
+  .pub-scope-h{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.6rem}
+  .pub-scope-h h3{font-size:.98rem;color:var(--navy)}
+  .pub-scope-h .cnt{font-size:.72rem;font-weight:700;color:var(--teal);background:var(--teal-soft);border-radius:999px;padding:.15rem .6rem}
+  .pub-scope-wrap{border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .pub table.pt{width:100%;border-collapse:collapse;font-size:.83rem}
+  .pub table.pt th{background:var(--navy);color:#fff;text-align:left;padding:.55rem .65rem;font-size:.7rem;font-weight:600}
+  .pub table.pt td{border-bottom:1px solid var(--line);padding:.5rem .65rem}
+  .pub table.pt tbody tr:nth-child(even){background:var(--ground)}
+  .pub table.pt tbody tr:last-child td{border-bottom:0}
+  .gioihan{background:var(--warn-bg);border:1px solid var(--warn);border-left:4px solid var(--warn);border-radius:8px;
+    padding:.8rem 1rem;font-size:.82rem;margin-top:1.3rem;color:var(--ink)}
+  .pub-foot{margin-top:1.1rem;font-size:.72rem;color:var(--muted);text-align:center;border-top:1px dashed var(--line);padding-top:.8rem}
+  .copybtn{margin-top:.7rem}
+  /* History */
+  .hist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.4rem}
+  .hist li{display:flex;gap:.7rem;font-size:.82rem;border:1px solid var(--line);border-left:3px solid var(--teal);
+    border-radius:0 5px 5px 0;padding:.5rem .7rem}
+  .hist .t{color:var(--muted);font-size:.72rem;min-width:130px}
+  .hist .who{font-weight:700;color:var(--navy)}
+  .note{font-size:.78rem;color:var(--muted);margin-top:.5rem}
+  /* Guide modal */
+  .modal-ov{position:fixed;inset:0;background:rgba(22,36,46,.55);display:flex;align-items:center;justify-content:center;
+    padding:1.2rem;z-index:50}
+  .modal-ov[hidden]{display:none}
+  .modal{background:var(--paper);border-radius:10px;max-width:820px;width:100%;max-height:88vh;display:flex;flex-direction:column;
+    box-shadow:0 18px 50px rgba(0,0,0,.3);overflow:hidden}
+  .modal-head{background:var(--navy);color:#fff;padding:1rem 1.3rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+  .modal-head .ey{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+  .modal-head h3{font-family:var(--serif);font-size:1.15rem;margin-top:.2rem}
+  .modal-x{background:rgba(255,255,255,.15);border:0;color:#fff;width:2rem;height:2rem;border-radius:6px;font-size:1rem;cursor:pointer;flex:0 0 auto}
+  .modal-x:hover{background:rgba(255,255,255,.28)}
+  .modal-body{padding:1.3rem 1.5rem;overflow:auto}
+  .modal-foot{padding:.9rem 1.3rem;border-top:1px solid var(--line);text-align:right;background:var(--ground)}
+  .guide-intro{background:var(--teal-soft);border-left:3px solid var(--teal);border-radius:0 6px 6px 0;padding:.8rem 1rem;font-size:.86rem;margin-bottom:1.2rem}
+  .guide-step{display:flex;gap:.8rem;margin-bottom:.9rem}
+  .guide-step .n{flex:0 0 auto;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--teal);color:#fff;font-weight:700;
+    display:grid;place-items:center;font-size:.86rem}
+  .guide-step .c h4{font-size:.92rem;color:var(--navy);margin-bottom:.15rem}
+  .guide-step .c p{font-size:.84rem;color:var(--ink-soft)}
+  .guide-step .c .role{display:inline-block;font-size:.66rem;font-weight:700;background:var(--ground);border:1px solid var(--line-strong);
+    color:var(--ink-soft);border-radius:999px;padding:.05rem .5rem;margin-top:.25rem}
+  .guide-h{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:700;margin:1.4rem 0 .7rem;
+    border-bottom:1px solid var(--line);padding-bottom:.3rem}
+  .guide-notes{list-style:none;margin:0;padding:0}
+  .guide-notes li{font-size:.84rem;color:var(--ink-soft);padding:.4rem 0 .4rem 1.5rem;position:relative;border-bottom:1px dashed var(--line)}
+  .guide-notes li:before{content:"!";position:absolute;left:0;top:.4rem;width:1.05rem;height:1.05rem;border-radius:50%;
+    background:var(--warn);color:#fff;font-size:.7rem;font-weight:700;display:grid;place-items:center}
+  .guide-notes li:last-child{border-bottom:0}
+  /* User box (logged-in) */
+  .rolebox .uinfo{display:flex;flex-direction:column;line-height:1.2;text-align:right}
+  .rolebox .uinfo .un{font-weight:700;font-size:.84rem;color:var(--ink)}
+  .rolebox .uinfo .ur{font-size:.7rem;color:var(--teal);font-weight:600}
+  /* Login modal */
+  .login-ov{z-index:60}
+  .login-modal{max-width:460px}
+  .login-note{font-size:.82rem;color:var(--ink-soft);margin-bottom:1rem}
+  .login-note code{background:var(--ground);border:1px solid var(--line);border-radius:4px;padding:0 .3rem}
+  .login-form{display:flex;flex-direction:column;gap:.7rem}
+  .login-form .fld label{font-size:.76rem;font-weight:600;color:var(--ink-soft);margin-bottom:.2rem;display:block}
+  .login-form input{width:100%;box-sizing:border-box;padding:.55rem .6rem;border:1px solid var(--line-strong);border-radius:5px;font-size:.9rem;font-family:var(--sans)}
+  .login-err{background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:5px;padding:.5rem .7rem;font-size:.8rem}
+  .login-status{font-size:.76rem;color:var(--muted);min-height:1rem;text-align:center}
+  .login-demo{margin-top:1.2rem;border-top:1px dashed var(--line);padding-top:.9rem}
+  .login-demo-h{font-size:.72rem;color:var(--muted);margin-bottom:.5rem}
+  .login-demo-btns{display:flex;flex-direction:column;gap:.35rem}
+  .login-demo-btns button{text-align:left;border:1px solid var(--line-strong);background:var(--ground);border-radius:5px;
+    padding:.4rem .6rem;font-size:.8rem;cursor:pointer;display:flex;justify-content:space-between;gap:.6rem;font-family:var(--sans)}
+  .login-demo-btns button:hover{border-color:var(--teal);background:var(--teal-soft)}
+  .login-demo-btns .dr{color:var(--teal);font-weight:700;font-size:.72rem}
+  /* Picker checkbox + toolbar */
+  .picker-toolbar{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.6rem;padding:.5rem .6rem;
+    background:var(--paper);border:1px solid var(--line);border-radius:6px}
+  .picker-toolbar label{display:flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:600;cursor:pointer}
+  .picker-toolbar .sel-count{font-size:.78rem;color:var(--teal);font-weight:700}
+  .picker-toolbar .spacer{flex:1}
+  .pitem .pchk{flex:0 0 auto;display:flex;align-items:center;margin-right:.2rem}
+  .pitem .pchk input{width:1.1rem;height:1.1rem;cursor:pointer}
+  .mlbtn{border:1px solid var(--navy);background:var(--navy);color:#fff;border-radius:5px;padding:.4rem .65rem;
+    font-size:.78rem;font-weight:600;cursor:pointer;white-space:nowrap}
+  .mlbtn:hover{background:#0f2f47}
+  .ml-status{font-size:.72rem;color:var(--muted);margin-left:.5rem}
+  @media (max-width:840px){.shell{grid-template-columns:1fr}.side{border-right:0;border-bottom:1px solid var(--line)}}
+  @media print{
+    .topbar,.side,.vtabs,.actions,.sstrip,.rules,.no-print,.gaps,.picker,.modal-ov{display:none!important}
+    .shell{display:block}.main{padding:0;overflow:visible}
+    .docpaper{border:0;max-width:100%;padding:0;box-shadow:none}
+    .wrap{background:#fff}
+    @page{size:A4 portrait;margin:14mm 12mm}
+    html,body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">
+      <span class="ey">ManLab · Menu P21 — Kiểm soát sự phù hợp</span>
+      <h1>Công bố / Thông báo năng lực Đo lường &amp; Quan trắc môi trường</h1>
+      <span class="sub">ETV.MP 21 · Lần ban hành 02 · Ngày ban hành: 26/06/2026</span>
+    </div>
+    <div class="spacer"></div>
+    <div class="rolebox" id="userbox">
+      <span class="uinfo" id="uinfo"></span>
+      <button class="btn sm ghost" id="logoutBtn" title="Đăng xuất">Đăng xuất</button>
+    </div>
+  </div>
+
+  <div class="shell">
+    <aside class="side">
+      <button class="btn sm ghost" id="guideBtn" style="width:100%">📘 Hướng dẫn sử dụng</button>
+      <h2>Tạo hồ sơ mới</h2>
+      <div class="newbtns">
+        <button class="btn sm" id="newDL">+ Đo lường (Mẫu 01)</button>
+        <button class="btn sm ghost" id="newQT">+ Quan trắc MT (Mẫu 9.01)</button>
+      </div>
+      <h2>Tìm & lọc hồ sơ</h2>
+      <div class="searchbox">
+        <input type="text" id="searchbox" placeholder="Tìm mã hồ sơ, tên PTĐ, tổ chức...">
+        <select id="filterst"><option value="all">— Tất cả trạng thái —</option></select>
+      </div>
+      <h2>Danh sách hồ sơ (<span id="reccount">0</span>)</h2>
+      <div class="reclist" id="reclist"></div>
+    </aside>
+
+    <main class="main" id="main">
+      <p class="empty">Chọn một hồ sơ ở danh sách bên trái, hoặc tạo hồ sơ mới.</p>
+    </main>
+  </div>
+</div>
+
+<div class="modal-ov" id="guideModal" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <div><span class="ey">ETV.MP 21 · Menu P21</span><h3>Hướng dẫn sử dụng module Công bố / Thông báo năng lực</h3></div>
+      <button class="modal-x" id="guideClose" title="Đóng">✕</button>
+    </div>
+    <div class="modal-body" id="guideBody"></div>
+    <div class="modal-foot"><button class="btn" id="guideClose2">Đã hiểu, đóng hướng dẫn</button></div>
+  </div>
+</div>
+
+<div class="modal-ov login-ov" id="loginModal" hidden>
+  <div class="modal login-modal">
+    <div class="modal-head">
+      <div><span class="ey">ManLab · Đăng nhập hệ thống</span><h3>Đăng nhập bằng tài khoản ManLab</h3></div>
+    </div>
+    <div class="modal-body">
+      <p class="login-note">Vai trò và quyền thao tác được xác định theo tài khoản ManLab của bạn. Hệ thống kết nối tới <code>https://manlab.etv.org.vn</code> để xác thực.</p>
+      <div class="login-form">
+        <div class="fld"><label>Tên đăng nhập</label><input id="loginUser" type="text" placeholder="vd: nguyenvana" autocomplete="username"></div>
+        <div class="fld"><label>Mật khẩu</label><input id="loginPass" type="password" placeholder="••••••••" autocomplete="current-password"></div>
+        <div id="loginErr" class="login-err" hidden></div>
+        <button class="btn" id="loginBtn" style="width:100%">Đăng nhập ManLab</button>
+        <div id="loginStatus" class="login-status"></div>
+      </div>
+      <div class="login-demo">
+        <div class="login-demo-h">Tài khoản demo (khi chưa kết nối được API ManLab):</div>
+        <div class="login-demo-btns" id="demoBtns"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var LS="etv_p21_records_v2";
+  var LS_AUTH="etv_p21_auth_v1";
+  var ROLES={0:"Super Admin",1:"Người thực hiện",2:"Lãnh đạo phòng",3:"Lãnh đạo Viện"};
+  // ManLab API integration point
+  var MANLAB={
+    base:"https://manlab.etv.org.vn",
+    loginPath:"/api/auth/login",          // POST {username,password} -> {token, user:{hoTen, vaiTro}}
+    catalogPath:"/api/phuong-tien-do",     // GET (Bearer token) -> [ {ten,tenTA,linhVuc,dichVu,phamVi,mpelod,cmcMax,cmcDvt,quyTrinh,nangLucCode,trangThaiPTD} ]
+    roleMap:{"Lãnh đạo Viện":3,"Lanh dao Vien":3,"LDV":3,"Lãnh đạo phòng":2,"Lanh dao phong":2,"LDP":2,"Người thực hiện":1,"Nguoi thuc hien":1,"NTH":1,"Super Admin":0,"Admin":0}
+  };
+  // Demo accounts (fallback khi API ManLab chưa kết nối được — network/CORS)
+  var DEMO_ACCOUNTS=[
+    {u:"nth",p:"123",hoTen:"Nguyễn Ngọc Tuấn",vaiTro:1},
+    {u:"ldp",p:"123",hoTen:"Trần Trung Hưng",vaiTro:2},
+    {u:"ldv",p:"123",hoTen:"TS. Nguyễn Hoàng Giang",vaiTro:3},
+    {u:"admin",p:"123",hoTen:"Quản trị hệ thống",vaiTro:0}
+  ];
+  var EXPIRY=new Date(2027,1,28); // 28/02/2027
+
+  /* ---------- Catalog PTĐ (mẫu trích từ Danh mục Phương tiện đo — chỉ tham chiếu, có snapshot khi liên kết) ---------- */
+  var CATALOG = [{"ten":"Máy khuấy","tenTA":"Stirrer meter","linhVuc":"Thời gian - Tần số","dichVu":"HC","phamVi":"(0 ÷ 99999) rpm","mpelod":"±2 %","cmcMax":0.08,"cmcDvt":"%","quyTrinh":"ETV.MCS 02 (Máy đo tốc độ vòng quay - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"Đã duyệt"},{"ten":"Bếp gia nhiệt","tenTA":"Heating stove","linhVuc":"Nhiệt độ","dichVu":"HC","phamVi":"(50 ÷ 450) °C","mpelod":"0,5 °C","cmcMax":1.1,"cmcDvt":"°C","quyTrinh":"ETV.MCT 02 (Thiết bị phá mẫu COD và thiết bị tương tự - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"Đã duyệt"},{"ten":"Tủ ủ BOD","tenTA":"BOD chamber","linhVuc":"Nhiệt độ","dichVu":"HC","phamVi":"(40 ÷ 450) °C","mpelod":"± 0,5 °C","cmcMax":0.78,"cmcDvt":"°C","quyTrinh":"ETV.MCT 01 (Tủ nhiệt - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"Đã duyệt"},{"ten":"Tủ an toàn sinh học","tenTA":"Biosafety Cabinet","linhVuc":"Cơ học","dichVu":"TN","phamVi":"(0.01 ÷ 5) m/s","mpelod":"5 %","cmcMax":0.3,"cmcDvt":"m/s","quyTrinh":"ETV.MTMe 01 (Tủ an toàn sinh học - Quy trình nghiệm)","nangLucCode":"1","trangThaiPTD":"Đã duyệt"},{"ten":"Cân phân tích","tenTA":"Analytical balance","linhVuc":"Khối lượng","dichVu":"HC","phamVi":"(0 ÷ 600) g","mpelod":"","cmcMax":0.0031,"cmcDvt":"g","quyTrinh":"ETV.MCM 01 (Cân phân tích và cân kỹ thuật - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"Đã duyệt"},{"ten":"Kính hiển vi","tenTA":"Microscope","linhVuc":"Quang học","dichVu":"HC","phamVi":"(0 ÷ 0) Gói","mpelod":"±","cmcMax":0,"cmcDvt":"Gói","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"Đã duyệt"},{"ten":"Phương tiện đo Tổng Phốt pho (TP) - Trạm nước","tenTA":"TP","linhVuc":"Hoá lý (nước)","dichVu":"KĐ","phamVi":"(0 ÷ 1000) mg/L","mpelod":"±5 %","cmcMax":1.5,"cmcDvt":"%","quyTrinh":"ETV.MVW 08 (Phương tiện đo nồng độ các chất trong nước -  Quy trình kiểm định nhóm 1)","nangLucCode":"1","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo nồng độ khí HCl- Cầm tay","tenTA":"Gas analyzers of HCl in air","linhVuc":"Hoá lý (khí)","dichVu":"HC","phamVi":"(0 ÷ 0.12) %V","mpelod":"±4 %","cmcMax":1.1,"cmcDvt":"%V","quyTrinh":"ETV.MCA 02 (Phương tiện đo nồng độ các khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo nồng độ khí NO2 (**)","tenTA":"Gas analyzers of NO2","linhVuc":"Hoá lý (khí)","dichVu":"KĐ","phamVi":"(0 ÷ 0.05) %V","mpelod":"±5 %","cmcMax":2.1,"cmcDvt":"%V","quyTrinh":"ĐLVN 265:2016 (Phương tiện đo nồng độ SO2, CO2, CO, NOx trong không khí - Quy trình kiểm định nhóm 1)","nangLucCode":"6","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo nồng độ ôxy hòa tan","tenTA":"Dissolved oxygen meters","linhVuc":"Hoá lý (nước)","dichVu":"KĐ","phamVi":"(0 ÷ 20) mg/L","mpelod":"","cmcMax":2.1,"cmcDvt":"mg/L","quyTrinh":"ĐLVN 276 : 2014 (Phương tiện đo nồng độ ôxy hòa tan - Quy trình kiểm định)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo BOD - Trạm nước","tenTA":"BOD measuring equipment - Water station","linhVuc":"Hoá lý (nước)","dichVu":"KĐ","phamVi":"(0 ÷ 0) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"NTP (KĐ) (Quy trình kiểm định - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo Coliform","tenTA":"Coliform Analyser","linhVuc":"Hoá lý (nước)","dichVu":"HC","phamVi":"(0 ÷ 0) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo Nitrit - Trạm nước","tenTA":"Nitrit","linhVuc":"Hoá lý (nước)","dichVu":"HC","phamVi":"(0 ÷ 0) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Thiết bị phân tích dòng liên tục","tenTA":"Continuous flow analyzer","linhVuc":"Hoá lý (nước)","dichVu":"HC","phamVi":"(0 ÷ 0) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Máy trộn vữa xi măng","tenTA":"Cement mortar mixer","linhVuc":"Thời gian - Tần số","dichVu":"HC","phamVi":"(0 ÷ 285) rpm","mpelod":"±5","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Máy dằn tạo mẫu xi măng","tenTA":"Cement model making machine","linhVuc":"Thời gian - Tần số","dichVu":"HC","phamVi":"(0 ÷ 15) mm","mpelod":"±0.5","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Máy kiểm tra tần số","tenTA":"Frequency tester","linhVuc":"Thời gian - Tần số","dichVu":"HC","phamVi":"(0 ÷ 0) Hz","mpelod":"±","cmcMax":0,"cmcDvt":"Hz","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Máy quang phổ hồng ngoại (FT-IR)","tenTA":"","linhVuc":"Dung tích - Lưu lượng","dichVu":"HC","phamVi":"(0 ÷ 0) cm","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"7; 9; 10;8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Chuẩn đo lưu lượng nước (dùng kiểm định máy chạy thận nhân tạo)","tenTA":"Water Flow","linhVuc":"Dung tích - Lưu lượng","dichVu":"HC","phamVi":"(0 ÷ 2000) mL/min","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"1","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Vi khí hậu (Tốc độ gió)","tenTA":"Microclimate (Wind Speed)","linhVuc":"Dung tích - Lưu lượng","dichVu":"HC","phamVi":"(0 ÷ 0) m/s","mpelod":"±","cmcMax":0,"cmcDvt":"m/s","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Nhiệt kế điện trở Platin (PRT)","tenTA":"Platinium Resistance Thermometer","linhVuc":"Nhiệt độ","dichVu":"HC","phamVi":"(-200 ÷ 420) °C","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo nhiệt trị","tenTA":"Instrument for measuring calorific value","linhVuc":"Nhiệt độ","dichVu":"HC","phamVi":"(0 ÷ 0) °C","mpelod":"±","cmcMax":0,"cmcDvt":"°C","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Bể điều nhiệt","tenTA":"Liquid Bath","linhVuc":"Nhiệt độ","dichVu":"HC","phamVi":"(0 ÷ 100) °C","mpelod":"±","cmcMax":0,"cmcDvt":"°C","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Thiết bị chỉ thị nhiệt độ hiện số","tenTA":"Temperature indicators","linhVuc":"Nhiệt độ","dichVu":"HC","phamVi":"(-100 ÷ 1600) °C","mpelod":"±","cmcMax":0,"cmcDvt":"°C","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Bộ chuẩn đa chức năng - Đo nhiệt độ","tenTA":"Multifunctional calibration kit - Temperature measurement","linhVuc":"Nhiệt độ","dichVu":"KĐ","phamVi":"(0 ÷ 0) °C","mpelod":"±","cmcMax":0,"cmcDvt":"°C","quyTrinh":"ĐLVN 160:2005 (Thiết bị chỉ thị nhiệt độ hiện số và tương tự - Quy trình hiệu chuẩn)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Áp kế nồi hấp tiệt trùng","tenTA":"Autoclave Pressure Gauge","linhVuc":"Áp suất","dichVu":"KĐ","phamVi":"(0 ÷ 4) bar","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (KĐ) (Quy trình kiểm định - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Máy phân tích an toàn điện","tenTA":"Electrical safety analyzer","linhVuc":"Điện từ - Không điện","dichVu":"HC","phamVi":"(0 ÷ 10) mA","mpelod":"±","cmcMax":0,"cmcDvt":"mA","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Bộ chuẩn đa chức năng - Phát nhiệt độ","tenTA":"Multifunctional calibration unit - Temperature transmitter","linhVuc":"Điện từ - Không điện","dichVu":"HC","phamVi":"(0 ÷ 0) °C","mpelod":"±","cmcMax":0,"cmcDvt":"°C","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm độ màu","tenTA":"Calibrate and testing color","linhVuc":"Hoá lý (nước)","dichVu":"TN","phamVi":"(0 ÷ 100) mg/L Pt/Co","mpelod":"± mg/L Pt/Co","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTW 01 (Phương tiện đo hàm lượng các thông số trong nước - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Chất lượng nước sau lọc qua máy lọc nước (đo trực tiếp pH)","tenTA":"Water quality after filtration through a water purifier (pH)","linhVuc":"Hoá lý (nước)","dichVu":"TN","phamVi":"(0 ÷ 14) pH","mpelod":"3 %","cmcMax":0,"cmcDvt":"pH","quyTrinh":"ETV.MTW 04 (Chất lượng nước sau lọc qua máy lọc nước - Quy trình thử nghiệm)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm NO3","tenTA":"Calibration and testing NO3","linhVuc":"Hoá lý (nước)","dichVu":"TN","phamVi":"(0 ÷ 1000) mg/L","mpelod":"±0,1 mg/L","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"ETV.MTW 01 (Phương tiện đo hàm lượng các thông số trong nước - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo BOD","tenTA":"BOD","linhVuc":"Hoá lý (nước)","dichVu":"TN","phamVi":"(0 ÷ 0) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"NTP (TN) (Quy trình thử nghiệm - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Bảo dưỡng máy đo áp suất","tenTA":"Pressure gauge maintenance","linhVuc":"Áp suất","dichVu":"HC","phamVi":"(0 ÷ 0) mBar","mpelod":"±","cmcMax":0,"cmcDvt":"mBar","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Dụng cụ Vicat","tenTA":"Vicat Tools","linhVuc":"Độ dài","dichVu":"HC","phamVi":"(0 ÷ 50) mm","mpelod":"±0,01","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo nồng độ khí","tenTA":"Gas Analyzer","linhVuc":"Hoá lý (khí)","dichVu":"HC","phamVi":"(0 ÷ 10000) ppm","mpelod":"±","cmcMax":0,"cmcDvt":"ppm","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm phương tiện đo áp suất","tenTA":"Calibrate, test and apply the means","linhVuc":"Giải ngân","dichVu":"TN","phamVi":"(0 ÷ 0) Pa","mpelod":"± bar","cmcMax":0,"cmcDvt":"Pa","quyTrinh":"ETV. MTT 01 (Phương tiện đo nhiệt độ môi trường nước - Quy trình thử nghiệm)","nangLucCode":"6","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm phương tiện đo bụi","tenTA":"Calibration and testing of dust measuring equipment","linhVuc":"Giải ngân","dichVu":"TN","phamVi":"(0 ÷ 0) ppm","mpelod":"± mg/m³","cmcMax":0,"cmcDvt":"ppm","quyTrinh":"ETV. MTT 01 (Phương tiện đo nhiệt độ môi trường nước - Quy trình thử nghiệm)","nangLucCode":"6","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm phương tiện đo gió","tenTA":"Calibration and testing of wind measuring equipment","linhVuc":"Giải ngân","dichVu":"TN","phamVi":"(0 ÷ 14) m/s","mpelod":"±","cmcMax":0,"cmcDvt":"m/s","quyTrinh":"ETV.MTF 05 (Thiết bị đo tốc độ gió - Quy trình thử nghiệm)","nangLucCode":"6","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Cân băng tải đến 5.000 t/h","tenTA":"Conveyor-belt scales","linhVuc":"Khối lượng","dichVu":"KĐ","phamVi":"(0 ÷ 5000) t/h","mpelod":"±","cmcMax":0,"cmcDvt":"t/h","quyTrinh":"NTP (KĐ) (Quy trình kiểm định - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Cân băng tải đến 10.000 t/h","tenTA":"Conveyor-belt scales","linhVuc":"Khối lượng","dichVu":"KĐ","phamVi":"(0 ÷ 10000) t/h","mpelod":"±","cmcMax":0,"cmcDvt":"t/h","quyTrinh":"NTP (KĐ) (Quy trình kiểm định - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Cân băng tải đến 15.000 t/h","tenTA":"Conveyor-belt scales","linhVuc":"Khối lượng","dichVu":"KĐ","phamVi":"(0 ÷ 15000) t/h","mpelod":"±","cmcMax":0,"cmcDvt":"t/h","quyTrinh":"NTP (KĐ) (Quy trình kiểm định - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện thử độ bền kéo nén","tenTA":"Tensile and compression test equipment","linhVuc":"Lực","dichVu":"HC","phamVi":"(0 ÷ 3.05916e+008) kg","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Đồng hồ bấm giây","tenTA":"Stopwatch","linhVuc":"Thời gian - Tần số","dichVu":"HC","phamVi":"(0 ÷ 36000) s","mpelod":"","cmcMax":0,"cmcDvt":"s","quyTrinh":"ETV.MCS 06 (Đồng hồ bấm giây - Quy trình hiệu chuẩn)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Quả cân cấp chính xác M1 (1-20) kg","tenTA":"Weights of classes M1 (1-20) kg","linhVuc":"Khối lượng","dichVu":"HC","phamVi":"(1 ÷ 20) kg","mpelod":"","cmcMax":0,"cmcDvt":"kg","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Cân bàn","tenTA":"Platform scales","linhVuc":"Khối lượng","dichVu":"KĐ","phamVi":"(0 ÷ 250) kg","mpelod":"","cmcMax":0,"cmcDvt":"kg","quyTrinh":"ĐLVN 14:2009 (Cân bàn - Quy trình Kiểm định)","nangLucCode":"2;6;5","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Cân treo dọc thép –  lá đề","tenTA":"Unequal level arm balances (Steel yards)","linhVuc":"Khối lượng","dichVu":"KĐ","phamVi":"(0 ÷ 200) kg","mpelod":"","cmcMax":0,"cmcDvt":"kg","quyTrinh":"ĐLVN 02:2009 (Cân treo - Quy trình Kiểm định)","nangLucCode":"2;6;1","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Cân đồng hồ lò xo","tenTA":"Spring dial scales","linhVuc":"Khối lượng","dichVu":"KĐ","phamVi":"(0 ÷ 200) kg","mpelod":"","cmcMax":0,"cmcDvt":"kg","quyTrinh":"ĐLVN 30:2019 (Cân đồng hồ lò xo - Quy trình Kiểm định)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Cân bàn < 100 kg","tenTA":"Platform scales","linhVuc":"Khối lượng","dichVu":"HC","phamVi":"","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"1","trangThaiPTD":"ĐN LĐV duyệt"},{"ten":"Phương tiện đo Tổng chất rắn hòa tan (TDS)","tenTA":"Total dissolved solids meter","linhVuc":"Hoá lý (nước)","dichVu":"KĐ","phamVi":"(0 ÷ 200000) mg/L","mpelod":"± 5 %","cmcMax":0.58,"cmcDvt":"%","quyTrinh":"ĐLVN 80:2017 (Phương tiện đo tổng chất rắn hòa tan trong nước - Quy trình kiểm định)","nangLucCode":"1;2;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Dung dịch chuẩn Độ đục (Turb)","tenTA":"Turbidity standard solution","linhVuc":"Hoá lý (nước)","dichVu":"KĐ","phamVi":"(0 ÷ 4000) NTU","mpelod":"± 5 %","cmcMax":5.1,"cmcDvt":"%","quyTrinh":"ĐLVN 278:2015 (Dung dịch chuẩn độ đục (Turb) - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Dung dịch chuẩn pH","tenTA":"pH standard solution","linhVuc":"Hoá lý (nước)","dichVu":"KĐ","phamVi":"(0 ÷ 14) pH","mpelod":"± 5 %","cmcMax":0.1,"cmcDvt":"pH","quyTrinh":"ĐLVN 280:2015 (Dung dịch chuẩn độ pH - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Nồng độ oxy hòa tan (DO)","tenTA":"Dissolved oxygen meter","linhVuc":"Hoá lý (nước)","dichVu":"HC","phamVi":"(0 ÷ 20) mg/L","mpelod":"6 %","cmcMax":2.1,"cmcDvt":"%","quyTrinh":"ETV.MCW 06 (Phương tiện đo ôxy hoà tan (DO) - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ dẫn điện (EC)","tenTA":"Electrolytic conductivity meter","linhVuc":"Hoá lý (nước)","dichVu":"HC","phamVi":"(0 ÷ 500) mS/cm","mpelod":"± 5 %","cmcMax":0.63,"cmcDvt":"%","quyTrinh":"ETV.MCW 02 (Phương tiện đo độ dẫn điện (EC) - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ muối","tenTA":"Salinity meter","linhVuc":"Hoá lý (nước)","dichVu":"HC","phamVi":"(0 ÷ 100) ‰","mpelod":"±5 %","cmcMax":1.63,"cmcDvt":"%","quyTrinh":"ETV.MCW 07 (Phương tiện đo độ muối, mặn - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Tốc độ vòng quay","tenTA":"Rotational Speedometer of Equipment","linhVuc":"Thời gian - Tần số","dichVu":"HC","phamVi":"(0 ÷ 99999) rpm","mpelod":"2 %","cmcMax":0.58,"cmcDvt":"%","quyTrinh":"ETV.MCS 02 (Máy đo tốc độ vòng quay - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Đồng hồ đo thể tích khí","tenTA":"Gas gauge meter","linhVuc":"Dung tích - Lưu lượng","dichVu":"HC","phamVi":"(0 ~ 10) m³/h","mpelod":"2 %","cmcMax":2.0,"cmcDvt":"%","quyTrinh":"ETV.MCF 02 (Đồng hồ đo thể tích khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Tốc độ gió","tenTA":"Anemometer","linhVuc":"Dung tích - Lưu lượng","dichVu":"HC","phamVi":"(0 ÷ 15) m/s","mpelod":"±3 %","cmcMax":1.5,"cmcDvt":"%","quyTrinh":"ETV.MCF 03 (Phương tiện đo vận tốc gió - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị thu mẫu khí lưu lượng thấp","tenTA":"Air flow meter","linhVuc":"Dung tích - Lưu lượng","dichVu":"HC","phamVi":"(0 ÷ 70) L/min","mpelod":"± 2 %","cmcMax":2.5,"cmcDvt":"%","quyTrinh":"ETV.MCF 01 (Phương tiện đo lưu lượng khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Quang phổ tử ngoại khả kiến (UV-Vis)","tenTA":"UV/Vis Spectrophotometer","linhVuc":"Quang học","dichVu":"HC","phamVi":"(190 ÷ 900) nm","mpelod":"± 2 %","cmcMax":0.22,"cmcDvt":"nm","quyTrinh":"ETV.MCO 01 (Phương tiện đo quang phổ tử ngoại - khả kiến (UV-Vis) - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Máy so màu","tenTA":"Spectrophotometer","linhVuc":"Quang học","dichVu":"HC","phamVi":"(190 ÷ 1100) nm/ (0 ÷ 2) Abs","mpelod":"± 2 %","cmcMax":0.22,"cmcDvt":"nm","quyTrinh":"ETV.MCO 01 (Phương tiện đo quang phổ tử ngoại - khả kiến (UV-Vis) - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Nhiệt kế chỉ thị hiện số","tenTA":"Digital thermometer","linhVuc":"Nhiệt độ","dichVu":"KĐ","phamVi":"(-20 ÷ 1200) °C","mpelod":"0,05-3 °C","cmcMax":0.62,"cmcDvt":"°C","quyTrinh":"ĐLVN 138:2004 (Nhiệt kế chỉ thị hiện số và tương tự - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị chỉ thị nhiệt độ hiện số","tenTA":"Temperature indicators","linhVuc":"Nhiệt độ","dichVu":"KĐ","phamVi":"(-100 ÷ 1600) °C","mpelod":"± (0,27 ~ 1,23) °C","cmcMax":1.0,"cmcDvt":"°C","quyTrinh":"ĐLVN 160:2005 (Thiết bị chỉ thị nhiệt độ hiện số và tương tự - Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Nhiệt độ - Đa chỉ tiêu","tenTA":"Thermometer","linhVuc":"Nhiệt độ","dichVu":"KĐ","phamVi":"(0 ÷ 120) °C","mpelod":"±0.5 °C","cmcMax":0.18,"cmcDvt":"","quyTrinh":"ĐLVN 138:2004 (Nhiệt kế chỉ thị hiện số và tương tự - Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Nhiệt độ không khí","tenTA":"Thermometer in air","linhVuc":"Nhiệt độ","dichVu":"KĐ","phamVi":"(0 ÷ 50) °C","mpelod":"± 0,5 °C","cmcMax":0.05,"cmcDvt":"°C","quyTrinh":"ĐLVN 359:2019 (Phương tiện đo nhiệt độ/ độ ẩm không khí - Quy trình kiểm định)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"PTĐ nhiệt độ GSOT","tenTA":"PTĐ nhiệt độ GSOT","linhVuc":"Nhiệt độ","dichVu":"KĐ","phamVi":"(0 ÷ 1000) °C","mpelod":"2 %","cmcMax":2.0,"cmcDvt":"mg/L","quyTrinh":"ĐLVN 01:GSOT (PTĐ Nhiệt độ GSOT - Quy trình kiểm định)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ ẩm","tenTA":"Hygrometer","linhVuc":"Độ ẩm","dichVu":"HC","phamVi":"(10 ÷ 98) %RH","mpelod":"± 0,09 %RH","cmcMax":1.0,"cmcDvt":"%RH","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Vi khí hậu (Độ ẩm)","tenTA":"Hygrometer","linhVuc":"Độ ẩm","dichVu":"HC","phamVi":"(5 ÷ 95) %RH","mpelod":"1 %RH","cmcMax":1.0,"cmcDvt":"%RH","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo độ ẩm - Trạm khí xung quanh","tenTA":"Hygrometer in ambient air","linhVuc":"Độ ẩm","dichVu":"HC","phamVi":"(10 ÷ 98) %RH","mpelod":"0,09 %RH","cmcMax":2.3,"cmcDvt":"%RH","quyTrinh":"ETV.MCH 01 (Phương tiện đo Độ ẩm không khí - Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ ẩm - Trạm khí thải","tenTA":"Hygrometer in emission air","linhVuc":"Độ ẩm","dichVu":"HC","phamVi":"(10 ÷ 98) %RH","mpelod":"0,09 %RH","cmcMax":2.3,"cmcDvt":"%RH","quyTrinh":"ETV.MCH 01 (Phương tiện đo Độ ẩm không khí - Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Nhiệt ẩm kế (Độ ẩm)","tenTA":"Hygrometer","linhVuc":"Độ ẩm","dichVu":"HC","phamVi":"(10 ÷ 98) %RH","mpelod":"0,09 %RH","cmcMax":2.3,"cmcDvt":"%RH","quyTrinh":"ETV.MCH 01 (Phương tiện đo Độ ẩm không khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị đặt mức áp suất","tenTA":"Pressure Swich","linhVuc":"Áp suất","dichVu":"KĐ","phamVi":"(0 ÷ 600) bar","mpelod":"0,5 %","cmcMax":0.2,"cmcDvt":"%","quyTrinh":"ĐLVN 133:2004 (Thiết bị đặt mức áp suất - Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Áp suất","tenTA":"Pressure gauge meter","linhVuc":"Áp suất","dichVu":"KĐ","phamVi":"(0 ÷ 600) bar","mpelod":"1 %","cmcMax":0.18,"cmcDvt":"bar","quyTrinh":"ĐLVN 76:2001 (Áp kế; áp kế lò xo; áp kế điện tử; baromet - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Baromet","tenTA":"Barometer","linhVuc":"Áp suất","dichVu":"KĐ","phamVi":"(1000 ÷ 1000) mBar","mpelod":"đến 3 mBar","cmcMax":0.33,"cmcDvt":"mBar","quyTrinh":"ĐLVN 76:2001 (Áp kế; áp kế lò xo; áp kế điện tử; baromet - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Áp kế kiểu lò xo","tenTA":"Pressure gauge with elastic sensing element","linhVuc":"Áp suất","dichVu":"KĐ","phamVi":"(0 ÷ 600) bar","mpelod":"1 %","cmcMax":0.18,"cmcDvt":"bar","quyTrinh":"ĐLVN 76:2001 (Áp kế; áp kế lò xo; áp kế điện tử; baromet - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị chuyển đổi áp suất","tenTA":"Pressure Transducer and Transmitter","linhVuc":"Áp suất","dichVu":"KĐ","phamVi":"(0 ÷ 600) bar","mpelod":"0,5 %","cmcMax":0.18,"cmcDvt":"bar","quyTrinh":"ĐLVN 112:2002 (Thiết bị chuyển đổi áp suất - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Dung dịch chuẩn Oxy hóa học (COD)","tenTA":"COD standard solution","linhVuc":"Hoá lý (nước)","dichVu":"TN","phamVi":"(0 ÷ 1500) mg/L","mpelod":"5 %","cmcMax":5.1,"cmcDvt":"mg/L","quyTrinh":"ETV.MTW 08 (Dung dịch chuẩn nhu cầu oxy hóa học (COD)  - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Dung dịch chuẩn Tổng chất rắn lơ lửng (TSS)","tenTA":"Standard solutions of total suspended solid","linhVuc":"Hoá lý (nước)","dichVu":"TN","phamVi":"(0 ÷ 2000) mg/L","mpelod":"5 %","cmcMax":5.1,"cmcDvt":"%","quyTrinh":"ETV.MTW 02 (Dung dịch chuẩn - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Chênh áp suất","tenTA":"Differential Pressure Gauge","linhVuc":"Áp suất","dichVu":"HC","phamVi":"(0.4 ÷ 0.4) bar","mpelod":"0,2 %","cmcMax":0.9,"cmcDvt":"mBar","quyTrinh":"ETV.MCP 02 (Áp kế kiểu chênh áp - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo định vị bằng vệ tinh (GPS)","tenTA":"Global Positioning System meter","linhVuc":"Độ dài","dichVu":"HC","phamVi":"(8 ÷ 100) mm","mpelod":"8,5 mm","cmcMax":8.5,"cmcDvt":"mm","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí SO₂ - Cầm tay","tenTA":"Gas analyzers of SO₂ in air","linhVuc":"Hoá lý (khí)","dichVu":"HC","phamVi":"(0 ÷ 0.5) %V","mpelod":"±2 %","cmcMax":0.7,"cmcDvt":"%","quyTrinh":"ETV.MCA 02 (Phương tiện đo nồng độ các khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí O₂ - Cầm tay","tenTA":"Gas analyzers of O₂ in air","linhVuc":"Hoá lý (khí)","dichVu":"HC","phamVi":"(0 ÷ 25) %V","mpelod":"4 %","cmcMax":0.6,"cmcDvt":"%","quyTrinh":"ETV.MCA 02 (Phương tiện đo nồng độ các khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí CO - Cầm tay","tenTA":"Gas analyzers of CO in air","linhVuc":"Hoá lý (khí)","dichVu":"HC","phamVi":"(0 ÷ 1) %V","mpelod":"±2 %","cmcMax":1.1,"cmcDvt":"%","quyTrinh":"ETV.MCA 02 (Phương tiện đo nồng độ các khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí NO - Cầm tay","tenTA":"Gas analyzers of NO in air","linhVuc":"Hoá lý (khí)","dichVu":"HC","phamVi":"(0 ÷ 0.5) %V","mpelod":"±4 %","cmcMax":1.0,"cmcDvt":"%","quyTrinh":"ETV.MCA 02 (Phương tiện đo nồng độ các khí - Quy trình hiệu chuẩn)","nangLucCode":"1;3;13","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ ồn","tenTA":"Sound level meter","linhVuc":"Thời gian - Tần số","dichVu":"KĐ","phamVi":"(30 ÷ 114) dB","mpelod":"1","cmcMax":0.62,"cmcDvt":"dB","quyTrinh":"ĐLVN 89:2010 (Phương tiện đo độ ồn - Quy trình kiểm định)","nangLucCode":"1;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí SO₂ - Cầm tay","tenTA":"Gas analyzers of SO₂ in air","linhVuc":"Hoá lý (khí)","dichVu":"KĐ","phamVi":"(0 ÷ 0.5) %V","mpelod":"± 5 %","cmcMax":0.7,"cmcDvt":"%","quyTrinh":"ĐLVN 265:2016 (Phương tiện đo nồng độ SO2, CO2, CO, NOx trong không khí - Quy trình kiểm định)","nangLucCode":"1;2;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí CO - Cầm tay","tenTA":"Gas analyzers of CO in air","linhVuc":"Hoá lý (khí)","dichVu":"KĐ","phamVi":"(0 ÷ 1) %V","mpelod":"± 5 %","cmcMax":1.1,"cmcDvt":"%","quyTrinh":"ĐLVN 265:2016 (Phương tiện đo nồng độ SO2, CO2, CO, NOx trong không khí - Quy trình kiểm định)","nangLucCode":"1;2;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí NO - Cầm tay","tenTA":"Gas analyzers of NO in air","linhVuc":"Hoá lý (khí)","dichVu":"KĐ","phamVi":"(0 ÷ 0.5) %V","mpelod":"± 5 %","cmcMax":1.0,"cmcDvt":"%","quyTrinh":"ĐLVN 265:2016 (Phương tiện đo nồng độ SO2, CO2, CO, NOx trong không khí - Quy trình kiểm định)","nangLucCode":"1;2;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí NO₂ - Cầm tay","tenTA":"Gas analyzers of NO₂ in air","linhVuc":"Hoá lý (khí)","dichVu":"KĐ","phamVi":"(0 ÷ 0.5) %V","mpelod":"± 5 %","cmcMax":2.1,"cmcDvt":"%","quyTrinh":"ĐLVN 265:2016 (Phương tiện đo nồng độ SO2, CO2, CO, NOx trong không khí - Quy trình kiểm định)","nangLucCode":"1;2;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nồng độ khí CO₂ - Cầm tay","tenTA":"Gas analyzers of CO2 in air","linhVuc":"Hoá lý (khí)","dichVu":"KĐ","phamVi":"(0 ÷ 16) %V","mpelod":"± 5 %","cmcMax":0.7,"cmcDvt":"%","quyTrinh":"ĐLVN 265:2016 (Phương tiện đo nồng độ SO2, CO2, CO, NOx trong không khí - Quy trình kiểm định)","nangLucCode":"1;2;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo lưu lượng nước đường ống kín","tenTA":"Measurement equipment of flow in closed conduit","linhVuc":"Dung tích - Lưu lượng","dichVu":"TN","phamVi":"(0 ÷ 0) m³/h","mpelod":"2,2 %","cmcMax":5.0,"cmcDvt":"%","quyTrinh":"ETV. MTF 05 (Phương tiện đo lưu lượng nước (kênh kín, kênh hở) - Quy trình thử nghiệm)","nangLucCode":"6","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Lượng mưa - Trạm khí","tenTA":"Rainfall measuring Instrument","linhVuc":"Dung tích - Lưu lượng","dichVu":"KĐ","phamVi":"(0 ÷ 700) mm/h","mpelod":"35 mm/h","cmcMax":-1.0,"cmcDvt":"mm/h","quyTrinh":"ETV.MVF 11 (Phương tiện đo lượng mưa - Quy trình kiểm định nhóm 1)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo mực nước","tenTA":"Water level Instrument","linhVuc":"Dung tích - Lưu lượng","dichVu":"KĐ","phamVi":"(0 ÷ 80000) mm","mpelod":"2 mm","cmcMax":2.0,"cmcDvt":"mm","quyTrinh":"ETV.MVF 12 (Phương tiện đo mực nước - Quy trình kiểm định nhóm 1)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phòng sạch","tenTA":"Clean room","linhVuc":"Cơ học","dichVu":"TN","phamVi":"(0.5 ÷ 30) m/s","mpelod":"6 %","cmcMax":0.3,"cmcDvt":"m/s","quyTrinh":"ETV.MTMe 02 (Phòng sạch - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Tủ cấy vi sinh","tenTA":"Biological safety cabinets","linhVuc":"Cơ học","dichVu":"TN","phamVi":"(0.5 ÷ 30) m/s","mpelod":"6 %","cmcMax":0.5,"cmcDvt":"m/s","quyTrinh":"ETV.MTMe 01 (Tủ an toàn sinh học - Quy trình nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị hấp tiệt trùng","tenTA":"Autoclaving equipment","linhVuc":"Cơ học","dichVu":"TN","phamVi":"(121 ÷ 200) °C","mpelod":"0,5 °C","cmcMax":0.5,"cmcDvt":"°C","quyTrinh":"ETV. MTT 02 (Thiết bị hấp tiệt trùng - Quy trình thử nghiệm)","nangLucCode":"7","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ ẩm không khí","tenTA":"Hygrometer","linhVuc":"Độ ẩm","dichVu":"KĐ","phamVi":"(5 ÷ 95) %RH","mpelod":"± %RH","cmcMax":0.5,"cmcDvt":"%RH","quyTrinh":"ĐLVN 359:2019 (Phương tiện đo nhiệt độ/ độ ẩm không khí - Quy trình kiểm định)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Quang phổ tử ngoại khả kiến (UV-Vis)","tenTA":"UV/Vis Spectrophotometer","linhVuc":"Quang học","dichVu":"KĐ","phamVi":"(200 ÷ 900) nm","mpelod":"0,3 nm","cmcMax":0.22,"cmcDvt":"nm","quyTrinh":"ĐLVN 372:2020 (Phương tiện đo quang phổ tử ngoại - khả kiến -  Quy trình kiểm định)","nangLucCode":"1;2","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Quang phổ tử ngoại khả kiến (UV-Vis) (*)","tenTA":"UV/Vis Spectrophotometer","linhVuc":"Quang học","dichVu":"KĐ","phamVi":"(200 ÷ 900) nm","mpelod":"± 0.3 nm","cmcMax":0.22,"cmcDvt":"nm","quyTrinh":"ĐLVN 372:2020 (Phương tiện đo quang phổ tử ngoại - khả kiến - Quy trình kiểm định nhóm 1)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị nhận, truyền và quản lý dữ liệu","tenTA":"Datalogger","linhVuc":"Điện từ - Không điện","dichVu":"TN","phamVi":"(0 ÷ 11) mV","mpelod":"0,045 %","cmcMax":2.0,"cmcDvt":"%","quyTrinh":"ETV.MTE 01 (Thiết bị truyền nhận dữ liệu (datalogger) – Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Cường độ ánh sáng","tenTA":"Photometry Meter","linhVuc":"Quang học","dichVu":"HC","phamVi":"(0 ÷ 99999) Lux","mpelod":"","cmcMax":0.08,"cmcDvt":"%","quyTrinh":"ETV.MCO 02 (Phương tiện đo cường độ ánh sáng - Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ ẩm - Trạm khí tượng","tenTA":"Humidity measuring device - Meteorological station","linhVuc":"Độ ẩm","dichVu":"HC","phamVi":"(10 ÷ 90) %RH","mpelod":"","cmcMax":2.3,"cmcDvt":"%RH","quyTrinh":"ETV.MCH 01 (Phương tiện đo Độ ẩm không khí - Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Cân kỹ thuật","tenTA":"Technical balance","linhVuc":"Khối lượng","dichVu":"HC","phamVi":"(0 ÷ 9000) g","mpelod":"","cmcMax":0.36,"cmcDvt":"g","quyTrinh":"ETV.MCM 01 (Cân phân tích và cân kỹ thuật - Quy trình hiệu chuẩn)","nangLucCode":"1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Cường độ ánh sáng","tenTA":"Photometry Meter","linhVuc":"Quang học","dichVu":"HC","phamVi":"(0 ÷ 100000) Lux","mpelod":"2 %","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo hàm lượng Bụi - Trạm khí thải","tenTA":"Analyzer of Dust","linhVuc":"Quang học","dichVu":"HC","phamVi":"(0 ÷ 10000) mg/m³","mpelod":"±8 %","cmcMax":0,"cmcDvt":"%","quyTrinh":"ETV.MCO 04 (Phương tiện đo hàm lượng bụi trong khí thải – Quy trình hiệu chuẩn)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Điện áp một chiều","tenTA":"DC voltage","linhVuc":"Điện từ - Không điện","dichVu":"HC","phamVi":"(0 ÷ 0) mV","mpelod":"±","cmcMax":0,"cmcDvt":"mV","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Dòng điện một chiều","tenTA":"Direct current measuring instrument","linhVuc":"Điện từ - Không điện","dichVu":"HC","phamVi":"(0 ÷ 0) mA","mpelod":"±","cmcMax":0,"cmcDvt":"mA","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Dòng điện xoay chiều","tenTA":"Alternating current","linhVuc":"Điện từ - Không điện","dichVu":"HC","phamVi":"(0 ÷ 0) mA","mpelod":"±","cmcMax":0,"cmcDvt":"mA","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Điện trở","tenTA":"Resistor","linhVuc":"Điện từ - Không điện","dichVu":"HC","phamVi":"(0 ÷ 0) KSD","mpelod":"±","cmcMax":0,"cmcDvt":"KSD","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Hàm lượng bụi (TSP; PM₁₀; PM 2,5; PM₁)","tenTA":"Analyzer of Dust","linhVuc":"Quang học","dichVu":"TN","phamVi":"(0 ~ 10000) mg/m³","mpelod":"10 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 02 (Phương tiện đo hàm lượng bụi (TSP; PM10; PM 2,5; PM1) - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Khí chuẩn CO","tenTA":"Standard gases of CO","linhVuc":"Hoá lý (khí)","dichVu":"TN","phamVi":"(0 ÷ 10000) ppm","mpelod":"± 5 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 03 (Khí chuẩn - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Khí chuẩn NO","tenTA":"Standard gases of NO","linhVuc":"Hoá lý (khí)","dichVu":"TN","phamVi":"(0 ÷ 5000) ppm","mpelod":"5 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 03 (Khí chuẩn - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Khí chuẩn NO₂","tenTA":"Standard gases of NO2","linhVuc":"Hoá lý (khí)","dichVu":"TN","phamVi":"(0 ÷ 1100) ppm","mpelod":"5 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 03 (Khí chuẩn - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Khí chuẩn SO₂","tenTA":"Standard gases of SO2","linhVuc":"Hoá lý (khí)","dichVu":"TN","phamVi":"(0 ÷ 5000) ppm","mpelod":"5 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 03 (Khí chuẩn - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Khí chuẩn O₂","tenTA":"Standard gases of O₂","linhVuc":"Hoá lý (khí)","dichVu":"TN","phamVi":"(0 ÷ 25) %V","mpelod":"5 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 03 (Khí chuẩn - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Khí chuẩn THC","tenTA":"Standard gases of THC","linhVuc":"Hoá lý (khí)","dichVu":"TN","phamVi":"(0 ÷ 40000) ppm","mpelod":"5 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 03 (Khí chuẩn - Quy trình thử nghiệm)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Bộ quả cân cấp chính xác F1","tenTA":"Weights of F1 classes","linhVuc":"Khối lượng","dichVu":"HC","phamVi":"(1 ÷ 500) mg","mpelod":"± F1","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Bộ quả cân cấp chính xác E2","tenTA":"Weights of classes E2","linhVuc":"Khối lượng","dichVu":"HC","phamVi":"(1 ÷ 200) mg","mpelod":"1","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Tủ an toàn sinh học","tenTA":"Biosafety Cabinet","linhVuc":"Cơ học","dichVu":"HC","phamVi":"(0 ÷ 0) %","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Áp suất - Trạm Khí tượng","tenTA":"Pressure meter","linhVuc":"Áp suất","dichVu":"HC","phamVi":"(0 ÷ 1200) mBar","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Bình áp lực","tenTA":"Pressure cylinders","linhVuc":"Áp suất","dichVu":"HC","phamVi":"(0 ÷ 0.7) bar","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8;7;9;11","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo áp suất","tenTA":"Pressure gauge","linhVuc":"Áp suất","dichVu":"HC","phamVi":"(0 ÷ 0) bar","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"6;8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Máy đo độ sạch của dầu, nhớt","tenTA":"Machine for measuring the cleanliness of oil and lubricants","linhVuc":"Áp suất","dichVu":"HC","phamVi":"(0 ÷ 0) bar","mpelod":"±","cmcMax":0,"cmcDvt":"bar","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thước kẹp","tenTA":"Caliper","linhVuc":"Độ dài","dichVu":"HC","phamVi":"(0 ÷ 0) m","mpelod":"±","cmcMax":0,"cmcDvt":"m","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8;7;9","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Đồng hồ so","tenTA":"Odometer","linhVuc":"Độ dài","dichVu":"HC","phamVi":"(0 ~ 100) mm","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thước cuộn (> 20m)","tenTA":"Tapes","linhVuc":"Độ dài","dichVu":"HC","phamVi":"(0 ÷ 100) m","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"11;10;1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Căn mẫu","tenTA":"Gauge blocks","linhVuc":"Độ dài","dichVu":"HC","phamVi":"(0 ÷ 1000) mm","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ rung","tenTA":"Vibration meter","linhVuc":"Thời gian - Tần số","dichVu":"KĐ","phamVi":"(30 ÷ 119) dB","mpelod":"±","cmcMax":0,"cmcDvt":"dB","quyTrinh":"ĐLVN 264:2014 (Phương tiện đo độ rung động - Quy trình kiểm định)","nangLucCode":"8;7;9;11","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Độ ồn - NTP","tenTA":"Sound level meter","linhVuc":"Thời gian - Tần số","dichVu":"KĐ","phamVi":"(30 ÷ 140) dB","mpelod":"± 0,1 dB","cmcMax":0,"cmcDvt":"","quyTrinh":"ĐLVN 89:2010 (Phương tiện đo độ ồn - Quy trình kiểm định)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị đo Bức xạ mặt trời","tenTA":"Solar Radiation measuring device","linhVuc":"Phóng xạ","dichVu":"HC","phamVi":"(0 ÷ 0) Lux","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"6;8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị đo phóng xạ Gamma","tenTA":"Radiation measuring equipment","linhVuc":"Phóng xạ","dichVu":"HC","phamVi":"(0 ÷ 0) µS/cm","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị đo phóng xạ tia X","tenTA":"X-ray radiation equipment","linhVuc":"Phóng xạ","dichVu":"HC","phamVi":"(0 ÷ 1000) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Thiết bị đo hoạt độ phóng xạ Alpha Beta (bề mặt)","tenTA":"Alpha Beta radioactivity measuring device (surface)","linhVuc":"Phóng xạ","dichVu":"HC","phamVi":"(0 ÷ 1000) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm phương tiện đo khí","tenTA":"Testing of Gas analyzers","linhVuc":"Giải ngân","dichVu":"TN","phamVi":"(0 ÷ 0) mg/m³","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTA 01 (Phương tiện đo nồng độ các thông số trong không khí - Quy trình thử nghiệm)","nangLucCode":"6","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm phương tiện đo nhiệt độ","tenTA":"Testing of Temprature","linhVuc":"Giải ngân","dichVu":"TN","phamVi":"(0 ÷ 1000) °C","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV. MTT 01 (Phương tiện đo nhiệt độ môi trường nước - Quy trình thử nghiệm)","nangLucCode":"6","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Hiệu chỉnh, thử nghiệm phương tiện đo lưu lượng","tenTA":"LL","linhVuc":"Giải ngân","dichVu":"TN","phamVi":"(0 ÷ 1000) mL/min","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MTF 04 (Thiết bị đo lưu lượng khí thải - Quy trình thử nghiệm)","nangLucCode":"6","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo lưu lượng nước đường ống kín (DN 50)","tenTA":"Measurement equipment of flow in closed conduit","linhVuc":"Dung tích - Lưu lượng","dichVu":"KĐ","phamVi":"(0 ~ 100) m³/h","mpelod":"± (2; 5) %","cmcMax":0,"cmcDvt":"","quyTrinh":"ĐLVN 17 : 2017 (Đồng hồ đo nước - Quy trình kiểm định)","nangLucCode":"-1;8;11;11","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo lưu lượng nước đường ống kín (DN 80)","tenTA":"Measurement equipment of flow in closed conduit","linhVuc":"Dung tích - Lưu lượng","dichVu":"KĐ","phamVi":"(0 ÷ 200) m³/h","mpelod":"± (2; 5) %","cmcMax":0,"cmcDvt":"","quyTrinh":"ĐLVN 17 : 2017 (Đồng hồ đo nước - Quy trình kiểm định)","nangLucCode":"8;11;11","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo lưu lượng nước đường ống kín (＜DN 100)","tenTA":"Measurement equipment of flow in closed conduit","linhVuc":"Dung tích - Lưu lượng","dichVu":"KĐ","phamVi":"(0 ~ 100) m³/h","mpelod":"± (2; 5) %","cmcMax":0,"cmcDvt":"","quyTrinh":"ĐLVN 17 : 2017 (Đồng hồ đo nước - Quy trình kiểm định)","nangLucCode":"-1;8;11;11","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo lưu lượng nước đường ống kín (< DN 150)","tenTA":"Measurement equipment of flow in closed conduit","linhVuc":"Dung tích - Lưu lượng","dichVu":"KĐ","phamVi":"(0 ÷ 150) m³/h","mpelod":"± (2; 5) %","cmcMax":0,"cmcDvt":"","quyTrinh":"ĐLVN 17 : 2017 (Đồng hồ đo nước - Quy trình kiểm định)","nangLucCode":"8;11;11","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Bộ quả cân cấp chính xác E2","tenTA":"Weights of classes E2","linhVuc":"Khối lượng","dichVu":"TN","phamVi":"(1 ÷ 200) mg","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (TN) (Quy trình thử nghiệm - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo nhiệt độ, độ ẩm","tenTA":"","linhVuc":"Độ ẩm","dichVu":"KĐ","phamVi":"(0 ÷ 0) °C","mpelod":"±","cmcMax":0,"cmcDvt":"°C","quyTrinh":"ĐLVN 359:2019 (Phương tiện đo nhiệt độ/ độ ẩm không khí - Quy trình kiểm định)","nangLucCode":"8;11;1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo hàm lượng Bụi - Trạm khí thải","tenTA":"Analyzer of Dust","linhVuc":"Quang học","dichVu":"KĐ","phamVi":"(0 ~ 10000) mg/m³","mpelod":"8 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MVO 04 (Phương tiện đo hàm lượng Bụi (TSP; TP; PM; PM10; PM2.5; PM1.0) - Quy trình kiểm định nhóm 1)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Hàm lượng bụi (TSP; PM₁₀; PM 2,5; PM₁)","tenTA":"Analyzer of Dust","linhVuc":"Quang học","dichVu":"KĐ","phamVi":"(0 ~ 10000) mg/m³","mpelod":"10 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MVO 03 (Phương tiện đo hàm lượng Bụi (TSP; TP; PM; PM10; PM2.5; PM1.0) - Quy trình kiểm định nhóm 1)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo Cường độ ánh sáng (Độ rọi)","tenTA":"Illuminance meter","linhVuc":"Quang học","dichVu":"KĐ","phamVi":"(10 ÷ 20000) Lux","mpelod":"± 1 %","cmcMax":0,"cmcDvt":"","quyTrinh":"ĐLVN 257 : 2014 (Phương tiện đo độ rọi - Quy trình kiểm định)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Test định mức KTKT 3","tenTA":"Test DMKTKT 3","linhVuc":"Không lĩnh vực","dichVu":"HC","phamVi":"(-2 ÷ 16) pH","mpelod":"±","cmcMax":0,"cmcDvt":"pH","quyTrinh":"ETV.MCW 01 (Phương tiện đo pH - Quy trình hiệu chuẩn)","nangLucCode":"6","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Test định mức KTKT 4","tenTA":"Test DMKTKT 1","linhVuc":"Không lĩnh vực","dichVu":"HC","phamVi":"(0 ÷ 0) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"mg/L","quyTrinh":"ETV.MCW 01 (Phương tiện đo pH - Quy trình hiệu chuẩn)","nangLucCode":"-1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Test định mức KTKT 5","tenTA":"Test DMKTKT 1","linhVuc":"Không lĩnh vực","dichVu":"HC","phamVi":"(-2 ÷ 16) pH","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"ETV.MCW 01 (Phương tiện đo pH - Quy trình hiệu chuẩn)","nangLucCode":"-1;3","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Máy xét nghiệm sinh hóa","tenTA":"Biochemical testing machine","linhVuc":"Y tế","dichVu":"HC","phamVi":"(0 ÷ 0) mg/L","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (HC) (Quy trình hiệu chuẩn - Nhà thầu phụ)","nangLucCode":"1","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Bộ quả cân cấp chính xác F1","tenTA":"Weights of F1 classes","linhVuc":"Điện từ - Không điện","dichVu":"TN","phamVi":"(1 ÷ 500) mg","mpelod":"±","cmcMax":0,"cmcDvt":"","quyTrinh":"NTP (TN) (Quy trình thử nghiệm - Nhà thầu phụ)","nangLucCode":"8","trangThaiPTD":"ĐN LĐP duyệt"},{"ten":"Phương tiện đo GSOT TEST 07062023","tenTA":"Phương tiện đo GSOT TEST 07062023","linhVuc":"Lĩnh vực test","dichVu":"KĐ","phamVi":"(0 ÷ 2) °C","mpelod":"±","cmcMax":0,"cmcDvt":"°C","quyTrinh":"ĐLVN 259 : 2015 (Cân treo móc cẩu - Quy trình kiểm định)","nangLucCode":"7; 9; 10","trangThaiPTD":"ĐN LĐP duyệt"}];
+
+  /* ---------- State ---------- */
+  var state={records:[],currentId:null,role:null,user:null,token:null,view:"editor",searchQ:"",filterSt:"all",pickerFor:null,pickerQ:"",pickerShowFail:false,pickSel:{},catalogSource:"embedded",catalogUpdatedAt:null};
+
+  function nowISO(){var d=new Date();return d.toISOString();}
+  function todayInput(){var d=new Date();return d.toISOString().slice(0,10);}
+  function load(){try{return JSON.parse(localStorage.getItem(LS))||[]}catch(e){return[]}}
+  function save(){localStorage.setItem(LS,JSON.stringify(state.records));}
+
+  /* ---------- Helpers ---------- */
+  function pad(n){return(n<10?"0":"")+n;}
+  function fmt(d){if(!d)return"—";d=new Date(d);return pad(d.getDate())+"/"+pad(d.getMonth()+1)+"/"+d.getFullYear();}
+  function parse(v){if(!v)return null;var p=(""+v).slice(0,10).split("-");return new Date(+p[0],+p[1]-1,+p[2]);}
+  function dayDiff(a,b){return Math.round((parse(b)-parse(a))/86400000);}
+  function addWD(d,n){var x=parse(d),a=0;while(a<n){x.setDate(x.getDate()+1);var w=x.getDay();if(w!==0&&w!==6)a++;}return x;}
+  function esc(s){return(""+(s==null?"":s)).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+  function isEditable(r){return !r.kyso && state.role!==0;}
+
+  /* ---------- Workflow (Mục 14.2 Thủ tục ETV.MP 21) ---------- */
+  var ST={
+    chualap:{label:"Chưa lập",cls:"s-draft"}, danglap:{label:"Đang lập",cls:"s-mid"},
+    soatxet:{label:"Chờ soát xét (Lãnh đạo phòng)",cls:"s-mid"},
+    dnldv:{label:"Đã soát xét · Chờ Lãnh đạo Viện duyệt",cls:"s-mid"},
+    phenoibo:{label:"Đã phê duyệt nội bộ",cls:"s-mid"},
+    dagui:{label:"Đã gửi cơ quan tiếp nhận",cls:"s-mid"},
+    yeucaubosung:{label:"Yêu cầu bổ sung từ cơ quan tiếp nhận",cls:"s-alert"},
+    tiepnhan:{label:"Đã tiếp nhận / ghi nhận",cls:"s-mid"},
+    conghieu:{label:"Đã công khai · Còn hiệu lực",cls:"s-conghieu"},
+    dieuchinh:{label:"Đang điều chỉnh (tạo phiên bản mới)",cls:"s-alert"}, tamdung:{label:"Tạm dừng",cls:"s-alert"},
+    huybo:{label:"Hủy bỏ",cls:"s-bad"}, hethieu:{label:"Hết hiệu lực",cls:"s-bad"}
+  };
+  // Transitions: from -> [ {to,label,role,reason,danger,warn,needReceipt,check,guard,fn} ]
+  var TR={
+    chualap:[{to:"danglap",label:"Bắt đầu lập hồ sơ"}],
+    danglap:[{to:"soatxet",label:"Gửi soát xét",guard:hasGoodLine,check:recordGaps}],
+    soatxet:[
+      {to:"danglap",label:"Trả lại bổ sung",reason:true,role:2},
+      {to:"dnldv",label:"Duyệt soát xét · Đề nghị Lãnh đạo Viện duyệt",role:2}
+    ],
+    dnldv:[
+      {to:"soatxet",label:"Trả lại soát xét",reason:true,role:3},
+      {to:"phenoibo",label:"Phê duyệt nội bộ & ký số",role:3,fn:function(r){r.kyso=true;r.kysoAt=nowISO();}}
+    ],
+    phenoibo:[{to:"dagui",label:"Gửi cơ quan tiếp nhận",role:2,fn:function(r){r.ngayGui=todayInput();}}],
+    dagui:[
+      {to:"tiepnhan",label:"Ghi nhận biên nhận",needReceipt:true},
+      {to:"yeucaubosung",label:"Cơ quan yêu cầu bổ sung",reason:true,warn:true,fn:function(r){r.kyso=false;}}
+    ],
+    yeucaubosung:[{to:"danglap",label:"Quay lại chỉnh sửa, bổ sung",fn:function(r){r.ngayGui=null;}}],
+    tiepnhan:[{to:"conghieu",label:"Công khai & sinh QR",role:2,fn:function(r){r.ngayCongKhai=todayInput();}}],
+    conghieu:[
+      {to:"dieuchinh",label:"Điều chỉnh (mở khóa, tạo phiên bản mới)",reason:true,warn:true,fn:function(r){
+        r.phienBanCu=r.phienBanCu||[];
+        r.phienBanCu.push({lan:r.lan,ngayHieuLuc:r.ngayCongKhai,luuLuc:nowISO(),lines:JSON.parse(JSON.stringify(r.lines))});
+        r.kyso=false;
+      }},
+      {to:"tamdung",label:"Tạm dừng",reason:true,role:3,warn:true},
+      {to:"huybo",label:"Hủy bỏ",reason:true,role:3,danger:true},
+      {to:"hethieu",label:"Đánh dấu hết hiệu lực",role:3,danger:true}
+    ],
+    dieuchinh:[{to:"conghieu",label:"Hoàn tất điều chỉnh & khóa phiên bản mới",role:2,fn:function(r){
+      var n=parseInt(r.lan,10)||1; r.lan=pad(n+1); r.ngayCongKhai=todayInput(); r.kyso=true; r.kysoAt=nowISO();
+    }}],
+    tamdung:[
+      {to:"conghieu",label:"Khôi phục",role:3},
+      {to:"huybo",label:"Hủy bỏ",reason:true,role:3,danger:true}
+    ],
+    huybo:[], hethieu:[]
+  };
+  function hasGoodLine(r){return r.lines.some(function(l){return l.kq==="dapung"||l.kq==="dieuchinh";});}
+
+  /* ---------- Field-level validation (Mục 8.2 — trường bắt buộc B) ---------- */
+  function lineGaps(r,l){
+    var g=[];
+    if(r.loai==="DL"){
+      if(!l.ten.trim())g.push("Tên đối tượng");
+      if(!l.linhVuc.trim())g.push("Lĩnh vực");
+      if(!l.phamVi.trim())g.push("Phạm vi đo");
+      if(!l.quyTrinh.trim())g.push("Quy trình thực hiện");
+      if(!l.ccx.trim())g.push("Cấp/ĐCX/MPE/LOD");
+    }else{
+      if(!l.thongSo.trim())g.push("Thông số/loại mẫu");
+      if(!l.phuongPhap.trim())g.push("Phương pháp");
+    }
+    var hasEvidence=(l.bangChung&&l.bangChung.trim())||l.bcFileName;
+    if((l.kq==="khong"||l.kq==="dieuchinh")&&!l.lyDo.trim())g.push("Lý do (bắt buộc — BR10)");
+    if((l.kq==="khong"||l.kq==="dieuchinh")&&!hasEvidence)g.push("Bằng chứng: ảnh chụp màn hình / tài liệu (bắt buộc — BR10)");
+    return g;
+  }
+  function recordGaps(r){
+    var out=[];
+    if(!(r.coQuanTiepNhan||"").trim())out.push("Cơ quan tiếp nhận");
+    if(!r.toChuc.trim())out.push("Tên tổ chức");
+    if(!r.diaChi.trim())out.push("Địa chỉ");
+    if(!r.daiDien.trim())out.push("Người đại diện pháp luật");
+    if(r.loai==="DL"&&!(r.diaDiem||"").trim())out.push("Địa điểm thực hiện hoạt động");
+    r.lines.forEach(function(l,i){var g=lineGaps(r,l);if(g.length)out.push("Dòng "+(i+1)+" ("+(l.ten||l.thongSo||"chưa đặt tên")+"): "+g.join(", "));});
+    return out;
+  }
+
+  /* ---------- Gate G1–G7 (Mục 9.1 — kiểm tra tự động khi Lập kế hoạch) ---------- */
+  function gateCheck(item){
+    var reasons=[],isHC=item.dichVu==="HC";
+    var approvedStates=["Đã duyệt","ĐN LĐV duyệt"]; // đối tượng đã qua duyệt/đề nghị Lãnh đạo Viện duyệt
+    var g1=approvedStates.indexOf(item.trangThaiPTD)>-1; if(!g1)reasons.push("G1: PTĐ chưa được duyệt (hiện: "+(item.trangThaiPTD||"—")+")");
+    var g2=!isHC||(item.cmcMax>0&&item.cmcDvt); if(isHC&&!g2)reasons.push("G2: Thiếu CMC hợp lệ (CMC>0 và có ĐVT) — không lập được Bản công bố NQ 66.18");
+    var g3=!!item.quyTrinh; if(!g3)reasons.push("G3: Chưa liên kết quy trình thực hiện");
+    var g5=!!item.phamVi; if(!g5)reasons.push("G5: Thiếu phạm vi áp dụng");
+    var g6=!!item.nangLucCode; if(!g6)reasons.push("G6: Chưa gán năng lực pháp lý (ĐK105/ĐK107/N383/VILAS/Giấy KHCN)");
+    return {pass:g1&&g2&&g3&&g5&&g6,reasons:reasons};
+  }
+
+  /* ---------- Line schemas ---------- */
+  var DV={kiemdinh:"Kiểm định",hieuchuan:"Hiệu chuẩn",thunghiem:"Thử nghiệm"};
+  var DVREV={"KĐ":"kiemdinh","HC":"hieuchuan","TN":"thunghiem"};
+  var NHOM={hientruong:"Đo đạc tại hiện trường",laymau:"Lấy & bảo quản mẫu",phantich:"Xử lý & phân tích mẫu"};
+  var KQ={dapung:"Đáp ứng",khong:"Không đáp ứng",dieuchinh:"Điều chỉnh"};
+
+  function blankLine(loai){
+    return loai==="DL"
+      ? {id:rid(),dichVu:"kiemdinh",ten:"",linhVuc:"",phamVi:"",ccx:"",quyTrinh:"",nguoiTH:"",ghiChu:"",kq:"dapung",lyDo:"",bangChung:"",bcFileName:"",bcFileData:"",bcFileType:"",linked:false,catalogRef:""}
+      : {id:rid(),nhom:"hientruong",thongSo:"",phuongPhap:"",lod:"",loq:"",nguoiTH:"",kq:"dapung",lyDo:"",bangChung:"",bcFileName:"",bcFileData:"",bcFileType:"",linked:false,catalogRef:""};
+  }
+  function rid(){return"L"+Math.floor(performance.now()*1000%1e9);}
+
+  /* ---------- Seed ---------- */
+  function seed(){
+    return [
+     {id:"CB-01/2026",loai:"DL",socb:"01/2026",lan:"01",ngay:"2026-06-10",
+      toChuc:"VIỆN KIỂM ĐỊNH CÔNG NGHỆ VÀ MÔI TRƯỜNG",
+      diaChi:"Tầng 14 Tòa nhà Zen Tower, số 12 Khuất Duy Tiến, P. Thanh Xuân, TP. Hà Nội",
+      dienThoai:"0813.98.98.38",email:"kiemdinh@etv.org.vn",diaDiem:"Khu C3-2B/NO4, Ngõ 1, đường Vũ Đình Tụng, P. Long Biên, TP Hà Nội",
+      daiDien:"TS. Nguyễn Hoàng Giang — Viện trưởng",coQuanTiepNhan:"Trung tâm Phục vụ hành chính công TP. Hà Nội",
+      coQuanChuQuan:"",congNhanSo:"",congNhanHieuLuc:"",
+      nenMau:{},dieuChinh:"",trangThai:"conghieu",kyso:true,kysoAt:"2026-06-11T03:00:00Z",
+      ngayGui:"2026-06-11",maBienNhan:"HCC-HN-2026-0456",ngayTiepNhan:"2026-06-13",ngayCongKhai:"2026-06-13",
+      phienBanCu:[],
+      lines:[
+        {id:rid(),dichVu:"kiemdinh",ten:"Phương tiện đo nồng độ khí O₃ của trạm quan trắc không khí xung quanh",linhVuc:"Hoá lý (khí)",phamVi:"(0 ÷ 0.0005) %V",ccx:"2 %",quyTrinh:"ETV.MVA 01",nguoiTH:"Nguyễn Ngọc Tuấn",ghiChu:"",kq:"dapung",lyDo:"",bangChung:"",linked:false,catalogRef:""},
+        {id:rid(),dichVu:"hieuchuan",ten:"Phương tiện đo pH",linhVuc:"Hoá lý (nước)",phamVi:"(-2 ÷ 16) pH",ccx:"0,013 pH",quyTrinh:"ETV.MCW 01",nguoiTH:"Nguyễn Văn Đồng",ghiChu:"",kq:"dapung",lyDo:"",bangChung:"",linked:true,catalogRef:"Phương tiện đo pH"},
+        {id:rid(),dichVu:"thunghiem",ten:"Dung dịch chuẩn Sunfile",linhVuc:"Hoá lý (nước)",phamVi:"(0 ~ 1000) mg/L",ccx:"5 %",quyTrinh:"ETV.MTW 02",nguoiTH:"Nguyễn Thị Kim Phương",ghiChu:"",kq:"dapung",lyDo:"",bangChung:"",linked:true,catalogRef:"Dung dịch chuẩn Sunfile"}
+      ],
+      lichSu:[{time:"2026-06-13T04:00:00Z",who:"Lãnh đạo Viện",act:"Công khai & sinh QR",note:""}]},
+
+     {id:"TB-01/2026",loai:"QTMT",socb:"01/2026",lan:"01",ngay:"2026-06-20",
+      toChuc:"VIỆN KIỂM ĐỊNH CÔNG NGHỆ VÀ MÔI TRƯỜNG",
+      diaChi:"Tầng 14 Tòa nhà Zen Tower, số 12 Khuất Duy Tiến, P. Thanh Xuân, TP. Hà Nội",
+      dienThoai:"0813.98.98.38",email:"kiemdinh@etv.org.vn",diaDiem:"",
+      daiDien:"TS. Nguyễn Hoàng Giang — Viện trưởng",coQuanTiepNhan:"Bộ Nông nghiệp và Môi trường",
+      coQuanChuQuan:"Liên hiệp các Hội Khoa học và Kỹ thuật Việt Nam",congNhanSo:"VILAS 1298",congNhanHieuLuc:"2028-09-30",
+      nenMau:{nuocMat:true,nuocThai:true,khongKhiXq:true},dieuChinh:"",
+      trangThai:"danglap",kyso:false,kysoAt:null,ngayGui:null,maBienNhan:"",ngayTiepNhan:null,ngayCongKhai:null,
+      phienBanCu:[],
+      baoCaoHangNam:{ky:"",khoiLuong:"",thayDoi:"",qaqc:"",suCo:"",nguoiLap:"",ngayLap:""},
+      lines:[
+        {id:rid(),nhom:"hientruong",thongSo:"pH",phuongPhap:"TCVN 6492:2011",lod:"2 ÷ 12 pH",loq:"",nguoiTH:"Nguyễn Văn Đồng",kq:"dapung",lyDo:"",bangChung:"",linked:false,catalogRef:""},
+        {id:rid(),nhom:"hientruong",thongSo:"Nhiệt độ nước",phuongPhap:"SMEWW 2550B:2017",lod:"0 ÷ 50 °C",loq:"",nguoiTH:"Nguyễn Văn Đồng",kq:"dapung",lyDo:"",bangChung:"",linked:false,catalogRef:""},
+        {id:rid(),nhom:"phantich",thongSo:"TSS",phuongPhap:"SMEWW 2540D:2017",lod:"3 mg/L",loq:"10 mg/L",nguoiTH:"Trần Trung Hưng",kq:"dapung",lyDo:"",bangChung:"",linked:false,catalogRef:""},
+        {id:rid(),nhom:"phantich",thongSo:"COD",phuongPhap:"SMEWW 5220C:2017",lod:"5 mg/L",loq:"15 mg/L",nguoiTH:"Trần Trung Hưng",kq:"khong",lyDo:"Chưa có kết quả thử nghiệm thành thạo còn hiệu lực",bangChung:"",linked:false,catalogRef:""}
+      ],
+      lichSu:[{time:"2026-06-20T02:00:00Z",who:"Người thực hiện",act:"Tạo hồ sơ",note:""}]}
+    ];
+  }
+
+  /* ---------- Render ---------- */
+  var elMain=document.getElementById("main"),elList=document.getElementById("reclist"),elCount=document.getElementById("reccount");
+  var elSearch=document.getElementById("searchbox"),elFilterSt=document.getElementById("filterst");
+  (function initFilterOptions(){
+    Object.keys(ST).forEach(function(k){var o=document.createElement("option");o.value=k;o.textContent=ST[k].label;elFilterSt.appendChild(o);});
+  })();
+  function cur(){return state.records.find(function(r){return r.id===state.currentId;});}
+
+  function matchesFilter(r){
+    if(state.filterSt!=="all"&&r.trangThai!==state.filterSt)return false;
+    if(!state.searchQ)return true;
+    var q=state.searchQ.toLowerCase();
+    if(r.id.toLowerCase().indexOf(q)>-1||r.toChuc.toLowerCase().indexOf(q)>-1)return true;
+    return r.lines.some(function(l){return((l.ten||l.thongSo||"")+"").toLowerCase().indexOf(q)>-1;});
+  }
+
+  function renderList(){
+    var filtered=state.records.filter(matchesFilter);
+    elCount.textContent=filtered.length;
+    if(!state.records.length){elList.innerHTML='<p class="empty-side">Chưa có hồ sơ.</p>';return;}
+    if(!filtered.length){elList.innerHTML='<p class="empty-side">Không tìm thấy hồ sơ khớp bộ lọc.</p>';return;}
+    elList.innerHTML=filtered.map(function(r){
+      var s=ST[r.trangThai];
+      var canDel=state.role===3||(!r.kyso&&(r.trangThai==="chualap"||r.trangThai==="danglap"));
+      var delBtn=canDel?'<button class="recdel" data-delrec="'+esc(r.id)+'" title="Xóa hồ sơ">🗑</button>':'';
+      return '<div class="recwrap'+(r.id===state.currentId?' active':'')+'">'+
+        '<button class="recitem" data-open="'+esc(r.id)+'">'+
+        '<div class="r1"><span class="mã">'+esc(r.id)+'</span><span class="badge tag-loai">'+(r.loai==="DL"?"ĐL":"QTMT")+'</span></div>'+
+        '<span class="badge pill '+s.cls+'" style="align-self:flex-start;border:1px solid">'+s.label+'</span>'+
+        '<span class="sub">'+r.lines.length+' đối tượng · lần '+esc(r.lan)+' · '+fmt(r.ngay)+'</span></button>'+delBtn+'</div>';
+    }).join("");
+  }
+
+  function renderMain(){
+    var r=cur();
+    if(!r){elMain.innerHTML='<p class="empty">Chọn một hồ sơ ở danh sách bên trái, hoặc tạo hồ sơ mới.</p>';return;}
+    var tabs=[["editor","Biên tập hồ sơ"],["doc",r.loai==="DL"?"Bản công bố (Mẫu 01)":"Thông báo (Mẫu 9.01)"],["public","Trang công khai"],["versions","Phiên bản ("+((r.phienBanCu||[]).length)+")"],["hist","Nhật ký"]];
+    if(r.loai==="QTMT")tabs.push(["annual","Báo cáo hằng năm (Mẫu 9.02)"]);
+    var html='<div class="vtabs">'+tabs.map(function(t){return '<button class="vtab" role="tab" aria-selected="'+(state.view===t[0])+'" data-view="'+t[0]+'">'+t[1]+'</button>';}).join("")+'</div>';
+    html+=statusStrip(r);
+    if(state.view==="editor")html+=renderEditor(r);
+    else if(state.view==="doc")html+='<div class="no-print" style="margin-bottom:.8rem"><button class="btn sm" id="printbtn">🖨 In / Xuất PDF</button></div>'+renderDoc(r);
+    else if(state.view==="public")html+=renderPublic(r);
+    else if(state.view==="versions")html+=renderVersions(r);
+    else if(state.view==="annual")html+=renderAnnual(r);
+    else html+=renderHist(r);
+    elMain.innerHTML=html;
+  }
+
+  function statusStrip(r){
+    var s=ST[r.trangThai];
+    var h='<div class="sstrip"><span class="pill '+s.cls+'">'+s.label+'</span>';
+    if(r.kyso)h+='<span class="locklbl">🔒 Đã ký số — dữ liệu khóa (BR1)</span>';
+    else if(r.trangThai==="dieuchinh")h+='<span class="unlocklbl">🔓 Đang mở khóa để điều chỉnh — phiên bản cũ đã lưu ở tab “Phiên bản”</span>';
+    h+='<span style="flex:1"></span>';
+    (TR[r.trangThai]||[]).forEach(function(t){
+      var ok=state.role!==0&&(!t.role||state.role>=t.role);
+      var cls="btn sm"+(t.danger?" danger":t.warn?" warnb":t.to==="danglap"?" ghost":"");
+      var title=state.role===0?"Super Admin chỉ cấu hình hệ thống, không phê duyệt nội dung chuyên môn (Mục 6)":(t.role?"Cần vai trò: "+ROLES[t.role]:"");
+      h+='<button class="'+cls+'" data-tr="'+t.to+'" '+(ok?"":'disabled title="'+title+'"')+'>'+t.label+'</button>';
+    });
+    h+='</div>';
+    return h;
+  }
+
+  /* ----- Editor ----- */
+  function renderEditor(r){
+    var dis=isEditable(r)?"":"disabled";
+    var gaps=recordGaps(r);
+    var h='';
+    if(gaps.length){
+      h+='<div class="gaps"><b>Kiểm tra trước khi gửi soát xét (Mục 8.2 — trường bắt buộc)</b> — còn '+gaps.length+' mục cần bổ sung:<ul>'+
+        gaps.slice(0,10).map(function(g){return '<li>'+esc(g)+'</li>';}).join("")+
+        (gaps.length>10?'<li>… và '+(gaps.length-10)+' mục khác</li>':'')+'</ul></div>';
+    }else{
+      h+='<div class="gaps ok"><b>✓ Đã đủ trường bắt buộc</b> — hồ sơ sẵn sàng để gửi soát xét / phê duyệt.</div>';
+    }
+
+    h+='<div class="card"><h3>Thông tin hồ sơ (bảng cha) <span class="badge tag-loai">'+(r.loai==="DL"?"Đo lường · NQ 66.18":"Quan trắc MT · NQ 66.19")+'</span></h3>';
+    h+='<div class="grid2">'+
+      fld("Mã hồ sơ",r.id,"id",true)+
+      fld(r.loai==="DL"?"Số bản công bố":"Số thông báo",r.socb,"socb",!isEditable(r))+
+      fld(r.loai==="DL"?"Công bố lần thứ":"Thông báo lần",r.lan,"lan",true)+
+      fld("Ngày lập",r.ngay,"ngay",!isEditable(r),"date")+
+    '</div>';
+    h+='<div class="grid2">'+
+      fldWide("Cơ quan tiếp nhận",r.coQuanTiepNhan,"coQuanTiepNhan",!isEditable(r),true)+
+    '</div>';
+    h+='<div class="grid2">'+
+      fld("Tên tổ chức",r.toChuc,"toChuc",!isEditable(r),false,true)+
+      fld("Người đại diện pháp luật",r.daiDien,"daiDien",!isEditable(r),false,true)+
+      fld("Điện thoại",r.dienThoai,"dienThoai",!isEditable(r))+
+      fld("Email",r.email,"email",!isEditable(r))+
+      fldWide("Địa chỉ",r.diaChi,"diaChi",!isEditable(r),true)+
+      (r.loai==="DL"?fldWide("Địa điểm thực hiện hoạt động",r.diaDiem,"diaDiem",!isEditable(r),true):"")+
+    '</div>';
+    if(r.loai==="QTMT"){
+      h+='<div class="grid2">'+
+        fld("Cơ quan chủ quản (nếu có)",r.coQuanChuQuan,"coQuanChuQuan",!isEditable(r))+
+        fld("Số hiệu công nhận ISO/IEC 17025",r.congNhanSo,"congNhanSo",!isEditable(r))+
+        fld("Hiệu lực công nhận",r.congNhanHieuLuc,"congNhanHieuLuc",!isEditable(r),"date")+
+      '</div>';
+      h+=nenMauBox(r);
+    }
+    h+='</div>';
+
+    // catalog picker (chỉ áp dụng cho Đo lường — dữ liệu tham chiếu Danh mục PTĐ)
+    if(r.loai==="DL"&&state.pickerFor===r.id)h+=catalogPicker(r);
+
+    // child table
+    h+='<div class="card"><h3>Năng lực đề nghị công bố/ thông báo của Đối tượng — '+r.lines.length+' đối tượng<span class="btnrow">'+
+      (dis?"":(r.loai==="DL"?'<button class="btn sm" data-action="openpicker">🔗 Chọn danh mục Đối tượng (PTĐ) từ Danh mục Phương tiện đo</button>':'<button class="btn sm ghost" data-action="addmanual">+ Thêm thông số</button>'))+'</span></h3>';
+    h+='<div class="ctab-wrap"><table class="ct"><colgroup>';
+    var widths=r.loai==="DL"
+      ?["96px","210px","120px","130px","150px","150px","120px","96px","118px","150px","150px","40px"]
+      :["150px","170px","160px","130px","90px","120px","118px","150px","150px","40px"];
+    h+=widths.map(function(w){return '<col style="width:'+w+'">';}).join("")+'</colgroup><thead><tr>';
+    var cols=r.loai==="DL"
+      ?["Dịch vụ","Tên đối tượng","Lĩnh vực","Phạm vi đo","Cấp/ĐCX/ĐKĐBĐ/MPE/LOD","Quy trình","Người TH","Ghi chú","Kết quả","Lý do","Bằng chứng",""]
+      :["Nhóm","Thông số / loại mẫu","Phương pháp","LOD / Phạm vi đo","LOQ","Người TH","Kết quả","Lý do","Bằng chứng",""];
+    h+=cols.map(function(c){return"<th>"+c+"</th>";}).join("")+"</tr></thead><tbody>";
+    r.lines.forEach(function(l,i){h+=lineRow(r,l,i,dis);});
+    h+="</tbody></table></div><p class=\"subnote\">Dòng có nhãn 🔗 đã liên kết Danh mục PTĐ — dữ liệu được chụp snapshot tại thời điểm thêm (Mục 4, Mục 8).</p></div>";
+
+    // rules
+    h+='<div class="card"><h3>Kiểm soát quy tắc nghiệp vụ (thời gian thực)</h3>'+rulesPanel(r)+'</div>';
+    return h;
+  }
+  function fld(lbl,val,key,disabled,type,req){return '<div class="fld"><label>'+lbl+(req?' <span class="reqmark">*</span>':'')+'</label><input type="'+(type||"text")+'" value="'+esc(val)+'" data-pf="'+key+'" '+(disabled?"disabled":"")+'></div>';}
+  function fldWide(lbl,val,key,disabled,req){return '<div class="fld" style="grid-column:1/-1"><label>'+lbl+(req?' <span class="reqmark">*</span>':'')+'</label><input value="'+esc(val)+'" data-pf="'+key+'" '+(disabled?"disabled":"")+'></div>';}
+
+  function nenMauBox(r){
+    var opts=[["nuocMat","Nước mặt"],["nuocDuoiDat","Nước dưới đất"],["nuocMua","Nước mưa"],["nuocBien","Nước biển"],["nuocThai","Nước thải"],["khongKhiXq","Không khí xung quanh"],["khiThai","Khí thải"],["dat","Đất"],["tramTich","Trầm tích"],["ctr","Chất thải rắn"],["bunThai","Bùn thải"]];
+    var h='<div style="margin-top:.4rem"><label style="font-size:.74rem;font-weight:600;color:var(--ink-soft)">Phạm vi nền mẫu công bố (Mẫu 9.01 · Mục B)</label><div style="display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-top:.4rem">';
+    h+=opts.map(function(o){return '<label class="chk" style="font-size:.8rem;display:flex;gap:.3rem;align-items:center"><input type="checkbox" data-nm="'+o[0]+'" '+(r.nenMau[o[0]]?"checked":"")+' '+(isEditable(r)?"":"disabled")+'> '+o[1]+'</label>';}).join("");
+    return h+'</div></div>';
+  }
+
+  function catalogPicker(r){
+    var q=state.pickerQ.toLowerCase();
+    var scored=CATALOG.map(function(item,idx){return {item:item,idx:idx,gc:gateCheck(item)};})
+      .filter(function(x){if(!q)return true;return (x.item.ten+" "+x.item.linhVuc).toLowerCase().indexOf(q)>-1;});
+    var pass=scored.filter(function(x){return x.gc.pass;});
+    var fail=scored.filter(function(x){return !x.gc.pass;});
+    var selCount=Object.keys(state.pickSel).filter(function(k){return state.pickSel[k];}).length;
+    var allChecked=pass.length>0&&pass.every(function(x){return state.pickSel[x.idx];});
+    var srcLbl=state.catalogSource==="manlab"?("ManLab · "+CATALOG.length+" đối tượng"+(state.catalogUpdatedAt?" · cập nhật "+fmt(state.catalogUpdatedAt):"")):("Dữ liệu nhúng · "+CATALOG.length+" đối tượng");
+    var h='<div class="picker"><div class="prow">'+
+      '<b>Chọn danh mục Đối tượng (PTĐ) từ Danh mục Phương tiện đo (LK1–LK5, Mục 9.2)</b><span style="flex:1"></span>'+
+      '<button class="mlbtn" data-action="mlupdate">⟳ Cập nhật từ ManLab</button>'+
+      '<button class="btn sm ghost" data-action="closepicker">Đóng</button></div>'+
+      '<div class="prow" style="margin-bottom:.3rem"><span class="ml-status" id="mlStatus">Nguồn: '+esc(srcLbl)+'</span></div>'+
+      '<div class="prow"><input type="text" id="pickerq" placeholder="Tìm theo tên / lĩnh vực..." value="'+esc(state.pickerQ)+'"></div>'+
+      '<div class="picker-toolbar">'+
+        '<label><input type="checkbox" data-action="selall" '+(allChecked?"checked":"")+'> Chọn tất cả ('+pass.length+' đủ điều kiện)</label>'+
+        '<span class="spacer"></span>'+
+        '<span class="sel-count">Đã chọn: '+selCount+'</span>'+
+        '<button class="btn sm" data-action="addselected" '+(selCount?"":"disabled")+'>Thêm '+selCount+' đối tượng đã chọn</button>'+
+      '</div>'+
+      '<div class="plist">';
+    if(!pass.length)h+='<p class="subnote">Không có PTĐ đủ điều kiện khớp tìm kiếm.</p>';
+    h+=pass.map(function(x){return pickerRow(x.item,x.idx,true,[]);}).join("");
+    h+='</div>'+
+      '<p style="margin-top:.6rem"><button class="picktoggle" data-action="togglefail">'+(state.pickerShowFail?"Ẩn":"Hiện")+' '+fail.length+' PTĐ chưa đủ điều kiện (LK4)</button></p>';
+    if(state.pickerShowFail)h+='<div class="plist">'+fail.map(function(x){return pickerRow(x.item,x.idx,false,x.gc.reasons);}).join("")+'</div>';
+    h+='</div>';
+    return h;
+  }
+  function pickerRow(item,idx,ok,reasons){
+    var cap=item.mpelod||((item.cmcMax||"")+" "+(item.cmcDvt||"")).trim();
+    var chk=ok?'<span class="pchk"><input type="checkbox" data-pchk="'+idx+'" '+(state.pickSel[idx]?"checked":"")+'></span>':'';
+    return '<div class="pitem'+(ok?"":" fail")+'">'+chk+'<div class="pinfo"><b>'+esc(item.ten)+'</b> — '+esc(item.linhVuc)+' · '+esc(item.dichVu)+' · <span class="ptags">'+esc(item.trangThaiPTD||"")+'</span><br>'+
+      '<span class="ptags">Phạm vi: '+esc(item.phamVi||"—")+' · MPE/CMC: '+esc(cap||"—")+' · Quy trình: '+esc((item.quyTrinh||"").split(" (")[0]||"—")+'</span>'+
+      (reasons&&reasons.length?'<div class="greason">'+reasons.map(esc).join("<br>")+'</div>':'')+'</div>'+
+      (ok?'<button class="btn sm" data-pick="'+idx+'">Chọn</button>':'<button class="btn sm" disabled>Không đủ điều kiện</button>')+
+    '</div>';
+  }
+  function addCatalogItem(r,item){
+    var line=blankLine(r.loai);
+    line.dichVu=DVREV[item.dichVu]||"hieuchuan";
+    line.ten=item.ten;line.linhVuc=item.linhVuc;line.phamVi=item.phamVi;
+    line.ccx=item.dichVu==="HC"&&item.cmcMax?((item.cmcMax+" "+item.cmcDvt).trim()):item.mpelod;
+    line.quyTrinh=(item.quyTrinh||"").split(" (")[0];
+    line.nguoiTH="";line.catalogRef=item.ten;line.linked=true;
+    r.lines.push(line);
+  }
+
+  function lineRow(r,l,i,dis){
+    function inp(k){return '<input value="'+esc(l[k])+'" data-lf="'+k+'" data-li="'+i+'" '+dis+'>';}
+    function sel(k,map){return '<select data-lf="'+k+'" data-li="'+i+'" '+dis+'>'+Object.keys(map).map(function(v){return '<option value="'+v+'" '+(l[k]===v?"selected":"")+'>'+map[v]+'</option>';}).join("")+'</select>';}
+    var del=dis?"":'<button class="rowdel" data-del="'+i+'" title="Xóa dòng">✕</button>';
+    var kqcls="kq-"+l.kq;
+    var linkTag=l.linked?'<span class="linkbadge">🔗 Danh mục PTĐ</span>':'';
+    var ev=evidenceCell(l,i,dis);
+    if(r.loai==="DL"){
+      return '<tr><td>'+sel("dichVu",DV)+'</td><td>'+inp("ten")+linkTag+'</td><td>'+inp("linhVuc")+'</td><td>'+inp("phamVi")+'</td><td>'+inp("ccx")+'</td><td>'+inp("quyTrinh")+'</td><td>'+inp("nguoiTH")+'</td><td>'+sel("ghiChu",{"":"—","Bổ sung":"Bổ sung","Điều chỉnh":"Điều chỉnh"})+'</td><td class="'+kqcls+'">'+sel("kq",KQ)+'</td><td>'+inp("lyDo")+'</td><td>'+ev+'</td><td>'+del+'</td></tr>';
+    }
+    return '<tr><td>'+sel("nhom",NHOM)+'</td><td>'+inp("thongSo")+linkTag+'</td><td>'+inp("phuongPhap")+'</td><td>'+inp("lod")+'</td><td>'+inp("loq")+'</td><td>'+inp("nguoiTH")+'</td><td class="'+kqcls+'">'+sel("kq",KQ)+'</td><td>'+inp("lyDo")+'</td><td>'+ev+'</td><td>'+del+'</td></tr>';
+  }
+  function evidenceCell(l,i,dis){
+    var has=l.bcFileName||l.bcFileData;
+    var h='<div class="evcell">';
+    if(has){
+      if(l.bcFileType&&l.bcFileType.indexOf("image")===0&&l.bcFileData){
+        h+='<img class="evthumb" src="'+l.bcFileData+'" data-evview="'+i+'" title="Xem ảnh bằng chứng">';
+      }else{
+        h+='<span class="evdoc" title="'+esc(l.bcFileName)+'">📎</span>';
+      }
+      h+='<span class="evname" title="'+esc(l.bcFileName)+'">'+esc((l.bcFileName||"tệp").slice(0,16))+(l.bcFileName&&l.bcFileName.length>16?"…":"")+'</span>';
+      if(!dis)h+='<button class="evdel" data-evdel="'+i+'" title="Gỡ tệp">✕</button>';
+    }else{
+      h+='<input class="evnote" value="'+esc(l.bangChung)+'" data-lf="bangChung" data-li="'+i+'" '+dis+' placeholder="Mô tả bằng chứng...">';
+      if(!dis)h+='<button class="evattach" data-evattach="'+i+'" title="Đính kèm ảnh chụp màn hình / tài liệu">📷 Đính kèm</button>';
+    }
+    h+='</div>';
+    return h;
+  }
+
+  /* ----- Rules engine ----- */
+  function rule(kind,title,body,cite){var ic=kind==="ok"?"✓":kind==="bad"?"✕":kind==="warn"?"!":"i";return '<div class="rule '+kind+'"><span class="ic">'+ic+'</span><div><h4>'+title+'</h4><p>'+body+'</p>'+(cite?'<span class="cite">'+cite+'</span>':"")+'</div></div>';}
+  function rulesPanel(r){
+    var good=r.lines.filter(function(l){return l.kq==="dapung"||l.kq==="dieuchinh";}).length;
+    var bad=r.lines.filter(function(l){return l.kq==="khong";}).length;
+    var miss=r.lines.filter(function(l){return(l.kq==="khong"||l.kq==="dieuchinh")&&(!l.lyDo.trim()||!((l.bangChung&&l.bangChung.trim())||l.bcFileName));}).length;
+    var h="";
+    if(r.trangThai==="conghieu")h+=rule("ok","BR5 — Được phép sử dụng","Phạm vi “Còn hiệu lực” — hợp lệ cho báo giá, hợp đồng, chứng chỉ, phiếu kết quả, báo cáo.","BR5 · Mục 12");
+    else if(r.trangThai==="tamdung"||r.trangThai==="dieuchinh"||r.trangThai==="huybo"||r.trangThai==="hethieu")h+=rule("bad","BR5 — Chặn sử dụng","Trạng thái “"+ST[r.trangThai].label+"”: ManLab chặn/cảnh báo mạnh khi đưa vào nghiệp vụ.","BR5 · Mục 12");
+    else h+=rule("warn","BR5 — Chưa công khai","Chưa “Còn hiệu lực”; hoàn tất luồng công bố/thông báo trước khi sử dụng.","BR4·BR5");
+    h+=rule(bad?"warn":"ok","BR9/BR10 — Công bố phần đạt",good+" dòng đạt, "+bad+" dòng không đáp ứng. "+(bad?"Dòng không đạt giữ “Yêu cầu bổ sung”.":"Toàn bộ đạt.")+(good?"":" Cần ≥1 dòng đạt mới được công bố."),"BR9·BR10 · Mục 10.5");
+    if(miss)h+=rule("bad","Thiếu lý do/bằng chứng","Có "+miss+" dòng “Không đáp ứng/Điều chỉnh” chưa ghi đủ lý do + bằng chứng (bắt buộc).","BR10");
+    if(r.loai==="DL"){
+      if(r.ngayGui){var han=addWD(r.ngayGui,3);var left=dayDiff(todayInput(),han.toISOString());h+=rule(left<0?"bad":left<=1?"warn":"ok","BR2 — Hạn cơ quan ghi nhận","Gửi "+esc(r.coQuanTiepNhan||"Trung tâm Phục vụ HCC cấp tỉnh")+" ("+fmt(r.ngayGui)+"); ghi nhận trong 03 ngày làm việc → hạn "+fmt(han.toISOString())+(left<0?" (quá "+(-left)+" ngày)":" (còn "+left+" ngày)")+".","BR2 · Mục 11.2");}
+      else h+=rule("info","BR2 — Đo lường","Gửi Bản công bố theo Mẫu 01 Phụ lục I.3.3; ghi nhận trong 03 ngày làm việc.","BR2");
+    }else{
+      var canSell=r.trangThai==="tiepnhan"||r.trangThai==="conghieu"||r.trangThai==="dieuchinh";
+      h+=rule(canSell?"ok":"bad","BR3 — Thông báo trước khi cung cấp dịch vụ",canSell?"Đã gửi/được tiếp nhận thông báo (Mẫu 9.01) tại Bộ Nông nghiệp và Môi trường — đủ điều kiện cung cấp dịch vụ.":"BẮT BUỘC gửi Mẫu 9.01 tới Bộ Nông nghiệp và Môi trường TRƯỚC khi cung cấp dịch vụ. Hiện: “"+ST[r.trangThai].label+"”.","BR3 · Mục 10.4");
+      var y=(new Date().getMonth()===0&&new Date().getDate()<30)?new Date().getFullYear():new Date().getFullYear()+1;
+      var bc=new Date(y,0,30);var dl=Math.round((bc-new Date())/86400000);
+      h+=rule(dl<=30?"warn":"info","BR6 — Báo cáo hằng năm","Mẫu 9.02 gửi Bộ Nông nghiệp và Môi trường trước 30/01/"+y+" (còn "+dl+" ngày). Điền tại tab “Báo cáo hằng năm”.","BR6 · Mục 13.1");
+    }
+    var ex=Math.round((EXPIRY-new Date())/86400000);
+    h+=rule(ex<0?"bad":ex<=90?"warn":"info","BR8 — Hiệu lực cơ chế","Tự công bố/thông báo áp dụng đến 28/02/2027 "+(ex<0?"(đã hết hiệu lực)":"(còn "+ex+" ngày)")+".","BR8");
+    if(r.trangThai==="conghieu")h+=rule("info","BR11 — Ghi ngược PA-B","Đã phát sự kiện công khai → Danh mục PTĐ tự ghi năng lực và chuyển PTĐ sang “Đang sử dụng”.","BR11");
+    if((r.phienBanCu||[]).length)h+=rule("info","Điều chỉnh không ghi đè","Hồ sơ đã có "+r.phienBanCu.length+" phiên bản trước được lưu, không bị ghi đè — xem tab “Phiên bản”.","Mục 13.3");
+    return '<div class="rules">'+h+'</div>';
+  }
+
+  /* ----- Version history ----- */
+  function renderVersions(r){
+    var list=(r.phienBanCu||[]).slice();
+    var h='<div class="card"><h3>Lịch sử phiên bản công bố/thông báo</h3>';
+    h+='<p class="subnote">Mỗi lần “Điều chỉnh” tạo phiên bản mới, phiên bản cũ được lưu nguyên trạng — không ghi đè (Mục 13.3).</p>';
+    h+='<table class="vt"><thead><tr><th>Lần</th><th>Ngày hiệu lực (khi đó)</th><th>Số dòng năng lực</th><th>Thời điểm lưu</th></tr></thead><tbody>';
+    if(!list.length)h+='<tr><td colspan="4" style="color:var(--muted)">Chưa có phiên bản cũ nào được lưu.</td></tr>';
+    list.forEach(function(v){h+='<tr><td>'+esc(v.lan)+'</td><td>'+fmt(v.ngayHieuLuc)+'</td><td>'+v.lines.length+'</td><td>'+fmt(v.luuLuc)+'</td></tr>';});
+    h+='<tr><td>'+esc(r.lan)+' (hiện tại)</td><td>'+fmt(r.ngayCongKhai)+'</td><td>'+r.lines.length+'</td><td>—</td></tr>';
+    h+='</tbody></table></div>';
+    return h;
+  }
+
+  /* ----- Annual report (Mẫu 9.02, QTMT) ----- */
+  function renderAnnual(r){
+    var b=r.baoCaoHangNam=r.baoCaoHangNam||{ky:"",khoiLuong:"",thayDoi:"",qaqc:"",suCo:"",nguoiLap:"",ngayLap:""};
+    var h='<div class="card"><h3>F21.07 — Báo cáo hoạt động dịch vụ QTMT hằng năm (Mẫu 9.02, NQ 66.19)</h3>';
+    h+='<p class="subnote">Gửi Bộ Nông nghiệp và Môi trường trước 30/01 năm kế tiếp (BR6 · Mục 13.1). Lưu dữ liệu gốc theo quy định.</p>';
+    h+='<div class="grid2">'+
+      afld("Kỳ báo cáo (năm)",b.ky,"ky")+
+      afld("Người lập",b.nguoiLap,"nguoiLap")+
+      afld("Ngày lập",b.ngayLap,"ngayLap","date")+
+    '</div>';
+    h+=aflda("Phạm vi đã thông báo (tóm tắt)",b.khoiLuong,"khoiLuong")+
+       aflda("Khối lượng hoạt động đã thực hiện trong kỳ",b.thayDoi,"thayDoi")+
+       aflda("Kết quả QA/QC, PT/ILC trong kỳ",b.qaqc,"qaqc")+
+       aflda("Sự cố / khiếu nại / khắc phục trong kỳ",b.suCo,"suCo");
+    h+='</div>';
+    return h;
+  }
+  function afld(lbl,val,key,type){return '<div class="fld"><label>'+lbl+'</label><input type="'+(type||"text")+'" value="'+esc(val)+'" data-af="'+key+'"></div>';}
+  function aflda(lbl,val,key){return '<div class="fld" style="margin-bottom:.7rem"><label>'+lbl+'</label><textarea rows="2" data-af="'+key+'">'+esc(val)+'</textarea></div>';}
+
+  /* ----- Document: Mẫu 01 (DL) / Mẫu 9.01 (QTMT) ----- */
+  function renderDoc(r){return r.loai==="DL"?docDL(r):docQT(r);}
+  function docHeader(){
+    return '<div class="htop"><div class="l">LIÊN HIỆP CÁC HỘI<br>KHOA HỌC VÀ KỸ THUẬT VIỆT NAM<br><b>VIỆN KIỂM ĐỊNH CÔNG NGHỆ<br>VÀ MÔI TRƯỜNG</b><hr></div>'+
+      '<div class="r"><b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>Độc lập - Tự do - Hạnh phúc<hr></div></div>';
+  }
+  function docFoot(r){
+    var url="https://tracuu.etv.org.vn/p21/"+encodeURIComponent(r.id);
+    return '<div class="foot">Bản thể hiện điện tử — Mã hồ sơ: '+esc(r.id)+' · Phiên bản/lần: '+esc(r.lan)+' · Ngày xuất: '+fmt(todayInput())+
+      ' · Xác thực: '+(r.trangThai==="conghieu"?('<code>'+esc(url)+'</code>'):'(chưa công khai — QR chỉ sinh khi trạng thái “Đã công khai”)')+'</div>';
+  }
+  function docDL(r){
+    function tbl(dv){
+      var ls=r.lines.filter(function(l){return l.dichVu===dv;});
+      if(!ls.length)return'<p class="line"><i>(Không có)</i></p>';
+      return '<table class="f"><thead><tr><th>TT</th><th>Tên phương tiện đo / chuẩn đo lường</th><th>Lĩnh vực</th><th>Phạm vi đo</th><th>Cấp/ độ chính xác/ ĐKĐBĐ/ Sai số/ MPE/ LOD</th><th>Quy trình thực hiện</th><th>Ghi chú</th></tr></thead><tbody>'+
+        ls.map(function(l,i){return '<tr><td style="text-align:center">'+(i+1)+'</td><td>'+esc(l.ten)+(l.kq==="khong"?' <b style="color:#b23a48">[chưa đủ ĐK]</b>':"")+'</td><td>'+esc(l.linhVuc)+'</td><td>'+esc(l.phamVi)+'</td><td>'+esc(l.ccx)+'</td><td>'+esc(l.quyTrinh)+'</td><td>'+esc(l.ghiChu)+'</td></tr>';}).join("")+'</tbody></table>';
+    }
+    return '<div class="docpaper"><div class="mau">Mẫu số 01</div>'+docHeader()+
+      '<p class="line" style="text-align:right">Số: '+esc(r.socb)+'/BCB-ETV</p>'+
+      '<p class="line" style="text-align:right;font-style:italic">Hà Nội, ngày '+(r.ngay?pad(parse(r.ngay).getDate()):"…")+' tháng '+(r.ngay?pad(parse(r.ngay).getMonth()+1):"…")+' năm '+(r.ngay?parse(r.ngay).getFullYear():"…")+'</p>'+
+      '<h2 class="tt">Bản công bố năng lực kiểm định, hiệu chuẩn, thử nghiệm</h2>'+
+      '<h3 class="sub">phương tiện đo nhóm 1, chuẩn đo lường không dùng trực tiếp để kiểm định phương tiện đo nhóm 2</h3>'+
+      '<p class="line"><b>Tên tổ chức:</b> '+esc(r.toChuc)+'</p>'+
+      '<p class="line"><b>Người đại diện pháp luật:</b> '+esc(r.daiDien)+'</p>'+
+      '<p class="line"><b>Địa chỉ:</b> '+esc(r.diaChi)+'</p>'+
+      '<p class="line"><b>Điện thoại:</b> '+esc(r.dienThoai)+'; <b>Email:</b> '+esc(r.email)+'</p>'+
+      '<p class="sec">1.1. Năng lực dịch vụ kiểm định:</p>'+tbl("kiemdinh")+
+      '<p class="sec">1.2. Năng lực dịch vụ hiệu chuẩn:</p>'+tbl("hieuchuan")+
+      '<p class="sec">1.3. Năng lực dịch vụ thử nghiệm:</p>'+tbl("thunghiem")+
+      '<p class="line"><b>Địa điểm thực hiện hoạt động:</b> '+esc(r.diaDiem)+'</p>'+
+      '<p class="line"><b>Công bố lần thứ:</b> '+esc(r.lan)+'</p>'+
+      (r.dieuChinh?'<p class="line"><b>2. Nội dung điều chỉnh khác:</b> '+esc(r.dieuChinh)+'</p>':"")+
+      '<p class="line">Viện Kiểm định Công nghệ và Môi trường xin chịu trách nhiệm trước pháp luật về tính trung thực, chính xác của bản công bố này và cam kết duy trì năng lực theo bản công bố./.</p>'+
+      '<div class="sign"><div class="col">Cơ quan tiếp nhận: '+esc(r.coQuanTiepNhan)+'<br><i>(đã tiếp nhận: '+esc(r.maBienNhan||"…")+')</i></div><div class="col"><b>NGƯỜI ĐỨNG ĐẦU TỔ CHỨC</b><br>Viện trưởng<br>'+(r.kyso?'<i style="color:#0e5a6b">[Đã ký số]</i>':"(Họ tên, chữ ký, đóng dấu)")+'<br><br><b>TS. Nguyễn Hoàng Giang</b></div></div>'+
+      docFoot(r)+
+    '</div>';
+  }
+  function docQT(r){
+    var nm=[["nuocMat","Nước mặt"],["nuocDuoiDat","Nước dưới đất"],["nuocMua","Nước mưa"],["nuocBien","Nước biển"],["nuocThai","Nước thải"],["khongKhiXq","Không khí xung quanh"],["khiThai","Khí thải"],["dat","Đất"],["tramTich","Trầm tích"],["ctr","Chất thải rắn"],["bunThai","Bùn thải"]];
+    function tbl(nhom,cols){
+      var ls=r.lines.filter(function(l){return l.nhom===nhom;});
+      if(!ls.length)return'<p class="line"><i>(Không có)</i></p>';
+      var head="<tr><th>TT</th>"+cols.map(function(c){return"<th>"+c+"</th>";}).join("")+"</tr>";
+      var body=ls.map(function(l,i){
+        var c="<td style='text-align:center'>"+(i+1)+"</td><td>"+esc(l.thongSo)+"</td><td>"+esc(l.phuongPhap)+"</td>";
+        if(cols.length>=3)c+="<td>"+esc(l.lod)+"</td>";
+        if(cols.length>=4)c+="<td>"+esc(l.loq)+"</td>";
+        return "<tr>"+c+"</tr>";
+      }).join("");
+      return '<table class="f"><thead>'+head+'</thead><tbody>'+body+'</tbody></table>';
+    }
+    return '<div class="docpaper"><div class="mau">Mẫu số 9.01</div>'+docHeader()+
+      '<p class="line" style="text-align:right">Số: '+esc(r.socb)+'/ETV</p>'+
+      '<h2 class="tt">Thông báo hoạt động dịch vụ quan trắc môi trường</h2>'+
+      '<h3 class="sub">(Thông báo lần: '+esc(r.lan)+')</h3>'+
+      '<p class="line"><b>Kính gửi:</b> '+esc(r.coQuanTiepNhan||"Bộ Nông nghiệp và Môi trường")+'</p>'+
+      '<p class="sec">A. THÔNG TIN CHUNG</p>'+
+      '<p class="line"><b>Tên tổ chức:</b> '+esc(r.toChuc)+'</p>'+
+      '<p class="line"><b>Cơ quan chủ quản:</b> '+esc(r.coQuanChuQuan||"(không có)")+'</p>'+
+      '<p class="line"><b>Người đại diện pháp luật:</b> '+esc(r.daiDien)+'</p>'+
+      '<p class="line"><b>Địa chỉ:</b> '+esc(r.diaChi)+'</p>'+
+      '<p class="line"><b>Điện thoại:</b> '+esc(r.dienThoai)+' &nbsp; <b>Email:</b> '+esc(r.email)+'</p>'+
+      '<p class="sec">B. PHẠM VI CÔNG BỐ HOẠT ĐỘNG</p>'+
+      '<p class="line">'+nm.map(function(o){return (r.nenMau[o[0]]?"☑":"☐")+" "+o[1];}).join(" &nbsp; ")+'</p>'+
+      '<p class="sec">Danh mục thông số và phương pháp:</p>'+
+      '<p class="line">- Đo đạc tại hiện trường:</p>'+tbl("hientruong",["Tên thông số","Phương pháp sử dụng","Giới hạn phát hiện/ Phạm vi đo"])+
+      '<p class="line">- Lấy &amp; bảo quản mẫu:</p>'+tbl("laymau",["Loại mẫu","Phương pháp sử dụng"])+
+      '<p class="line">- Xử lý &amp; phân tích mẫu:</p>'+tbl("phantich",["Thông số","Phương pháp sử dụng","Giới hạn phát hiện/ Phạm vi đo","Giới hạn định lượng"])+
+      '<p class="sec">C. NĂNG LỰC CÔNG NHẬN</p>'+
+      '<p class="line">Đã được công nhận phù hợp TCVN ISO/IEC 17025 — Số hiệu: '+esc(r.congNhanSo||"(chưa có)")+'; Hiệu lực: '+fmt(r.congNhanHieuLuc)+'.</p>'+
+      '<p class="line" style="font-style:italic;font-size:10.5pt">(*) Danh sách nhân sự, danh mục thiết bị và diện tích phòng thí nghiệm theo Mục C.I–C.II Mẫu 9.01 được lưu trong hồ sơ đính kèm (F21.02 Kế hoạch, F21.03/F21.05 Checklist &amp; rà soát) trên ManLab — xem tab “Nhật ký”.</p>'+
+      '<p class="line">Viện cam kết chịu trách nhiệm trước pháp luật về tính trung thực, chính xác của thông báo này và duy trì năng lực theo phạm vi đã thông báo./.</p>'+
+      '<div class="sign"><div class="col">Nơi nhận:<br><i>- '+esc(r.coQuanTiepNhan||"Bộ Nông nghiệp và Môi trường")+';</i><br><i>- Lưu.</i></div><div class="col"><b>NGƯỜI ĐỨNG ĐẦU TỔ CHỨC</b><br>Viện trưởng<br>'+(r.kyso?'<i style="color:#0e5a6b">[Đã ký số]</i>':"(Họ tên, chữ ký, đóng dấu)")+'<br><br><b>TS. Nguyễn Hoàng Giang</b></div></div>'+
+      docFoot(r)+
+    '</div>';
+  }
+
+  /* ----- Public page ----- */
+  function fakeQR(seedStr){
+    var n=21,c=document.createElement("canvas");c.width=c.height=n;var x=c.getContext("2d");
+    x.fillStyle="#fff";x.fillRect(0,0,n,n);x.fillStyle="#16242E";
+    var h=0;for(var i=0;i<seedStr.length;i++){h=(h*31+seedStr.charCodeAt(i))>>>0;}
+    function rnd(){h^=h<<13;h^=h>>>17;h^=h<<5;h>>>=0;return h/4294967296;}
+    for(var y=0;y<n;y++)for(var xx=0;xx<n;xx++){if(rnd()>0.5)x.fillRect(xx,y,1,1);}
+    function finder(ox,oy){x.fillStyle="#16242E";x.fillRect(ox,oy,7,7);x.fillStyle="#fff";x.fillRect(ox+1,oy+1,5,5);x.fillStyle="#16242E";x.fillRect(ox+2,oy+2,3,3);}
+    finder(0,0);finder(n-7,0);finder(0,n-7);
+    return c.toDataURL();
+  }
+  function renderPublic(r){
+    if(r.trangThai!=="conghieu"){
+      return '<div class="card"><p>Hồ sơ chưa ở trạng thái <b>“Đã công khai · Còn hiệu lực”</b> nên chưa hiển thị công khai. Trạng thái hiện tại: <b>'+ST[r.trangThai].label+'</b>.</p></div>';
+    }
+    var ls=r.lines.filter(function(l){return l.kq==="dapung"||l.kq==="dieuchinh";});
+    var url="https://tracuu.etv.org.vn/p21/"+encodeURIComponent(r.id);
+    var rows;
+    if(r.loai==="DL")rows='<tr><th>Dịch vụ</th><th>Tên PTĐ / chuẩn</th><th>Phạm vi đo</th><th>Cấp/ ĐCX/ ĐKĐBĐ</th><th>Quy trình</th></tr>'+ls.map(function(l){return '<tr><td>'+DV[l.dichVu]+'</td><td>'+esc(l.ten)+'</td><td>'+esc(l.phamVi)+'</td><td>'+esc(l.ccx)+'</td><td>'+esc(l.quyTrinh)+'</td></tr>';}).join("");
+    else rows='<tr><th>Nhóm</th><th>Thông số</th><th>Phương pháp</th><th>LOD/Phạm vi</th><th>LOQ</th></tr>'+ls.map(function(l){return '<tr><td>'+NHOM[l.nhom]+'</td><td>'+esc(l.thongSo)+'</td><td>'+esc(l.phuongPhap)+'</td><td>'+esc(l.lod)+'</td><td>'+esc(l.loq)+'</td></tr>';}).join("");
+    var skipped=r.lines.length-ls.length;
+    var thead=rows.slice(0,rows.indexOf("</tr>")+5);
+    var tbody=rows.slice(rows.indexOf("</tr>")+5);
+    return '<div class="pub">'+
+      '<div class="pub-head">'+
+        '<div class="pub-crest">ETV</div>'+
+        '<div><div class="ey">Cổng tra cứu năng lực · ETV</div>'+
+          '<h2>'+(r.loai==="DL"?"Năng lực kiểm định · hiệu chuẩn · thử nghiệm":"Năng lực quan trắc môi trường")+'</h2>'+
+          '<div class="org">'+esc(r.toChuc)+'</div></div>'+
+        '<div class="pub-valid"><span class="dot"></span>Còn hiệu lực</div>'+
+      '</div>'+
+      '<div class="pub-body">'+
+        '<div class="pub-meta">'+
+          '<div class="mi"><div class="k">Mã hồ sơ</div><div class="v">'+esc(r.id)+'</div></div>'+
+          '<div class="mi"><div class="k">Số '+(r.loai==="DL"?"công bố":"thông báo")+' · Lần</div><div class="v">'+esc(r.socb)+' · '+esc(r.lan)+'</div></div>'+
+          '<div class="mi"><div class="k">Ngày công khai</div><div class="v">'+fmt(r.ngayCongKhai)+'</div></div>'+
+          '<div class="mi"><div class="k">Cơ quan tiếp nhận</div><div class="v" style="font-size:.82rem">'+esc(r.coQuanTiepNhan||"—")+'</div></div>'+
+        '</div>'+
+        '<div class="qrbox"><img class="qr" src="'+fakeQR(r.id)+'" alt="QR tra cứu">'+
+          '<div class="qinfo"><div class="qt">🔎 Mã QR tra cứu &amp; xác thực (BR4)</div>'+
+          '<div class="qd">Quét mã hoặc truy cập: <code>'+esc(url)+'</code><br>QR thật do dịch vụ tích hợp (Cloud CA / cổng tra cứu) sinh tự động khi công khai, chỉ dẫn tới phạm vi còn hiệu lực.'+
+          '<br><button class="btn sm ghost copybtn no-print" data-action="copylink">📋 Sao chép đường dẫn</button></div></div>'+
+        '</div>'+
+        '<div class="pub-scope-h"><h3>Phạm vi năng lực được công khai</h3><span class="cnt">'+ls.length+' đối tượng còn hiệu lực</span></div>'+
+        '<div class="pub-scope-wrap"><table class="pt"><thead>'+thead+'</thead><tbody>'+tbody+'</tbody></table></div>'+
+        '<div class="gioihan"><b>⚠ Giới hạn sử dụng (BR5):</b> Chỉ phạm vi “Còn hiệu lực” trên đây được dùng trong báo giá, hợp đồng, chứng chỉ, phiếu kết quả, báo cáo. '+(skipped?'<b>'+skipped+' đối tượng “Không đáp ứng” KHÔNG được công bố và không được sử dụng.</b>':'')+'</div>'+
+        '<div class="pub-foot">Thông tin công khai theo ETV.MP 21 · Cập nhật '+fmt(r.ngayCongKhai)+' · Truy xuất nguồn gốc đầy đủ trên ManLab</div>'+
+      '</div>'+
+    '</div>';
+  }
+
+  /* ----- History ----- */
+  function renderHist(r){
+    if(!r.lichSu||!r.lichSu.length)return'<div class="card"><p class="empty">Chưa có nhật ký.</p></div>';
+    return '<div class="card"><h3>Nhật ký thao tác (truy xuất nguồn gốc · BR7)</h3><ul class="hist">'+
+      r.lichSu.slice().reverse().map(function(e){return '<li><span class="t">'+fmt(e.time)+' '+(""+new Date(e.time).toTimeString()).slice(0,5)+'</span><div><span class="who">'+esc(e.who)+'</span> — '+esc(e.act)+(e.note?'<div class="note">Lý do: '+esc(e.note)+'</div>':"")+'</div></li>';}).join("")+
+    '</ul></div>';
+  }
+
+  /* ---------- Mutations ---------- */
+  function logEvent(r,act,note){r.lichSu=r.lichSu||[];r.lichSu.push({time:nowISO(),who:ROLES[state.role],act:act,note:note||""});}
+
+  function doTransition(to){
+    var r=cur();var t=(TR[r.trangThai]||[]).find(function(x){return x.to===to;});if(!t)return;
+    if(state.role===0){alert("Super Admin chỉ cấu hình hệ thống, không phê duyệt nội dung chuyên môn (Mục 6).");return;}
+    if(t.role&&state.role<t.role){alert("Cần vai trò: "+ROLES[t.role]);return;}
+    if(t.guard&&!t.guard(r)){alert("Hồ sơ phải có ít nhất một dòng đạt (Đáp ứng/Điều chỉnh) mới được tiếp tục — BR9.");return;}
+    if(t.check){var gaps=t.check(r);if(gaps.length){alert("Chưa thể thực hiện — còn thiếu (Mục 8.2):\n\n"+gaps.slice(0,8).join("\n")+(gaps.length>8?"\n… và "+(gaps.length-8)+" mục khác":""));return;}}
+    var note="";
+    if(t.reason){note=prompt("Nhập lý do (bắt buộc) cho thao tác “"+t.label+"”:","");if(note===null||!note.trim()){return;}}
+    if(t.needReceipt){var m=prompt("Nhập mã biên nhận của cơ quan tiếp nhận:","");if(m===null||!m.trim())return;r.maBienNhan=m.trim();r.ngayTiepNhan=todayInput();}
+    if(t.fn)t.fn(r);
+    var miss=r.lines.filter(function(l){return(l.kq==="khong"||l.kq==="dieuchinh")&&(!l.lyDo.trim()||!((l.bangChung&&l.bangChung.trim())||l.bcFileName));});
+    if(to==="phenoibo"&&miss.length){alert("Còn "+miss.length+" dòng “Không đáp ứng/Điều chỉnh” chưa ghi lý do + bằng chứng (BR10). Bổ sung trước khi ký số.");return;}
+    r.trangThai=to;
+    logEvent(r,t.label,note);
+    if(to==="conghieu")logEvent(r,"PA-B: Danh mục PTĐ ghi năng lực & chuyển “Đang sử dụng”","");
+    save();renderList();renderMain();
+  }
+
+  /* ---------- Events ---------- */
+  document.getElementById("logoutBtn").addEventListener("click",function(){doLogout();});
+  document.getElementById("newDL").addEventListener("click",function(){confirmNew("DL");});
+  document.getElementById("newQT").addEventListener("click",function(){confirmNew("QTMT");});
+  document.getElementById("guideBtn").addEventListener("click",function(){openGuide();});
+
+  function confirmNew(loai){
+    var ten=loai==="DL"?"Bản công bố năng lực Đo lường (Mẫu 01)":"Thông báo hoạt động dịch vụ QTMT (Mẫu 9.01)";
+    if(confirm("Tạo mới hồ sơ: "+ten+"?\n\nHồ sơ mới sẽ được thêm vào đầu danh sách ở trạng thái “Chưa lập”. Bạn có thể xóa lại nếu tạo nhầm.\n\n[ OK = Tạo mới ]   [ Cancel = Không tạo mới ]")){
+      newRecord(loai);
+    }
+  }
+
+  /* ---------- Hướng dẫn sử dụng ---------- */
+  var GUIDE_STEPS=[
+    ["Tạo hồ sơ mới","Bấm “+ Đo lường (Mẫu 01)” hoặc “+ Quan trắc MT (Mẫu 9.01)”, xác nhận “Tạo mới”. Hồ sơ vào trạng thái “Chưa lập”.","Người thực hiện"],
+    ["Nhập thông tin hồ sơ (bảng cha)","Điền tên tổ chức, người đại diện, địa chỉ, cơ quan tiếp nhận… Với QTMT tích chọn phạm vi nền mẫu và điền số hiệu công nhận ISO/IEC 17025.","Người thực hiện"],
+    ["Thêm dòng năng lực (bảng con)","Với Đo lường: bấm “🔗 Chọn danh mục Đối tượng (PTĐ) từ Danh mục Phương tiện đo” để lấy đối tượng đã duyệt (hệ thống tự lọc theo cổng G1–G7). Dữ liệu chỉ được liên kết từ Danh mục Phương tiện đo, không nhập tay. Ghi kết quả Đáp ứng / Không đáp ứng / Điều chỉnh cho từng dòng.","Người thực hiện"],
+    ["Kiểm tra & Gửi soát xét","Thẻ trên cùng liệt kê trường còn thiếu. Khi đủ, bấm “Gửi soát xét”. Cần ≥1 dòng “Đáp ứng”; dòng “Không đáp ứng/Điều chỉnh” phải có Lý do + Bằng chứng.","Người thực hiện"],
+    ["Duyệt soát xét · Đề nghị Lãnh đạo Viện duyệt","Lãnh đạo phòng soát xét hồ sơ: nếu đạt, bấm “Duyệt soát xét · Đề nghị Lãnh đạo Viện duyệt” để chuyển lên Lãnh đạo Viện; nếu chưa đạt, bấm “Trả lại bổ sung”.","Lãnh đạo phòng"],
+    ["Phê duyệt nội bộ & ký số","Lãnh đạo Viện xem xét và bấm “Phê duyệt nội bộ & ký số” (hoặc “Trả lại soát xét”). Sau khi ký, hồ sơ bị khóa dữ liệu (🔒).","Lãnh đạo Viện"],
+    ["Gửi cơ quan tiếp nhận","Lãnh đạo phòng bấm “Gửi cơ quan tiếp nhận”. ĐL: gửi Trung tâm PVHCC cấp tỉnh (ghi nhận ≤3 ngày làm việc). QTMT: gửi Bộ NN&MT trước khi cung cấp dịch vụ.","Lãnh đạo phòng"],
+    ["Ghi nhận biên nhận","Khi cơ quan phản hồi, bấm “Ghi nhận biên nhận” và nhập mã biên nhận. Nếu bị trả lại, dùng “Cơ quan yêu cầu bổ sung” rồi quay lại chỉnh sửa.","Người thực hiện"],
+    ["Công khai & sinh QR","Lãnh đạo phòng bấm “Công khai & sinh QR” → trạng thái “Còn hiệu lực”. Chỉ khi đó phạm vi mới được dùng trong báo giá/hợp đồng/chứng chỉ/kết quả.","Lãnh đạo phòng"],
+    ["Duy trì / Điều chỉnh / Tạm dừng / Hủy bỏ","Từ “Còn hiệu lực” có thể Điều chỉnh (tạo phiên bản mới, không ghi đè — xem tab “Phiên bản”), Tạm dừng, Hủy bỏ hoặc đánh dấu Hết hiệu lực. QTMT nhớ nộp Báo cáo hằng năm (Mẫu 9.02).","Theo phân quyền"]
+  ];
+  var GUIDE_NOTES=[
+    "Vai trò được xác định theo tài khoản ManLab bạn đăng nhập (không tự đổi vai trò): Người thực hiện lập & gửi soát xét; Lãnh đạo phòng soát xét & đề nghị Lãnh đạo Viện duyệt, gửi/công khai; Lãnh đạo Viện phê duyệt & ký số. Super Admin chỉ cấu hình, không phê duyệt nội dung.",
+    "Sau khi ký số, mọi trường bị khóa (🔒). Muốn sửa phải qua thao tác “Điều chỉnh” — hệ thống tự lưu phiên bản cũ, không ghi đè (Mục 13.3).",
+    "Mỗi dòng “Không đáp ứng/Điều chỉnh” bắt buộc ghi Lý do + Bằng chứng trước khi ký số (BR10). Dòng “Không đáp ứng” không được đưa lên trang công khai.",
+    "Dữ liệu lấy từ Danh mục PTĐ được chụp snapshot khi thêm; nếu sửa tay các trường kỹ thuật, dòng sẽ tự tách khỏi liên kết 🔗.",
+    "QTMT: phải gửi thông báo (Mẫu 9.01) TRƯỚC khi cung cấp dịch vụ, và nộp báo cáo hằng năm (Mẫu 9.02) trước 30/01 năm kế tiếp.",
+    "Dữ liệu demo lưu trên trình duyệt (localStorage) của máy này; xóa lịch sử trình duyệt sẽ mất dữ liệu. Bản chính thức lưu tập trung trên ManLab.",
+    "Theo Mục 16, hồ sơ đã công bố không nên xóa mà chỉ lưu trữ có kiểm soát — nút xóa cho hồ sơ đã công khai/ký số chỉ dành cho Lãnh đạo Viện và có cảnh báo."
+  ];
+  function openGuide(){
+    var h='<div class="guide-intro">Module quản lý toàn bộ vòng đời <b>công bố năng lực đo lường (NQ 66.18)</b> và <b>thông báo dịch vụ quan trắc môi trường (NQ 66.19)</b> trên ManLab: từ tạo hồ sơ → đánh giá → phê duyệt → công khai → duy trì/điều chỉnh. Làm theo 9 bước dưới đây để không bỏ sót.</div>';
+    h+='<div class="guide-h">Các bước thực hiện</div>';
+    h+=GUIDE_STEPS.map(function(s,i){return '<div class="guide-step"><div class="n">'+(i+1)+'</div><div class="c"><h4>'+esc(s[0])+'</h4><p>'+esc(s[1])+'</p><span class="role">'+esc(s[2])+'</span></div></div>';}).join("");
+    h+='<div class="guide-h">Lưu ý quan trọng</div><ul class="guide-notes">'+GUIDE_NOTES.map(function(n){return '<li>'+esc(n)+'</li>';}).join("")+'</ul>';
+    document.getElementById("guideBody").innerHTML=h;
+    document.getElementById("guideModal").hidden=false;
+  }
+  function closeGuide(){document.getElementById("guideModal").hidden=true;}
+  document.getElementById("guideClose").addEventListener("click",closeGuide);
+  document.getElementById("guideClose2").addEventListener("click",closeGuide);
+  document.getElementById("guideModal").addEventListener("click",function(e){if(e.target===this)closeGuide();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeGuide();});
+  document.getElementById("searchbox").addEventListener("input",function(e){state.searchQ=e.target.value;renderList();});
+  document.getElementById("filterst").addEventListener("change",function(e){state.filterSt=e.target.value;renderList();});
+
+  function newRecord(loai){
+    var pre=loai==="DL"?"CB-":"TB-";var n=state.records.filter(function(r){return r.loai===loai;}).length+1;
+    var r={id:pre+pad(n)+"/2026",loai:loai,socb:pad(n)+"/2026",lan:"01",ngay:todayInput(),
+      toChuc:"VIỆN KIỂM ĐỊNH CÔNG NGHỆ VÀ MÔI TRƯỜNG",
+      diaChi:"Tầng 14 Tòa nhà Zen Tower, số 12 Khuất Duy Tiến, P. Thanh Xuân, TP. Hà Nội",
+      dienThoai:"0813.98.98.38",email:"kiemdinh@etv.org.vn",diaDiem:loai==="DL"?"Khu C3-2B/NO4, Ngõ 1, đường Vũ Đình Tụng, P. Long Biên, TP Hà Nội":"",
+      daiDien:"",coQuanTiepNhan:loai==="DL"?"Trung tâm Phục vụ hành chính công TP. Hà Nội":"Bộ Nông nghiệp và Môi trường",
+      coQuanChuQuan:"",congNhanSo:"",congNhanHieuLuc:"",
+      nenMau:{},dieuChinh:"",trangThai:"chualap",kyso:false,kysoAt:null,
+      ngayGui:null,maBienNhan:"",ngayTiepNhan:null,ngayCongKhai:null,phienBanCu:[],
+      baoCaoHangNam:loai==="QTMT"?{ky:"",khoiLuong:"",thayDoi:"",qaqc:"",suCo:"",nguoiLap:"",ngayLap:""}:undefined,
+      lines:[blankLine(loai)],lichSu:[]};
+    logEvent(r,"Tạo hồ sơ "+(loai==="DL"?"công bố Đo lường":"thông báo QTMT"),"");
+    state.records.unshift(r);state.currentId=r.id;state.view="editor";save();renderList();renderMain();
+  }
+
+  function openEvidencePicker(idx){
+    var r=cur();if(!r)return;
+    var inp=document.createElement("input");
+    inp.type="file";inp.accept="image/*,.pdf,.doc,.docx,.xls,.xlsx";
+    inp.onchange=function(){
+      var f=inp.files&&inp.files[0];if(!f)return;
+      var l=r.lines[idx];if(!l)return;
+      l.bcFileName=f.name;l.bcFileType=f.type||"";
+      if(f.type&&f.type.indexOf("image")===0){
+        var rd=new FileReader();
+        rd.onload=function(){compressImage(rd.result,function(data){l.bcFileData=data;if(!l.bangChung)l.bangChung="Ảnh chụp màn hình: "+f.name;save();renderMain();});};
+        rd.readAsDataURL(f);
+      }else{
+        l.bcFileData="";if(!l.bangChung)l.bangChung="Tài liệu đính kèm: "+f.name;save();renderMain();
+      }
+    };
+    inp.click();
+  }
+  function compressImage(dataUrl,cb){
+    var img=new Image();
+    img.onload=function(){
+      var max=560,w=img.width,h=img.height;
+      if(w>max){h=Math.round(h*max/w);w=max;}
+      var c=document.createElement("canvas");c.width=w;c.height=h;
+      c.getContext("2d").drawImage(img,0,0,w,h);
+      try{cb(c.toDataURL("image/jpeg",0.7));}catch(e){cb(dataUrl);}
+    };
+    img.onerror=function(){cb(dataUrl);};
+    img.src=dataUrl;
+  }
+
+  // delegation on main
+  elMain.addEventListener("click",function(e){
+    var t=e.target;
+    if(t.dataset.view){state.view=t.dataset.view;state.pickerFor=null;renderMain();return;}
+    if(t.dataset.tr){doTransition(t.dataset.tr);return;}
+    if(t.dataset.action==="addmanual"){var r=cur();r.lines.push(blankLine(r.loai));save();renderMain();return;}
+    if(t.dataset.evattach!=null){openEvidencePicker(+t.dataset.evattach);return;}
+    if(t.dataset.evview!=null){var l=cur().lines[+t.dataset.evview];if(l&&l.bcFileData){var w=window.open();if(w)w.document.write('<title>'+esc(l.bcFileName)+'</title><img src="'+l.bcFileData+'" style="max-width:100%">');}return;}
+    if(t.dataset.evdel!=null){var l=cur().lines[+t.dataset.evdel];if(l){l.bcFileName="";l.bcFileData="";l.bcFileType="";save();renderMain();}return;}
+    if(t.dataset.action==="openpicker"){state.pickerFor=cur().id;state.pickerQ="";state.pickerShowFail=false;state.pickSel={};renderMain();return;}
+    if(t.dataset.action==="closepicker"){state.pickerFor=null;state.pickSel={};renderMain();return;}
+    if(t.dataset.action==="togglefail"){state.pickerShowFail=!state.pickerShowFail;renderMain();return;}
+    if(t.dataset.action==="selall"){
+      var q=state.pickerQ.toLowerCase();
+      var pass=CATALOG.map(function(item,idx){return {idx:idx,item:item,gc:gateCheck(item)};})
+        .filter(function(x){return x.gc.pass&&(!q||(x.item.ten+" "+x.item.linhVuc).toLowerCase().indexOf(q)>-1);});
+      var makeAll=!pass.every(function(x){return state.pickSel[x.idx];});
+      pass.forEach(function(x){state.pickSel[x.idx]=makeAll;});
+      renderMain();return;
+    }
+    if(t.dataset.action==="addselected"){
+      var r=cur();var ids=Object.keys(state.pickSel).filter(function(k){return state.pickSel[k];});
+      if(!ids.length)return;
+      var added=0;
+      ids.forEach(function(k){var item=CATALOG[+k];if(item&&gateCheck(item).pass){addCatalogItem(r,item);added++;}});
+      state.pickSel={};state.pickerFor=null;save();renderMain();
+      if(added)setTimeout(function(){alert("Đã thêm "+added+" đối tượng vào hồ sơ.");},50);
+      return;
+    }
+    if(t.dataset.action==="mlupdate"){
+      var st=document.getElementById("mlStatus");if(st)st.textContent="Đang tải danh mục từ ManLab…";
+      fetchCatalogFromManlab(function(ok,msg){renderMain();setTimeout(function(){var s=document.getElementById("mlStatus");if(s)s.textContent=msg;},30);});
+      return;
+    }
+    if(t.dataset.action==="copylink"){
+      var r=cur();var url="https://tracuu.etv.org.vn/p21/"+encodeURIComponent(r.id);
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){alert("Đã sao chép: "+url);}).catch(function(){prompt("Sao chép đường dẫn:",url);});}
+      else{prompt("Sao chép đường dẫn:",url);}
+      return;
+    }
+    if(t.dataset.pick!=null){
+      var r=cur();var item=CATALOG[+t.dataset.pick];var gc=gateCheck(item);
+      if(!gc.pass){alert("Đối tượng (PTĐ) này chưa đủ điều kiện:\n"+gc.reasons.join("\n"));return;}
+      addCatalogItem(r,item);state.pickerFor=null;state.pickSel={};save();renderMain();
+      return;
+    }
+    if(t.id==="addline"){var r=cur();r.lines.push(blankLine(r.loai));save();renderMain();return;}
+    if(t.dataset.del!=null){var r=cur();r.lines.splice(+t.dataset.del,1);save();renderMain();return;}
+    if(t.id==="printbtn"){window.print();return;}
+  });
+  elMain.addEventListener("input",function(e){
+    var t=e.target,r=cur();if(!r)return;
+    if(t.dataset.pchk!=null){state.pickSel[t.dataset.pchk]=t.checked;
+      // update count + addselected button without full rerender to keep scroll
+      var sel=Object.keys(state.pickSel).filter(function(k){return state.pickSel[k];}).length;
+      var sc=document.querySelector(".picker-toolbar .sel-count");if(sc)sc.textContent="Đã chọn: "+sel;
+      var ab=document.querySelector('.picker-toolbar [data-action="addselected"]');if(ab){ab.textContent="Thêm "+sel+" đối tượng đã chọn";ab.disabled=!sel;}
+      return;
+    }
+    if(t.id==="pickerq"){state.pickerQ=t.value;renderMain();document.getElementById("pickerq").focus();var v=document.getElementById("pickerq");v.value=state.pickerQ;v.setSelectionRange(v.value.length,v.value.length);return;}
+    if(t.dataset.pf){r[t.dataset.pf]=t.value;save();}
+    else if(t.dataset.nm!=null){r.nenMau[t.dataset.nm]=t.checked;save();}
+    else if(t.dataset.af){r.baoCaoHangNam=r.baoCaoHangNam||{};r.baoCaoHangNam[t.dataset.af]=t.value;save();}
+    else if(t.dataset.lf!=null){var l=r.lines[+t.dataset.li];l[t.dataset.lf]=t.value;
+      if(t.dataset.lf!=="lyDo"&&t.dataset.lf!=="bangChung"&&t.dataset.lf!=="ten"&&t.dataset.lf!=="thongSo")l.linked=false; // chỉnh tay các trường kỹ thuật -> tách khỏi liên kết snapshot
+      save();
+      if(t.dataset.lf==="kq"){renderMain();}
+    }
+  });
+  elList.addEventListener("click",function(e){
+    var d=e.target.closest("[data-delrec]");
+    if(d){deleteRecord(d.dataset.delrec);return;}
+    var b=e.target.closest("[data-open]");
+    if(b){state.currentId=b.dataset.open;state.view="editor";state.pickerFor=null;renderList();renderMain();}
+  });
+
+  function deleteRecord(id){
+    var r=state.records.find(function(x){return x.id===id;});if(!r)return;
+    if(r.kyso&&state.role!==3){alert("Hồ sơ đã ký số — chỉ Lãnh đạo Viện mới được xóa/lưu trữ (Mục 16: không xóa dữ liệu đã công bố, chỉ lưu trữ có kiểm soát).");return;}
+    var warn=(r.trangThai==="conghieu"||r.kyso)?"\n\n⚠️ Hồ sơ này đã công khai/ký số. Theo Mục 16, dữ liệu đã công bố không nên xóa mà chỉ lưu trữ có kiểm soát. Bạn có chắc muốn xóa vĩnh viễn?":"";
+    if(!confirm("Xóa hồ sơ “"+r.id+"” ("+ST[r.trangThai].label+")?"+warn+"\n\nThao tác này không thể hoàn tác."))return;
+    state.records=state.records.filter(function(x){return x.id!==id;});
+    if(state.currentId===id)state.currentId=state.records[0]?state.records[0].id:null;
+    save();renderList();renderMain();
+  }
+
+  /* ---------- Auth / Login theo tài khoản ManLab ---------- */
+  function apiLogin(username,password){
+    // Trả về Promise<{token,user}>; thử API ManLab thật, fallback demo accounts.
+    return fetch(MANLAB.base+MANLAB.loginPath,{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({username:username,password:password})
+    }).then(function(res){
+      if(!res.ok)throw new Error("HTTP "+res.status);
+      return res.json();
+    }).then(function(data){
+      var vaiTro=data.user&&(data.user.vaiTro!=null?data.user.vaiTro:MANLAB.roleMap[data.user.role]);
+      if(typeof vaiTro==="string")vaiTro=MANLAB.roleMap[vaiTro];
+      return {token:data.token,user:{hoTen:(data.user&&(data.user.hoTen||data.user.name))||username,vaiTro:vaiTro==null?1:vaiTro},source:"manlab"};
+    });
+  }
+  function demoLogin(username,password){
+    var a=DEMO_ACCOUNTS.find(function(x){return x.u===username&&x.p===password;});
+    if(!a)return null;
+    return {token:"demo-"+a.u,user:{hoTen:a.hoTen,vaiTro:a.vaiTro},source:"demo"};
+  }
+  function setSession(sess){
+    state.token=sess.token;state.user=sess.user;state.role=sess.user.vaiTro;
+    try{localStorage.setItem(LS_AUTH,JSON.stringify({token:sess.token,user:sess.user,source:sess.source}));}catch(e){}
+    document.getElementById("uinfo").innerHTML='<span class="un">'+esc(sess.user.hoTen)+'</span><span class="ur">'+esc(ROLES[sess.user.vaiTro])+(sess.source==="demo"?" · demo":"")+'</span>';
+    document.getElementById("loginModal").hidden=true;
+    renderList();renderMain();
+  }
+  function doLogout(){
+    state.token=null;state.user=null;state.role=null;
+    try{localStorage.removeItem(LS_AUTH);}catch(e){}
+    state.currentId=null;
+    document.getElementById("main").innerHTML='<p class="empty">Vui lòng đăng nhập để sử dụng.</p>';
+    document.getElementById("reclist").innerHTML="";
+    showLogin();
+  }
+  function showLogin(){
+    var m=document.getElementById("loginModal");m.hidden=false;
+    document.getElementById("loginErr").hidden=true;
+    document.getElementById("loginStatus").textContent="";
+    var db=document.getElementById("demoBtns");
+    db.innerHTML=DEMO_ACCOUNTS.map(function(a){return '<button data-demo="'+a.u+'"><span>'+esc(a.hoTen)+' ('+a.u+'/'+a.p+')</span><span class="dr">'+esc(ROLES[a.vaiTro])+'</span></button>';}).join("");
+    var u=document.getElementById("loginUser");if(u)u.focus();
+  }
+  function tryLogin(username,password){
+    if(!username||!password){var e=document.getElementById("loginErr");e.hidden=false;e.textContent="Nhập tên đăng nhập và mật khẩu.";return;}
+    var st=document.getElementById("loginStatus");st.textContent="Đang kết nối ManLab…";
+    document.getElementById("loginErr").hidden=true;
+    apiLogin(username,password).then(function(sess){
+      st.textContent="";setSession(sess);
+    }).catch(function(){
+      // fallback demo
+      var d=demoLogin(username,password);
+      if(d){st.textContent="Không kết nối được API ManLab — đăng nhập ở chế độ demo.";setSession(d);}
+      else{st.textContent="";var e=document.getElementById("loginErr");e.hidden=false;e.textContent="Sai tài khoản, hoặc chưa kết nối được ManLab. Thử tài khoản demo bên dưới.";}
+    });
+  }
+  document.getElementById("loginBtn").addEventListener("click",function(){
+    tryLogin(document.getElementById("loginUser").value.trim(),document.getElementById("loginPass").value);
+  });
+  document.getElementById("loginPass").addEventListener("keydown",function(e){if(e.key==="Enter")document.getElementById("loginBtn").click();});
+  document.getElementById("demoBtns").addEventListener("click",function(e){
+    var b=e.target.closest("[data-demo]");if(!b)return;
+    var a=DEMO_ACCOUNTS.find(function(x){return x.u===b.dataset.demo;});
+    if(a){document.getElementById("loginUser").value=a.u;document.getElementById("loginPass").value=a.p;tryLogin(a.u,a.p);}
+  });
+
+  /* ---------- Cập nhật danh mục từ ManLab ---------- */
+  function fetchCatalogFromManlab(cb){
+    if(!state.token){cb(false,"Chưa đăng nhập ManLab.");return;}
+    fetch(MANLAB.base+MANLAB.catalogPath,{headers:{"Authorization":"Bearer "+state.token,"Accept":"application/json"}})
+      .then(function(res){if(!res.ok)throw new Error("HTTP "+res.status);return res.json();})
+      .then(function(data){
+        if(Array.isArray(data)&&data.length){
+          CATALOG=data;state.catalogSource="manlab";state.catalogUpdatedAt=nowISO();
+          cb(true,"Đã cập nhật "+data.length+" đối tượng từ ManLab.");
+        }else{cb(false,"ManLab trả về danh mục rỗng.");}
+      })
+      .catch(function(err){cb(false,"Không kết nối được API ManLab ("+err.message+"). Đang dùng dữ liệu đã nhúng ("+CATALOG.length+" đối tượng).");});
+  }
+
+  /* ---------- Init ---------- */
+  state.records=load();
+  if(!state.records.length){state.records=seed();save();}
+  state.currentId=state.records[0]?state.records[0].id:null;
+  (function restoreSession(){
+    var raw=null;try{raw=JSON.parse(localStorage.getItem(LS_AUTH));}catch(e){}
+    if(raw&&raw.user){setSession({token:raw.token,user:raw.user,source:raw.source||"demo"});}
+    else{showLogin();}
+  })();
+})();
+</script>
+
+</body>
+</html>

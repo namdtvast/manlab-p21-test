@@ -372,6 +372,7 @@
     base:"https://manlab.etv.org.vn",
     loginPath:"/api/auth/login",          // POST {username,password} -> {token, user:{hoTen, vaiTro}}
     catalogPath:"/api/phuong-tien-do",     // GET (Bearer token) -> [ {ten,tenTA,linhVuc,dichVu,phamVi,mpelod,cmcMax,cmcDvt,quyTrinh,nangLucCode,trangThaiPTD} ]
+    ptdPath:"https://apimanlab2.manlab.vn/api/daotao/ptd_github.php", // GET PTD catalog from GitHub API (requires CORS headers)
     roleMap:{"Lãnh đạo Viện":3,"Lanh dao Vien":3,"LDV":3,"Lãnh đạo phòng":2,"Lanh dao phong":2,"LDP":2,"Người thực hiện":1,"Nguoi thuc hien":1,"NTH":1,"Super Admin":0,"Admin":0}
   };
   // Demo accounts (fallback khi API ManLab chưa kết nối được — network/CORS)
@@ -1239,16 +1240,34 @@
 
   /* ---------- Cập nhật danh mục từ ManLab ---------- */
   function fetchCatalogFromManlab(cb){
-    if(!state.token){cb(false,"Chưa đăng nhập ManLab.");return;}
-    fetch(MANLAB.base+MANLAB.catalogPath,{headers:{"Authorization":"Bearer "+state.token,"Accept":"application/json"}})
-      .then(function(res){if(!res.ok)throw new Error("HTTP "+res.status);return res.json();})
+    // Try new PTD API endpoint first (no auth required)
+    // Note: API must have CORS headers configured
+    fetch(MANLAB.ptdPath,{mode:'cors',headers:{'Accept':'application/json'}})
+      .then(function(res){
+        if(!res.ok)throw new Error("HTTP "+res.status);
+        return res.json();
+      })
       .then(function(data){
-        if(Array.isArray(data)&&data.length){
-          CATALOG=data;state.catalogSource="manlab";state.catalogUpdatedAt=nowISO();
-          cb(true,"Đã cập nhật "+data.length+" đối tượng từ ManLab.");
+        // Transform new API response format
+        var items=data.data&&data.data.items?data.data.items:[];
+        if(items.length){
+          CATALOG=items;state.catalogSource="manlab";state.catalogUpdatedAt=nowISO();
+          cb(true,"Đã cập nhật "+items.length+" đối tượng từ GitHub API ManLab.");
         }else{cb(false,"ManLab trả về danh mục rỗng.");}
       })
-      .catch(function(err){cb(false,"Không kết nối được API ManLab ("+err.message+"). Đang dùng dữ liệu đã nhúng ("+CATALOG.length+" đối tượng).");});
+      .catch(function(err){
+        if(!state.token){cb(false,"Không kết nối được API ("+err.message+"). Đang dùng dữ liệu đã nhúng ("+CATALOG.length+" đối tượng).");return;}
+        // Fallback to old API if new one fails and user is logged in
+        fetch(MANLAB.base+MANLAB.catalogPath,{mode:'cors',headers:{"Authorization":"Bearer "+state.token,"Accept":"application/json"}})
+          .then(function(res){if(!res.ok)throw new Error("HTTP "+res.status);return res.json();})
+          .then(function(data){
+            if(Array.isArray(data)&&data.length){
+              CATALOG=data;state.catalogSource="manlab";state.catalogUpdatedAt=nowISO();
+              cb(true,"Đã cập nhật "+data.length+" đối tượng từ ManLab.");
+            }else{cb(false,"ManLab trả về danh mục rỗng.");}
+          })
+          .catch(function(err2){cb(false,"Không kết nối được API ManLab ("+err2.message+"). Đang dùng dữ liệu đã nhúng ("+CATALOG.length+" đối tượng).");});
+      });
   }
 
   /* ---------- Init ---------- */

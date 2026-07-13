@@ -59,6 +59,10 @@
   .recitem .sub{font-size:.72rem;color:var(--muted)}
   .badge{font-size:.64rem;font-weight:700;padding:.1rem .4rem;border-radius:999px;white-space:nowrap}
   .tag-loai{background:var(--navy);color:#fff}
+  .tag-dl{background:#163E5C;color:#fff}    /* Công bố (Đo lường) — xanh dương */
+  .tag-qtmt{background:#C2410C;color:#fff}  /* Thông báo (QTMT) — cam đối lập */
+  .recwrap.loai-dl{box-shadow:inset 4px 0 0 #163E5C}
+  .recwrap.loai-qtmt{box-shadow:inset 4px 0 0 #C2410C}
   .tag-link{background:var(--teal);color:#fff;font-size:.62rem;padding:.05rem .35rem;border-radius:4px;margin-left:.3rem}
   .empty-side{color:var(--muted);font-size:.78rem}
   /* Main */
@@ -586,9 +590,9 @@
       var s=ST[r.trangThai];
       var canDel=state.role===3||(!r.kyso&&(r.trangThai==="chualap"||r.trangThai==="danglap"));
       var delBtn=canDel?'<button class="recdel" data-delrec="'+esc(r.id)+'" title="Xóa hồ sơ">🗑</button>':'';
-      return '<div class="recwrap'+(r.id===state.currentId?' active':'')+'">'+
+      return '<div class="recwrap '+(r.loai==="DL"?"loai-dl":"loai-qtmt")+(r.id===state.currentId?' active':'')+'">'+
         '<button class="recitem" data-open="'+esc(r.id)+'">'+
-        '<div class="r1"><span class="mã">'+esc(r.id)+'</span><span class="badge tag-loai">'+(r.loai==="DL"?"ĐL":"QTMT")+'</span></div>'+
+        '<div class="r1"><span class="mã">'+esc(r.id)+'</span><span class="badge '+(r.loai==="DL"?"tag-dl":"tag-qtmt")+'">'+(r.loai==="DL"?"ĐL":"QTMT")+'</span></div>'+
         '<span class="badge pill '+s.cls+'" style="align-self:flex-start;border:1px solid">'+s.label+'</span>'+
         '<span class="sub">'+r.lines.length+' đối tượng · lần '+esc(r.lan)+' · '+fmt(r.ngay)+'</span></button>'+delBtn+'</div>';
     }).join("");
@@ -639,7 +643,7 @@
       h+='<div class="gaps ok"><b>✓ Đã đủ trường bắt buộc</b> — hồ sơ sẵn sàng để gửi soát xét / phê duyệt.</div>';
     }
 
-    h+='<div class="card"><h3>Thông tin hồ sơ (bảng cha) <span class="badge tag-loai">'+(r.loai==="DL"?"Đo lường · NQ 66.18":"Quan trắc MT · NQ 66.19")+'</span></h3>';
+    h+='<div class="card"><h3>Thông tin hồ sơ (bảng cha) <span class="badge '+(r.loai==="DL"?"tag-dl":"tag-qtmt")+'">'+(r.loai==="DL"?"Đo lường · NQ 66.18":"Quan trắc MT · NQ 66.19")+'</span></h3>';
     h+='<div class="grid2">'+
       fld("Mã hồ sơ",r.id,"id",true)+
       fld(r.loai==="DL"?"Số bản công bố":"Số thông báo",r.socb,"socb",!isEditable(r))+

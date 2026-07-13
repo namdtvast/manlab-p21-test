@@ -1283,7 +1283,7 @@
               cmcDvt:'',                 // CMC đã gồm đơn vị trong 1 field
               quyTrinh:item.QuyTrinh||'',
               nangLucCode:item.KyHieu||'',
-              trangThaiPTD:item.TrangThaiNTP||'0',
+              trangThaiPTD:(String(item.TrangThaiNTP)==="4"?"Đã duyệt":"Chưa duyệt"), // TrangThaiNTP=4 (DB ManLab) = đã duyệt → qua cổng G1
               nguoiThucHien:item.TenNguoiThucHien||''
             };
           });

@@ -1136,6 +1136,10 @@
     if(t.dataset.del!=null){var r=cur();r.lines.splice(+t.dataset.del,1);save();renderMain();return;}
     if(t.id==="printbtn"){window.print();return;}
   });
+  var pickerComposing=false; // true khi bộ gõ tiếng Việt (Telex/VNI) đang ghép chữ trong ô tìm PTĐ
+  function applyPickerQuery(){renderMain();var v=document.getElementById("pickerq");if(v){v.focus();v.setSelectionRange(v.value.length,v.value.length);}}
+  elMain.addEventListener("compositionstart",function(e){if(e.target&&e.target.id==="pickerq")pickerComposing=true;});
+  elMain.addEventListener("compositionend",function(e){if(e.target&&e.target.id==="pickerq"){pickerComposing=false;state.pickerQ=e.target.value;applyPickerQuery();}});
   elMain.addEventListener("input",function(e){
     var t=e.target,r=cur();if(!r)return;
     if(t.dataset.pchk!=null){state.pickSel[t.dataset.pchk]=t.checked;
@@ -1145,7 +1149,7 @@
       var ab=document.querySelector('.picker-toolbar [data-action="addselected"]');if(ab){ab.textContent="Thêm "+sel+" đối tượng đã chọn";ab.disabled=!sel;}
       return;
     }
-    if(t.id==="pickerq"){state.pickerQ=t.value;renderMain();document.getElementById("pickerq").focus();var v=document.getElementById("pickerq");v.value=state.pickerQ;v.setSelectionRange(v.value.length,v.value.length);return;}
+    if(t.id==="pickerq"){state.pickerQ=t.value;if(pickerComposing||e.isComposing)return;applyPickerQuery();return;} // đang ghép chữ bằng bộ gõ tiếng Việt thì chờ compositionend rồi mới vẽ lại (tránh ngắt IME)
     if(t.dataset.pf){r[t.dataset.pf]=t.value;save();}
     else if(t.dataset.nm!=null){r.nenMau[t.dataset.nm]=t.checked;save();}
     else if(t.dataset.af){r.baoCaoHangNam=r.baoCaoHangNam||{};r.baoCaoHangNam[t.dataset.af]=t.value;save();}

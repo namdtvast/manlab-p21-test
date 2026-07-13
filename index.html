@@ -500,11 +500,12 @@
     var reasons=[],isHC=item.dichVu==="HC";
     var approvedStates=["Đã duyệt","ĐN LĐV duyệt"]; // đối tượng đã qua duyệt/đề nghị Lãnh đạo Viện duyệt
     var g1=approvedStates.indexOf(item.trangThaiPTD)>-1; if(!g1)reasons.push("G1: PTĐ chưa được duyệt (hiện: "+(item.trangThaiPTD||"—")+")");
-    var cmcVal=String(item.cmcMax||"").trim(); var g2=!isHC||(cmcVal!==""&&cmcVal!=="—"); if(isHC&&!g2)reasons.push("G2: Thiếu CMC hợp lệ — không lập được Bản công bố NQ 66.18");
     var g3=!!item.quyTrinh; if(!g3)reasons.push("G3: Chưa liên kết quy trình thực hiện");
-    var g5=!!item.phamVi; if(!g5)reasons.push("G5: Thiếu phạm vi áp dụng");
     var g6=!!item.nangLucCode; if(!g6)reasons.push("G6: Chưa gán năng lực pháp lý (ĐK105/ĐK107/N383/VILAS/Giấy KHCN)");
-    return {pass:g1&&g2&&g3&&g5&&g6,reasons:reasons};
+    // G2 (CMC) và G5 (phạm vi đo): ManLab API không trả 2 trường này — không chặn ở picker, KTV điền khi lập hồ sơ và bị bắt buộc lại khi Gửi soát xét (lineGaps).
+    var cmcVal=String(item.cmcMax||"").trim(); if(isHC&&(cmcVal===""||cmcVal==="—"))reasons.push("Cần bổ sung CMC khi lập hồ sơ (NQ 66.18)");
+    if(!item.phamVi)reasons.push("Cần bổ sung phạm vi đo khi lập hồ sơ");
+    return {pass:g1&&g3&&g6,reasons:reasons};
   }
 
   /* ---------- Line schemas ---------- */

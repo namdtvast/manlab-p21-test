@@ -509,7 +509,8 @@
 
   /* ---------- Line schemas ---------- */
   var DV={kiemdinh:"Kiểm định",hieuchuan:"Hiệu chuẩn",thunghiem:"Thử nghiệm",quantrac:"Quan trắc"};
-  var DVREV={"KĐ":"kiemdinh","HC":"hieuchuan","TN":"thunghiem","QTMT":"quantrac"};
+  var DVREV={"KĐ":"kiemdinh","HC":"hieuchuan","TN":"thunghiem","KĐTN":"kiemdinh","QTMT":"quantrac"};
+  var DL_SERVICES=["HC","KĐ","TN","KĐTN"]; // Mã dịch vụ đo lường (MaYeuCauThucHien) — hồ sơ Đo lường chỉ lấy các dịch vụ này
   var NHOM={hientruong:"Đo đạc tại hiện trường",laymau:"Lấy & bảo quản mẫu",phantich:"Xử lý & phân tích mẫu"};
   var KQ={dapung:"Đáp ứng",khong:"Không đáp ứng",dieuchinh:"Điều chỉnh"};
 
@@ -698,6 +699,7 @@
     var scored=CATALOG.map(function(item,idx){return {item:item,idx:idx,gc:gateCheck(item)};})
       .filter(function(x){
         if(r.loai==="QTMT"&&x.item.dichVu!=="QTMT")return false; // Hồ sơ QTMT chỉ lấy Đối tượng có Dịch vụ = QTMT (Quan trắc)
+        if(r.loai==="DL"&&DL_SERVICES.indexOf(x.item.dichVu)<0)return false; // Hồ sơ Đo lường chỉ lấy dịch vụ đo lường
         if(!q)return true;return (x.item.ten+" "+x.item.linhVuc).toLowerCase().indexOf(q)>-1;});
     var pass=scored.filter(function(x){return x.gc.pass;});
     var fail=scored.filter(function(x){return !x.gc.pass;});
@@ -1113,7 +1115,7 @@
     if(t.dataset.action==="selall"){
       var q=state.pickerQ.toLowerCase();var rSel=cur();
       var pass=CATALOG.map(function(item,idx){return {idx:idx,item:item,gc:gateCheck(item)};})
-        .filter(function(x){if(rSel&&rSel.loai==="QTMT"&&x.item.dichVu!=="QTMT")return false;var searchStr=(x.item.ten+" "+x.item.linhVuc+" "+x.item.dichVu+" "+(x.item.phamVi||"")).toLowerCase();return x.gc.pass&&(!q||searchStr.indexOf(q)>-1);});
+        .filter(function(x){if(rSel&&rSel.loai==="QTMT"&&x.item.dichVu!=="QTMT")return false;if(rSel&&rSel.loai==="DL"&&DL_SERVICES.indexOf(x.item.dichVu)<0)return false;var searchStr=(x.item.ten+" "+x.item.linhVuc+" "+x.item.dichVu+" "+(x.item.phamVi||"")).toLowerCase();return x.gc.pass&&(!q||searchStr.indexOf(q)>-1);});
       var makeAll=!pass.every(function(x){return state.pickSel[x.idx];});
       pass.forEach(function(x){state.pickSel[x.idx]=makeAll;});
       renderMain();return;

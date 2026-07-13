@@ -672,11 +672,11 @@
 
     // child table (chung cho DL & QTMT)
     h+='<div class="card"><h3>Năng lực đề nghị công bố/ thông báo của Đối tượng — '+r.lines.length+' đối tượng<span class="btnrow">'+
-      (dis?"":'<button class="btn sm" data-action="openpicker">🔗 Chọn danh mục Đối tượng (PTĐ) từ Danh mục Phương tiện đo</button>')+'</span></h3>';
+      (dis?"":'<button class="btn sm" data-action="openpicker">🔗 Chọn danh mục Đối tượng ('+(r.loai==="QTMT"?"QTMT":"PTĐ")+') từ Danh mục Phương tiện đo</button>')+'</span></h3>';
     h+='<div class="ctab-wrap"><table class="ct"><colgroup>';
-    var widths=["96px","210px","120px","130px","150px","150px","120px","96px","118px","150px","150px","40px"];
+    var widths=["96px","210px","120px","130px","150px","150px","160px","96px","118px","150px","150px","40px"];
     h+=widths.map(function(w){return '<col style="width:'+w+'">';}).join("")+'</colgroup><thead><tr>';
-    var cols=["Dịch vụ","Tên đối tượng","Lĩnh vực","Phạm vi đo","Cấp/ĐCX/ĐKĐBĐ/MPE/LOD","Quy trình","Người TH","Ghi chú","Kết quả","Lý do","Bằng chứng",""];
+    var cols=["Dịch vụ","Tên đối tượng","Lĩnh vực","Phạm vi đo","Cấp/ĐCX/ĐKĐBĐ/MPE/LOD","Tên quy trình","Người tham gia (mặc định)","Ghi chú","Kết quả","Lý do","Bằng chứng",""];
     h+=cols.map(function(c){return"<th>"+c+"</th>";}).join("")+"</tr></thead><tbody>";
     r.lines.forEach(function(l,i){h+=lineRow(r,l,i,dis);});
     h+="</tbody></table></div><p class=\"subnote\">Dòng có nhãn 🔗 đã liên kết Danh mục PTĐ — dữ liệu được chụp snapshot tại thời điểm thêm (Mục 4, Mục 8).</p></div>";
@@ -707,8 +707,9 @@
     var selCount=Object.keys(state.pickSel).filter(function(k){return state.pickSel[k];}).length;
     var allChecked=pass.length>0&&pass.every(function(x){return state.pickSel[x.idx];});
     var srcLbl=state.catalogSource==="manlab"?("ManLab · "+CATALOG.length+" đối tượng"+(state.catalogUpdatedAt?" · cập nhật "+fmt(state.catalogUpdatedAt):"")):("Dữ liệu nhúng · "+CATALOG.length+" đối tượng");
+    var objLbl=r.loai==="QTMT"?"QTMT":"PTĐ";
     var h='<div class="picker"><div class="prow">'+
-      '<b>Chọn danh mục Đối tượng (PTĐ) từ Danh mục Phương tiện đo (LK1–LK5, Mục 9.2)</b><span style="flex:1"></span>'+
+      '<b>Chọn danh mục Đối tượng ('+objLbl+') từ Danh mục Phương tiện đo (LK1–LK5, Mục 9.2)</b><span style="flex:1"></span>'+
       '<button class="mlbtn" data-action="mlupdate">⟳ Cập nhật từ ManLab</button>'+
       '<button class="btn sm ghost" data-action="closepicker">Đóng</button></div>'+
       '<div class="prow" style="margin-bottom:.3rem"><span class="ml-status" id="mlStatus">Nguồn: '+esc(srcLbl)+'</span></div>'+
@@ -728,8 +729,8 @@
   }
   function pickerTable(list,ok){
     if(!list.length)return '<p class="subnote">'+(ok?"Không có PTĐ đủ điều kiện khớp tìm kiếm.":"Không có PTĐ chưa đủ điều kiện.")+'</p>';
-    var cols=["","Tên đối tượng","Lĩnh vực","DV","Phạm vi đo","MPE/CMC","Quy trình","Trạng thái",""];
-    var widths=["36px","220px","130px","52px","150px","120px","170px","120px","82px"];
+    var cols=["","Tên đối tượng","Lĩnh vực","Phạm vi đo","Cấp/ĐCX/ĐKĐBĐ/MPE/LOD","Tên quy trình","Người tham gia (mặc định)",""];
+    var widths=["36px","210px","120px","150px","150px","160px","160px","82px"];
     var h='<div class="ptab-wrap"><table class="ptbl"><colgroup>'+
       widths.map(function(w){return '<col style="width:'+w+'">';}).join("")+'</colgroup><thead><tr>'+
       cols.map(function(c){return "<th>"+c+"</th>";}).join("")+'</tr></thead><tbody>';
@@ -745,14 +746,13 @@
       '<td class="pcell-chk">'+chk+'</td>'+
       '<td class="pname">'+esc(item.ten)+'</td>'+
       '<td>'+esc(item.linhVuc)+'</td>'+
-      '<td>'+esc(item.dichVu)+'</td>'+
       '<td>'+esc(item.phamVi||"—")+'</td>'+
       '<td>'+esc(cap||"—")+'</td>'+
       '<td>'+esc((item.quyTrinh||"").split(" (")[0]||"—")+'</td>'+
-      '<td>'+esc(item.trangThaiPTD||"")+'</td>'+
+      '<td>'+esc(item.nguoiThucHien||"—")+'</td>'+
       '<td class="pcell-act">'+act+'</td>'+
     '</tr>';
-    if(!ok&&reasons&&reasons.length)h+='<tr class="fail greason-row"><td></td><td colspan="8"><div class="greason">'+reasons.map(esc).join("<br>")+'</div></td></tr>';
+    if(!ok&&reasons&&reasons.length)h+='<tr class="fail greason-row"><td></td><td colspan="7"><div class="greason">'+reasons.map(esc).join("<br>")+'</div></td></tr>';
     return h;
   }
   function addCatalogItem(r,item){

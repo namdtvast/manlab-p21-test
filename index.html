@@ -169,6 +169,8 @@
   .docpaper .htop .l,.docpaper .htop .r{flex:1}
   .docpaper .htop b{font-weight:700}
   .docpaper hr{border:0;border-top:1px solid #000;width:40%;margin:.2rem auto}
+  .docpaper .htop .hnum{margin:.45rem 0 0;font-weight:400}
+  .docpaper .htop .hdate{margin:.45rem 0 0;font-style:italic}
   .docpaper .mau{text-align:right;font-style:italic;font-size:11pt;margin-bottom:.4rem}
   .docpaper h2.tt{text-align:center;font-size:14pt;font-weight:700;margin:1rem 0 .3rem;text-transform:uppercase}
   .docpaper h3.sub{text-align:center;font-size:12pt;font-weight:700;margin:.2rem 0 1rem}
@@ -471,16 +473,12 @@
   /* ---------- Field-level validation (Mục 8.2 — trường bắt buộc B) ---------- */
   function lineGaps(r,l){
     var g=[];
-    if(r.loai==="DL"){
-      if(!l.ten.trim())g.push("Tên đối tượng");
-      if(!l.linhVuc.trim())g.push("Lĩnh vực");
-      if(!l.phamVi.trim())g.push("Phạm vi đo");
-      if(!l.quyTrinh.trim())g.push("Quy trình thực hiện");
-      if(!l.ccx.trim())g.push("Cấp/ĐCX/MPE/LOD");
-    }else{
-      if(!l.thongSo.trim())g.push("Thông số/loại mẫu");
-      if(!l.phuongPhap.trim())g.push("Phương pháp");
-    }
+    // Cả DL và QTMT dùng chung bảng Năng lực (cấu trúc Đối tượng)
+    if(!(l.ten||"").trim())g.push("Tên đối tượng");
+    if(!(l.linhVuc||"").trim())g.push("Lĩnh vực");
+    if(!(l.phamVi||"").trim())g.push("Phạm vi đo");
+    if(!(l.quyTrinh||"").trim())g.push("Quy trình thực hiện");
+    if(!(l.ccx||"").trim())g.push("Cấp/ĐCX/MPE/LOD");
     var hasEvidence=(l.bangChung&&l.bangChung.trim())||l.bcFileName;
     if((l.kq==="khong"||l.kq==="dieuchinh")&&!l.lyDo.trim())g.push("Lý do (bắt buộc — BR10)");
     if((l.kq==="khong"||l.kq==="dieuchinh")&&!hasEvidence)g.push("Bằng chứng: ảnh chụp màn hình / tài liệu (bắt buộc — BR10)");
@@ -516,9 +514,9 @@
   var KQ={dapung:"Đáp ứng",khong:"Không đáp ứng",dieuchinh:"Điều chỉnh"};
 
   function blankLine(loai){
-    return loai==="DL"
-      ? {id:rid(),dichVu:"kiemdinh",ten:"",linhVuc:"",phamVi:"",ccx:"",quyTrinh:"",nguoiTH:"",ghiChu:"",kq:"dapung",lyDo:"",bangChung:"",bcFileName:"",bcFileData:"",bcFileType:"",linked:false,catalogRef:""}
-      : {id:rid(),nhom:"hientruong",thongSo:"",phuongPhap:"",lod:"",loq:"",nguoiTH:"",kq:"dapung",lyDo:"",bangChung:"",bcFileName:"",bcFileData:"",bcFileType:"",linked:false,catalogRef:""};
+    // Cả DL và QTMT dùng chung cấu trúc dòng (bảng Năng lực + picker giống nhau).
+    // Người TH để trống — chỉ điền tự động từ DB ManLab (cột Người tham gia mặc định) khi chọn đối tượng từ danh mục.
+    return {id:rid(),dichVu:"kiemdinh",ten:"",linhVuc:"",phamVi:"",ccx:"",quyTrinh:"",nguoiTH:"",ghiChu:"",kq:"dapung",lyDo:"",bangChung:"",bcFileName:"",bcFileData:"",bcFileType:"",linked:false,catalogRef:""};
   }
   function rid(){return"L"+Math.floor(performance.now()*1000%1e9);}
 
@@ -667,20 +665,16 @@
     }
     h+='</div>';
 
-    // catalog picker (chỉ áp dụng cho Đo lường — dữ liệu tham chiếu Danh mục PTĐ)
-    if(r.loai==="DL"&&state.pickerFor===r.id)h+=catalogPicker(r);
+    // catalog picker — áp dụng cho cả Đo lường và Quan trắc MT (dữ liệu tham chiếu Danh mục PTĐ)
+    if(state.pickerFor===r.id)h+=catalogPicker(r);
 
-    // child table
+    // child table (chung cho DL & QTMT)
     h+='<div class="card"><h3>Năng lực đề nghị công bố/ thông báo của Đối tượng — '+r.lines.length+' đối tượng<span class="btnrow">'+
-      (dis?"":(r.loai==="DL"?'<button class="btn sm" data-action="openpicker">🔗 Chọn danh mục Đối tượng (PTĐ) từ Danh mục Phương tiện đo</button>':'<button class="btn sm ghost" data-action="addmanual">+ Thêm thông số</button>'))+'</span></h3>';
+      (dis?"":'<button class="btn sm" data-action="openpicker">🔗 Chọn danh mục Đối tượng (PTĐ) từ Danh mục Phương tiện đo</button>')+'</span></h3>';
     h+='<div class="ctab-wrap"><table class="ct"><colgroup>';
-    var widths=r.loai==="DL"
-      ?["96px","210px","120px","130px","150px","150px","120px","96px","118px","150px","150px","40px"]
-      :["150px","170px","160px","130px","90px","120px","118px","150px","150px","40px"];
+    var widths=["96px","210px","120px","130px","150px","150px","120px","96px","118px","150px","150px","40px"];
     h+=widths.map(function(w){return '<col style="width:'+w+'">';}).join("")+'</colgroup><thead><tr>';
-    var cols=r.loai==="DL"
-      ?["Dịch vụ","Tên đối tượng","Lĩnh vực","Phạm vi đo","Cấp/ĐCX/ĐKĐBĐ/MPE/LOD","Quy trình","Người TH","Ghi chú","Kết quả","Lý do","Bằng chứng",""]
-      :["Nhóm","Thông số / loại mẫu","Phương pháp","LOD / Phạm vi đo","LOQ","Người TH","Kết quả","Lý do","Bằng chứng",""];
+    var cols=["Dịch vụ","Tên đối tượng","Lĩnh vực","Phạm vi đo","Cấp/ĐCX/ĐKĐBĐ/MPE/LOD","Quy trình","Người TH","Ghi chú","Kết quả","Lý do","Bằng chứng",""];
     h+=cols.map(function(c){return"<th>"+c+"</th>";}).join("")+"</tr></thead><tbody>";
     r.lines.forEach(function(l,i){h+=lineRow(r,l,i,dis);});
     h+="</tbody></table></div><p class=\"subnote\">Dòng có nhãn 🔗 đã liên kết Danh mục PTĐ — dữ liệu được chụp snapshot tại thời điểm thêm (Mục 4, Mục 8).</p></div>";
@@ -762,7 +756,7 @@
     line.ten=item.ten;line.linhVuc=item.linhVuc;line.phamVi=item.phamVi;
     line.ccx=item.dichVu==="HC"&&item.cmcMax?((item.cmcMax+" "+item.cmcDvt).trim()):item.mpelod;
     line.quyTrinh=(item.quyTrinh||"").split(" (")[0];
-    line.nguoiTH="";line.catalogRef=item.ten;line.linked=true;
+    line.nguoiTH=item.nguoiThucHien||"";line.catalogRef=item.ten;line.linked=true; // Người TH = Người tham gia (mặc định) từ DB ManLab
     r.lines.push(line);
   }
 
@@ -773,10 +767,8 @@
     var kqcls="kq-"+l.kq;
     var linkTag=l.linked?'<span class="linkbadge">🔗 Danh mục PTĐ</span>':'';
     var ev=evidenceCell(l,i,dis);
-    if(r.loai==="DL"){
-      return '<tr><td>'+sel("dichVu",DV)+'</td><td>'+inp("ten")+linkTag+'</td><td>'+inp("linhVuc")+'</td><td>'+inp("phamVi")+'</td><td>'+inp("ccx")+'</td><td>'+inp("quyTrinh")+'</td><td>'+inp("nguoiTH")+'</td><td>'+sel("ghiChu",{"":"—","Bổ sung":"Bổ sung","Điều chỉnh":"Điều chỉnh"})+'</td><td class="'+kqcls+'">'+sel("kq",KQ)+'</td><td>'+inp("lyDo")+'</td><td>'+ev+'</td><td>'+del+'</td></tr>';
-    }
-    return '<tr><td>'+sel("nhom",NHOM)+'</td><td>'+inp("thongSo")+linkTag+'</td><td>'+inp("phuongPhap")+'</td><td>'+inp("lod")+'</td><td>'+inp("loq")+'</td><td>'+inp("nguoiTH")+'</td><td class="'+kqcls+'">'+sel("kq",KQ)+'</td><td>'+inp("lyDo")+'</td><td>'+ev+'</td><td>'+del+'</td></tr>';
+    // Cả DL và QTMT dùng chung hàng bảng Năng lực (cấu trúc Đối tượng)
+    return '<tr><td>'+sel("dichVu",DV)+'</td><td>'+inp("ten")+linkTag+'</td><td>'+inp("linhVuc")+'</td><td>'+inp("phamVi")+'</td><td>'+inp("ccx")+'</td><td>'+inp("quyTrinh")+'</td><td>'+inp("nguoiTH")+'</td><td>'+sel("ghiChu",{"":"—","Bổ sung":"Bổ sung","Điều chỉnh":"Điều chỉnh"})+'</td><td class="'+kqcls+'">'+sel("kq",KQ)+'</td><td>'+inp("lyDo")+'</td><td>'+ev+'</td><td>'+del+'</td></tr>';
   }
   function evidenceCell(l,i,dis){
     var has=l.bcFileName||l.bcFileData;
@@ -861,9 +853,11 @@
 
   /* ----- Document: Mẫu 01 (DL) / Mẫu 9.01 (QTMT) ----- */
   function renderDoc(r){return r.loai==="DL"?docDL(r):docQT(r);}
-  function docHeader(){
-    return '<div class="htop"><div class="l">LIÊN HIỆP CÁC HỘI<br>KHOA HỌC VÀ KỸ THUẬT VIỆT NAM<br><b>VIỆN KIỂM ĐỊNH CÔNG NGHỆ<br>VÀ MÔI TRƯỜNG</b><hr></div>'+
-      '<div class="r"><b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>Độc lập - Tự do - Hạnh phúc<hr></div></div>';
+  function docHeader(r,soSuffix){
+    var d=r.ngay?parse(r.ngay):null;
+    var dateStr='Hà Nội, ngày '+(d?pad(d.getDate()):"…")+' tháng '+(d?pad(d.getMonth()+1):"…")+' năm '+(d?d.getFullYear():"…");
+    return '<div class="htop"><div class="l">LIÊN HIỆP CÁC HỘI<br>KHOA HỌC VÀ KỸ THUẬT VIỆT NAM<br><b>VIỆN KIỂM ĐỊNH CÔNG NGHỆ<br>VÀ MÔI TRƯỜNG</b><hr><p class="hnum">Số: '+esc(r.socb)+'/'+soSuffix+'</p></div>'+
+      '<div class="r"><b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br>Độc lập - Tự do - Hạnh phúc<hr><p class="hdate">'+esc(dateStr)+'</p></div></div>';
   }
   function docFoot(r){
     var url="https://tracuu.etv.org.vn/p21/"+encodeURIComponent(r.id);
@@ -877,9 +871,7 @@
       return '<table class="f"><thead><tr><th>TT</th><th>Tên phương tiện đo / chuẩn đo lường</th><th>Lĩnh vực</th><th>Phạm vi đo</th><th>Cấp/ độ chính xác/ ĐKĐBĐ/ Sai số/ MPE/ LOD</th><th>Quy trình thực hiện</th><th>Ghi chú</th></tr></thead><tbody>'+
         ls.map(function(l,i){return '<tr><td style="text-align:center">'+(i+1)+'</td><td>'+esc(l.ten)+(l.kq==="khong"?' <b style="color:#b23a48">[chưa đủ ĐK]</b>':"")+'</td><td>'+esc(l.linhVuc)+'</td><td>'+esc(l.phamVi)+'</td><td>'+esc(l.ccx)+'</td><td>'+esc(l.quyTrinh)+'</td><td>'+esc(l.ghiChu)+'</td></tr>';}).join("")+'</tbody></table>';
     }
-    return '<div class="docpaper"><div class="mau">Mẫu số 01</div>'+docHeader()+
-      '<p class="line" style="text-align:right">Số: '+esc(r.socb)+'/BCB-ETV</p>'+
-      '<p class="line" style="text-align:right;font-style:italic">Hà Nội, ngày '+(r.ngay?pad(parse(r.ngay).getDate()):"…")+' tháng '+(r.ngay?pad(parse(r.ngay).getMonth()+1):"…")+' năm '+(r.ngay?parse(r.ngay).getFullYear():"…")+'</p>'+
+    return '<div class="docpaper"><div class="mau">Mẫu số 01</div>'+docHeader(r,"BCB-ETV")+
       '<h2 class="tt">Bản công bố năng lực kiểm định, hiệu chuẩn, thử nghiệm</h2>'+
       '<h3 class="sub">phương tiện đo nhóm 1, chuẩn đo lường không dùng trực tiếp để kiểm định phương tiện đo nhóm 2</h3>'+
       '<p class="line"><b>Tên tổ chức:</b> '+esc(r.toChuc)+'</p>'+
@@ -899,20 +891,7 @@
   }
   function docQT(r){
     var nm=[["nuocMat","Nước mặt"],["nuocDuoiDat","Nước dưới đất"],["nuocMua","Nước mưa"],["nuocBien","Nước biển"],["nuocThai","Nước thải"],["khongKhiXq","Không khí xung quanh"],["khiThai","Khí thải"],["dat","Đất"],["tramTich","Trầm tích"],["ctr","Chất thải rắn"],["bunThai","Bùn thải"]];
-    function tbl(nhom,cols){
-      var ls=r.lines.filter(function(l){return l.nhom===nhom;});
-      if(!ls.length)return'<p class="line"><i>(Không có)</i></p>';
-      var head="<tr><th>TT</th>"+cols.map(function(c){return"<th>"+c+"</th>";}).join("")+"</tr>";
-      var body=ls.map(function(l,i){
-        var c="<td style='text-align:center'>"+(i+1)+"</td><td>"+esc(l.thongSo)+"</td><td>"+esc(l.phuongPhap)+"</td>";
-        if(cols.length>=3)c+="<td>"+esc(l.lod)+"</td>";
-        if(cols.length>=4)c+="<td>"+esc(l.loq)+"</td>";
-        return "<tr>"+c+"</tr>";
-      }).join("");
-      return '<table class="f"><thead>'+head+'</thead><tbody>'+body+'</tbody></table>';
-    }
-    return '<div class="docpaper"><div class="mau">Mẫu số 9.01</div>'+docHeader()+
-      '<p class="line" style="text-align:right">Số: '+esc(r.socb)+'/ETV</p>'+
+    return '<div class="docpaper"><div class="mau">Mẫu số 9.01</div>'+docHeader(r,"ETV")+
       '<h2 class="tt">Thông báo hoạt động dịch vụ quan trắc môi trường</h2>'+
       '<h3 class="sub">(Thông báo lần: '+esc(r.lan)+')</h3>'+
       '<p class="line"><b>Kính gửi:</b> '+esc(r.coQuanTiepNhan||"Bộ Nông nghiệp và Môi trường")+'</p>'+
@@ -924,10 +903,13 @@
       '<p class="line"><b>Điện thoại:</b> '+esc(r.dienThoai)+' &nbsp; <b>Email:</b> '+esc(r.email)+'</p>'+
       '<p class="sec">B. PHẠM VI CÔNG BỐ HOẠT ĐỘNG</p>'+
       '<p class="line">'+nm.map(function(o){return (r.nenMau[o[0]]?"☑":"☐")+" "+o[1];}).join(" &nbsp; ")+'</p>'+
-      '<p class="sec">Danh mục thông số và phương pháp:</p>'+
-      '<p class="line">- Đo đạc tại hiện trường:</p>'+tbl("hientruong",["Tên thông số","Phương pháp sử dụng","Giới hạn phát hiện/ Phạm vi đo"])+
-      '<p class="line">- Lấy &amp; bảo quản mẫu:</p>'+tbl("laymau",["Loại mẫu","Phương pháp sử dụng"])+
-      '<p class="line">- Xử lý &amp; phân tích mẫu:</p>'+tbl("phantich",["Thông số","Phương pháp sử dụng","Giới hạn phát hiện/ Phạm vi đo","Giới hạn định lượng"])+
+      '<p class="sec">Danh mục đối tượng năng lực:</p>'+
+      (function(){
+        var ls=r.lines;
+        if(!ls.length)return '<p class="line"><i>(Không có)</i></p>';
+        return '<table class="f"><thead><tr><th>TT</th><th>Tên đối tượng</th><th>Lĩnh vực</th><th>Phạm vi đo</th><th>Cấp/ ĐCX/ ĐKĐBĐ/ MPE/ LOD</th><th>Quy trình thực hiện</th><th>Ghi chú</th></tr></thead><tbody>'+
+          ls.map(function(l,i){return '<tr><td style="text-align:center">'+(i+1)+'</td><td>'+esc(l.ten)+(l.kq==="khong"?' <b style="color:#b23a48">[chưa đủ ĐK]</b>':"")+'</td><td>'+esc(l.linhVuc)+'</td><td>'+esc(l.phamVi)+'</td><td>'+esc(l.ccx)+'</td><td>'+esc(l.quyTrinh)+'</td><td>'+esc(l.ghiChu||"")+'</td></tr>';}).join("")+'</tbody></table>';
+      })()+
       '<p class="sec">C. NĂNG LỰC CÔNG NHẬN</p>'+
       '<p class="line">Đã được công nhận phù hợp TCVN ISO/IEC 17025 — Số hiệu: '+esc(r.congNhanSo||"(chưa có)")+'; Hiệu lực: '+fmt(r.congNhanHieuLuc)+'.</p>'+
       '<p class="line" style="font-style:italic;font-size:10.5pt">(*) Danh sách nhân sự, danh mục thiết bị và diện tích phòng thí nghiệm theo Mục C.I–C.II Mẫu 9.01 được lưu trong hồ sơ đính kèm (F21.02 Kế hoạch, F21.03/F21.05 Checklist &amp; rà soát) trên ManLab — xem tab “Nhật ký”.</p>'+
@@ -955,8 +937,7 @@
     var ls=r.lines.filter(function(l){return l.kq==="dapung"||l.kq==="dieuchinh";});
     var url="https://tracuu.etv.org.vn/p21/"+encodeURIComponent(r.id);
     var rows;
-    if(r.loai==="DL")rows='<tr><th>Dịch vụ</th><th>Tên PTĐ / chuẩn</th><th>Phạm vi đo</th><th>Cấp/ ĐCX/ ĐKĐBĐ</th><th>Quy trình</th></tr>'+ls.map(function(l){return '<tr><td>'+DV[l.dichVu]+'</td><td>'+esc(l.ten)+'</td><td>'+esc(l.phamVi)+'</td><td>'+esc(l.ccx)+'</td><td>'+esc(l.quyTrinh)+'</td></tr>';}).join("");
-    else rows='<tr><th>Nhóm</th><th>Thông số</th><th>Phương pháp</th><th>LOD/Phạm vi</th><th>LOQ</th></tr>'+ls.map(function(l){return '<tr><td>'+NHOM[l.nhom]+'</td><td>'+esc(l.thongSo)+'</td><td>'+esc(l.phuongPhap)+'</td><td>'+esc(l.lod)+'</td><td>'+esc(l.loq)+'</td></tr>';}).join("");
+    rows='<tr><th>Dịch vụ</th><th>Tên đối tượng</th><th>Lĩnh vực</th><th>Phạm vi đo</th><th>Cấp/ ĐCX/ ĐKĐBĐ</th><th>Quy trình</th></tr>'+ls.map(function(l){return '<tr><td>'+(DV[l.dichVu]||esc(l.dichVu||""))+'</td><td>'+esc(l.ten)+'</td><td>'+esc(l.linhVuc)+'</td><td>'+esc(l.phamVi)+'</td><td>'+esc(l.ccx)+'</td><td>'+esc(l.quyTrinh)+'</td></tr>';}).join("");
     var skipped=r.lines.length-ls.length;
     var thead=rows.slice(0,rows.indexOf("</tr>")+5);
     var tbody=rows.slice(rows.indexOf("</tr>")+5);
@@ -1074,7 +1055,7 @@
       toChuc:"VIỆN KIỂM ĐỊNH CÔNG NGHỆ VÀ MÔI TRƯỜNG",
       diaChi:"Tầng 14 Tòa nhà Zen Tower, số 12 Khuất Duy Tiến, P. Thanh Xuân, TP. Hà Nội",
       dienThoai:"0813.98.98.38",email:"kiemdinh@etv.org.vn",diaDiem:loai==="DL"?"Khu C3-2B/NO4, Ngõ 1, đường Vũ Đình Tụng, P. Long Biên, TP Hà Nội":"",
-      daiDien:"",coQuanTiepNhan:loai==="DL"?"Trung tâm Phục vụ hành chính công TP. Hà Nội":"Bộ Nông nghiệp và Môi trường",
+      daiDien:"TS. Nguyễn Hoàng Giang — Viện trưởng",coQuanTiepNhan:loai==="DL"?"Trung tâm Phục vụ hành chính công TP. Hà Nội":"Bộ Nông nghiệp và Môi trường",
       coQuanChuQuan:"",congNhanSo:"",congNhanHieuLuc:"",
       nenMau:{},dieuChinh:"",trangThai:"chualap",kyso:false,kysoAt:null,
       ngayGui:null,maBienNhan:"",ngayTiepNhan:null,ngayCongKhai:null,phienBanCu:[],
@@ -1322,8 +1303,22 @@
   }
 
   /* ---------- Init ---------- */
-  state.records=load();
-  if(!state.records.length){state.records=seed();save();}
+  // Chuyển dòng QTMT cấu trúc cũ (nhom/thongSo/phuongPhap) sang cấu trúc Đối tượng chung (giống DL)
+  function migrateLine(l){
+    if(l&&l.ten===undefined&&(l.thongSo!==undefined||l.nhom!==undefined)){
+      l.ten=l.thongSo||"";
+      l.linhVuc=l.linhVuc||(l.nhom&&NHOM[l.nhom])||"";
+      l.quyTrinh=l.quyTrinh||l.phuongPhap||"";
+      l.phamVi=l.phamVi||l.lod||"";
+      l.ccx=l.ccx||l.loq||"";
+      l.dichVu=l.dichVu||"thunghiem";
+      if(l.ghiChu===undefined)l.ghiChu="";
+    }
+    return l;
+  }
+  function migrateRecords(rs){(rs||[]).forEach(function(r){(r.lines||[]).forEach(migrateLine);});return rs;}
+  state.records=migrateRecords(load());
+  if(!state.records.length){state.records=migrateRecords(seed());save();}
   state.currentId=state.records[0]?state.records[0].id:null;
   (function restoreSession(){
     var raw=null;try{raw=JSON.parse(localStorage.getItem(LS_AUTH));}catch(e){}

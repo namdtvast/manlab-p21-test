@@ -1278,11 +1278,12 @@
         var items=data.data&&data.data.items?data.data.items:[];
         if(items.length){
           // Transform API fields to app format
-          // API ptd_github.php trả nhãn dịch vụ đầy đủ (vd "Hiệu chuẩn", "Quan trắc"...) → quy về mã dịch vụ nội bộ (HC/KĐ/TN/QTMT)
+          // API ptd_github.php trả nhãn dịch vụ đầy đủ (vd "Hiệu chuẩn", "Quan trắc"...) → quy về mã dịch vụ nội bộ (HC/KĐ/KĐTN/TN/QTMT)
           function dvCode(s){
             s=String(s||'');
             if(s.indexOf('Quan trắc')>-1)return 'QTMT';
             if(s.indexOf('Hiệu chuẩn')>-1)return 'HC';
+            if(s.indexOf('tự nguyện')>-1)return 'KĐTN'; // "Kiểm định tự nguyện" — kiểm tra trước "Kiểm định" thường
             if(s.indexOf('Kiểm định')>-1)return 'KĐ';
             if(s.toLowerCase().indexOf('thử nghiệm')>-1)return 'TN';
             return s; // dịch vụ khác (Thủ tục, Đào tạo, Bảo trì...) — không thuộc ĐL/QTMT, sẽ tự bị lọc khỏi picker
